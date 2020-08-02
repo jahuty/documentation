@@ -1,6 +1,7 @@
 variables:
   introduction:
-    # Assumes title has been defined elsewhere.
+    data:
+      title: hello world
     input: |
       <p>{{ title }}</p>
     output: |
@@ -21,10 +22,15 @@ variables:
     input: |
       <p>The current user is {{ foo }}</p>
     output: |
-      <p>The current user is</p>
+      <p>The current user is </p>
   arrays:
+    data:
+      users:
+        - Tobi
+        - Laura
+        - Tetsuro
+        - Adam
     input: |
-      <!-- if users = "Tobi", "Laura", "Tetsuro", "Adam" -->
       {{ users[0] }}
       {{ users[1] }}
       {{ users[3] }}
