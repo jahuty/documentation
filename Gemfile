@@ -18,6 +18,19 @@ group :jekyll_plugins do
   # gem "jekyll-feed", "~> 0.12"
 end
 
+group :development, :test do
+  # Acceptance test framework for web applications.
+  gem "capybara"
+  # Transforms Jekyll app into Rack application.
+  gem "rack-jekyll"
+  # Behavior driven test syntax.
+  gem "rspec"
+  # A browser automation framework and ecosystem.
+  gem "selenium-webdriver"
+  # Downloads drivers and directs Selenium to use them.
+  gem "webdrivers"
+end
+
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
 # and associated library.
 platforms :mingw, :x64_mingw, :mswin, :jruby do

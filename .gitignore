@@ -2,4 +2,6 @@ _site/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
+spec/examples.txt
+test_results
 vendor
