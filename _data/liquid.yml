@@ -1,0 +1,106 @@
+# Examples for the liquid template language.
+#
+# There are two supported formats: a string code snippet, and a "hash" example.
+#
+variables:
+  introduction:
+    data:
+      title: hello world
+    input: |
+      <p>{{ title }}</p>
+    output: |
+      <p>hello world</p>
+  assign: |
+    {% assign foo = "bar" %}
+  capture: |
+    {% capture foo %}I am being captured.{% endcapture %}
+  strings: |
+    {% assign my_string = "Hello World!" %}
+  numbers: |
+    {% assign my_int = 25 %}
+    {% assign my_float = 3.14159 %}
+  booleans: |
+    {% assign foo = true %}
+    {% assign bar = false %}
+  nil:
+    input: |
+      <p>The current user is {{ foo }}</p>
+    output: |
+      <p>The current user is </p>
+  arrays:
+    data:
+      users:
+        - Tobi
+        - Laura
+        - Tetsuro
+        - Adam
+    comment: <!-- if users = "Tobi", "Laura", "Tetsuro", "Adam" -->
+    input: |
+      {{ users[0] }}
+      {{ users[1] }}
+      {{ users[3] }}
+    output: |
+      Tobi
+      Laura
+      Adam
+parameters:
+  introduction1:
+    data:
+      color: blue
+    comment: <!-- /snippets/1?params={"color":"blue"} -->
+    input: |
+      <p>The sky is {{ color }}.</p>
+    output: |
+      <p>The sky is blue.</p>
+  introduction2:
+    data:
+      color: green
+    comment: <!-- /snippets/1?params={"color":"green"} -->
+    input: |
+      <p>The sky is {{ color }}.</p>
+    output: |
+      <p>The sky is green.</p>
+  arrays:
+    data:
+      names:
+        - Jack
+        - Nancy
+        - Harry
+    comment: <!-- /snippets/1?params={"names":["Jack","Nancy","Harry"]} -->
+    input: |
+      {% for name in names -%}
+        Hi {{ name }}!
+      {% endfor -%}
+    output: |
+        Hi Jack!
+        Hi Nancy!
+        Hi Harry!
+  objects:
+    data:
+      person:
+        name:
+          first: Jean-Luc
+          last: Picard
+    comment: <!-- /snippets/1?params={"person":{"name":{"first":"Jean-Luc","last":"Picard"}}} -->
+    input: |
+      Hi {{ person.name.first }}!
+    output: |
+      Hi Jean-Luc!
+  precedence:
+    data:
+      foo: shirt
+      bar: pants
+      corge: socks
+    comment: <!-- /snippets/1?params={"foo":"shirt","bar":"pants","corge":"socks"} -->
+    input: |
+      {% assign foo = "hat" -%}
+      {{ foo }}
+      {{ bar }}
+      {{ baz }}
+      {{ qux | default: "shoes" }}
+    output: |
+      hat
+      pants
+
+      shoes
+last:
