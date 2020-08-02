@@ -3,13 +3,13 @@ title       : Assigning a variable
 description : How to assign a variable.
 keywords    : [assign, variable]
 ---
-{% assign examples = site.data.examples.variables %}
+{% assign examples = site.data.liquid.variables %}
 
 # Assigning a variable
 
 Variables output values in your snippets. Variable names are denoted by double curly braces: {% raw %}`{{`{% endraw %} and {% raw %}`}}`{% endraw %}. To render the content of a variable called `title` with the value `hello world`:
 
-{% include example.html example=site.data.examples.variables.introduction %}
+{% include example.html example=examples.introduction %}
 
 ## Initializing variables
 
