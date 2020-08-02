@@ -21,6 +21,8 @@ end
 group :development, :test do
   # Acceptance test framework for web applications.
   gem "capybara"
+  # Safe templating language.
+  gem "liquid"
   # Transforms Jekyll app into Rack application.
   gem "rack-jekyll"
   # Behavior driven test syntax.

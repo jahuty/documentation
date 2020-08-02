@@ -104,4 +104,10 @@ RSpec.configure do |config|
   # Include Capybara and its DSL for browser tests.
   require_relative "./support/capybara.rb"
   config.include Capybara::DSL
+
+  # Include our custom matchers.
+  require_relative "./support/custom_matchers.rb"
+
+  # Include our custom examples.
+  require_relative "./support/shared_examples.rb"
 end

@@ -108,6 +108,7 @@ PLATFORMS
 DEPENDENCIES
   capybara
   jekyll (~> 4.1.1)
+  liquid
   rack-jekyll
   rspec
   selenium-webdriver
