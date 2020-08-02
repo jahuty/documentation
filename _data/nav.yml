@@ -1,0 +1,45 @@
+en:
+- name: Snippets
+  path: /snippets
+  children:
+    - name: Overview
+      path: /snippets/overview
+    - name: Creating a snippet
+      path: /snippets/creating
+    - name: Deleting a snippet
+      path: /snippets/deleting
+- name: Template language
+  path: /liquid
+  children:
+    - name: Overview
+      path: /liquid/overview
+    - name: Assigning a variable
+      path: /liquid/variables
+    - name: Passing a parameter
+      path: /liquid/parameters
+    - name: Applying a filter
+      path: /liquid/filters
+    - name: Controlling the flow
+      path: /liquid/controls
+    - name: Iterating a loop
+      path: /liquid/loops
+- name: SDKs reference
+  path: /sdks
+  children:
+    - name: Overview
+      path: /sdks/overview
+    - name: PHP
+      path: /sdks/php
+    - name: Ruby
+      path: /sdks/ruby
+- name: API reference
+  path: /api
+  children:
+    - name: Introduction
+      path: /api#introduction
+    - name: Authentication
+      path: /api#authentication
+    - name: Errors
+      path: /api#errors
+    - name: Snippets
+      path: /api#snippets

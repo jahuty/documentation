@@ -1,0 +1,34 @@
+variables:
+  introduction:
+    # Assumes title has been defined elsewhere.
+    input: |
+      <p>{{ title }}</p>
+    output: |
+      <p>hello world</p>
+  assign: |
+    {% assign foo = "bar" %}
+  capture: |
+    {% capture foo %}I am being captured.{% endcapture %}
+  strings: |
+    {% assign my_string = "Hello World!" %}
+  numbers: |
+    {% assign my_int = 25 %}
+    {% assign my_float = 3.14159 %}
+  booleans: |
+    {% assign foo = true %}
+    {% assign bar = false %}
+  nil:
+    input: |
+      <p>The current user is {{ foo }}</p>
+    output: |
+      <p>The current user is</p>
+  arrays:
+    input: |
+      <!-- if users = "Tobi", "Laura", "Tetsuro", "Adam" -->
+      {{ users[0] }}
+      {{ users[1] }}
+      {{ users[3] }}
+    output: |
+      Tobi
+      Laura
+      Adam

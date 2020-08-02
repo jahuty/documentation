@@ -1,0 +1,17 @@
+{% comment %}
+  I'll output a snippet of code.
+
+  @param  header    string   the snippet's header (optional, defaults false)
+  @param  language  string   the snippet's language (e.g., "html")
+  @param  code      string   the the snippet
+{% endcomment %}
+<div class="card mb-3">
+  {% if include.header %}
+    <div class="card-header">
+      {{ include.header }}
+    </div>
+  {% endif %}
+  <div class="card-body bg-light">
+    <pre class="m-0 language-{{ include.language }}"><code class="text-monospace">{{ include.code | escape }}</code></pre>
+  </div>
+</div>
