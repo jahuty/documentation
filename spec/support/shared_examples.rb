@@ -1,15 +1,23 @@
-RSpec.shared_examples "a valid example" do
-  it "has valid input syntax" do
-    expect(subject["input"]).to have_valid_syntax
+RSpec.shared_examples "a liquid example" do
+  it "has valid liquid syntax" do
+    expect {
+      Liquid::Template.parse(subject["input"])
+    }.not_to raise_error
   end
 
-  it "has matching output" do
-    expect(subject["input"]).to have_output(subject["output"], subject["data"])
+  it "has correct output" do
+    template = Liquid::Template.parse(subject["input"])
+    render   = template.render(subject.fetch("data", {}))
+    output   = subject["output"]
+
+    expect(render).to eq(output)
   end
 end
 
-RSpec.shared_examples "a valid snippet" do
+RSpec.shared_examples "a liquid snippet" do
   it "has valid input syntax" do
-    expect(subject).to have_valid_syntax
+    expect {
+      Liquid::Template.parse(subject["input"])
+    }.not_to raise_error
   end
 end

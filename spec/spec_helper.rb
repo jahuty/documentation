@@ -105,9 +105,6 @@ RSpec.configure do |config|
   require_relative "./support/capybara.rb"
   config.include Capybara::DSL
 
-  # Include our custom matchers.
-  require_relative "./support/custom_matchers.rb"
-
   # Include our custom examples.
   require_relative "./support/shared_examples.rb"
 end
