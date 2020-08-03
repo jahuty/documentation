@@ -1,6 +1,13 @@
 # Examples for the liquid template language.
 #
-# There are two supported formats: a string code snippet, and a "hash" example.
+# There are two supported formats: snippets and examples.
+#
+#   Snippets
+#     Snippets should be strings of valid Liquid syntax.
+#
+#   Examples
+#     Examples, on the other hand, combine an input with data (often expressed
+#     as a comment) to produce an an output.
 #
 variables:
   introduction:
@@ -103,4 +110,14 @@ parameters:
       pants
 
       shoes
-last:
+filters:
+  introduction:
+    input: |
+      {{ "/my/fancy/url" | append: ".html" }}
+    output: |
+      /my/fancy/url.html
+  left_to_right:
+    input: |
+      {{ "world!" | capitalize | prepend: "Hello " }}
+    output: |
+      Hello World!
