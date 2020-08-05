@@ -1,6 +1,6 @@
 ---
 title       : Passing a parameter
-description : How to pass a parameter.
+description : How to pass a parameter
 keywords    : [pass, parameter]
 ---
 {% assign examples = site.data.liquid.parameters %}
