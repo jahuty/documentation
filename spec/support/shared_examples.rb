@@ -10,7 +10,8 @@ RSpec.shared_examples "a liquid example" do
     render   = template.render(subject.fetch("data", {}))
     output   = subject["output"]
 
-    expect(render).to eq(output)
+    # Use `#strip` to removing superficial whitespace differences.
+    expect(render.strip).to eq(output.strip)
   end
 end
 
