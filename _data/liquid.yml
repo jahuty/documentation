@@ -121,3 +121,128 @@ filters:
       {{ "world!" | capitalize | prepend: "Hello " }}
     output: |
       Hello World!
+controls:
+  introduction:
+    data:
+      title: Awesome title
+    input: |
+      {% if title == "Awesome title" %}
+        This title is awesome!
+      {% endif %}
+    output: |
+      This title is awesome!
+  contains_string:
+    input: |
+      {% if "Awesome content" contains "Awesome" %}
+        This content is awesome.
+      {% endif %}
+    output:
+      This content is awesome.
+  contains_array:
+    data:
+      tags: ["Awesome", "Fun", "Cool"]
+    comment: <!-- if tags = ["Awesome", "Fun", "Cool"] -->
+    input: |
+      {% if tags contains "Awesome" %}
+        This array is awesome.
+      {% endif %}
+    output: |
+        This array is awesome.
+  increment:
+    input: |
+      {% increment my_counter %}
+      {% increment my_counter %}
+      {% increment my_counter %}
+    output: |
+      0
+      1
+      2
+  increment_independence:
+    input: |
+      {% assign var = 10 -%}
+      {% increment var %}
+      {% increment var %}
+      {% increment var %}
+      {{ var }}
+    output: |
+      0
+      1
+      2
+      10
+  decrement:
+    input: |
+      {% decrement my_counter %}
+      {% decrement my_counter %}
+      {% decrement my_counter %}
+    output: |
+      -1
+      -2
+      -3
+  if:
+    data:
+      title: Awesome title
+    comment: <!-- if title = "Awesome title" -->
+    input: |
+      {% if title == "Awesome title" %}
+        This title is awesome!
+      {% endif %}
+    output: |
+      This title is awesome!
+  unless:
+    data:
+      product:
+        title: Ugly shoes
+    comment: <!-- if product.title = "Ugly Shoes" -->
+    input: |
+      {% unless product.title == "Awesome Shoes" %}
+        These shoes are not awesome.
+      {% endunless %}
+    output: |
+      These shoes are not awesome.
+  unless_as_if:
+    input: |
+      {% if product.title != "Awesome Shoes" %}
+        These shoes are not awesome.
+      {% endif %}
+    output: |
+      These shoes are not awesome.
+  else:
+    data:
+      customer:
+        name: anonymous
+    comment: <!-- If customer.name = "anonymous" -->
+    input: |
+      {% if customer.name == "jack" -%}
+        Hi Jack!
+      {% elsif customer.name == "nancy" -%}
+        Hi Nancy!
+      {% else -%}
+        Hi Stranger!
+      {% endif -%}
+    output: |
+      Hi Stranger!
+  case:
+    input: |
+      {% assign handle = "cake" %}
+      {% case handle %}
+        {% when "cake" %}
+           This is a cake
+        {% when "cookie" %}
+           This is a cookie
+        {% else %}
+           This is not a cake nor a cookie
+      {% endcase %}
+    output: |
+      This is a cake
+  raw:
+    input: |
+      {% raw %}
+        In Handlebars, {{ this }} will be HTML-escaped, but {{{ that }}} will not.
+      {% endraw %}
+    output: |
+      In Handlebars, {{ this }} will be HTML-escaped, but {{{ that }}} will not.
+  comment:
+    input: |
+      Anything between {% comment %} and {% endcomment %} tags is turned into a comment.
+    output: |
+      Anything between  tags is turned into a comment.

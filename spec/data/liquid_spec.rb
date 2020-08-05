@@ -1,6 +1,88 @@
 require "spec_helper"
 
 RSpec.describe "liquid examples" do
+  describe "controls" do
+    let(:examples) { liquid_examples["controls"] }
+
+    describe "introduction" do
+      subject { examples["introduction"] }
+
+      it_behaves_like "a liquid example"
+    end
+
+    describe "contains string" do
+      subject { examples["contains_string"] }
+
+      it_behaves_like "a liquid example"
+    end
+
+    describe "contains array" do
+      subject { examples["contains_array"] }
+
+      it_behaves_like "a liquid example"
+    end
+
+    describe "increment" do
+      subject { examples["increment"] }
+
+      it_behaves_like "a liquid example"
+    end
+
+    describe "increment" do
+      subject { examples["increment_independence"] }
+
+      it_behaves_like "a liquid example"
+    end
+
+    describe "decrement" do
+      subject { examples["decrement"] }
+
+      it_behaves_like "a liquid example"
+    end
+
+    describe "if" do
+      subject { examples["if"] }
+
+      it_behaves_like "a liquid example"
+    end
+
+    describe "unless" do
+      subject { examples["unless"] }
+
+      it_behaves_like "a liquid example"
+    end
+
+    describe "unless as if" do
+      subject { examples["unless_as_if"] }
+
+      it_behaves_like "a liquid example"
+    end
+
+    describe "else" do
+      subject { examples["else"] }
+
+      it_behaves_like "a liquid example"
+    end
+
+    describe "case" do
+      subject { examples["case"] }
+
+      it_behaves_like "a liquid example"
+    end
+
+    describe "raw" do
+      subject { examples["raw"] }
+
+      it_behaves_like "a liquid example"
+    end
+
+    describe "comment" do
+      subject { examples["comment"] }
+
+      it_behaves_like "a liquid example"
+    end
+  end
+
   describe "filters" do
     let(:examples) { liquid_examples["filters"] }
 
