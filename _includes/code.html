@@ -1,11 +1,22 @@
 {% comment %}
   I'll output a snippet of code.
 
+  Unfortunately, it doesn't appear that the `highlight` tag will accept a
+  variable language name.
+
+  @see  https://github.com/jekyll/jekyll/issues/2952
+
   @param  header    string   the snippet's header (optional, defaults false)
   @param  language  string   the snippet's language (e.g., "html")
   @param  code      string   the code to output
   @param  comment   string   a comment to include above the code (optional)
 {% endcomment %}
+
+{% capture code -%}
+{% if include.comment %}{{ include.comment }}{% endif %}
+{{ include.code }}
+{% endcapture %}
+
 <div class="card mb-3">
   {% if include.header %}
     <div class="card-header">
@@ -13,7 +24,19 @@
     </div>
   {% endif %}
   <div class="card-body bg-light">
-    <pre class="m-0 language-{{ include.language }}"><code class="text-monospace">{% if include.comment %}{{ include.comment | escape }}
-{% endif %}{{ include.code | escape }}</code></pre>
+    {% case include.language %}
+      {% when "javascript" %}
+        {% highlight javascript %}{{ code }}{% endhighlight %}
+        {% when "json" %}
+          {% highlight json %}{{ code }}{% endhighlight %}
+      {% when "liquid" %}
+        {% highlight liquid %}{{ code }}{% endhighlight %}
+      {% when "php" %}
+        {% highlight php %}{{ code }}{% endhighlight %}
+      {% when "ruby" %}
+        {% highlight ruby %}{{ code }}{% endhighlight %}
+      {% else %}
+        {% highlight liquid %}{{ code }}{% endhighlight %}
+    {% endcase %}
   </div>
 </div>

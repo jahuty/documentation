@@ -7,7 +7,10 @@
     <meta name="description" content="{{ page.description }}">
 
     <link rel="icon" href="data:,">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/github.css">
+    <link rel="stylesheet" href="/assets/css/default.css">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144672869-1"></script>
     <script>
@@ -24,57 +27,38 @@
     <title>{{ page.title }} &middot; Jahuty</title>
   </head>
   <body>
-    <!-- <nav class="navbar navbar-expand-md navbar-light">
-      <a class="navbar-brand" href="/">Jahuty</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="/features">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/pricing">Pricing</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://docs.jahuty.com">Documentation</a>
-          </li>
-        </ul>
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="btn btn-text" href="{{ site.data.urls.app.sign_in }}">Sign in</a>
-          </li>
-          <li class="nav-item">
-            <a class="btn btn-outline-primary mr-2" href="{{ site.data.urls.app.sign_up }}">Sign up</a>
-          </li>
-        </ul>
-      </div>
-    </nav> -->
     {% comment %}
       @see https://www.codeply.com/go/Rgq96HykJ2/sidebar-that-changes-to-navbar
     {% endcomment %}
     <div class="container-fluid">
-      <div class="row min-vh-100">
-        <aside class="col-12 col-md-3 p-3 bg-light">
+      <div class="row min-vh-100 flex-column flex-md-row">
+        <aside class="col-12 col-md-3 p-4 bg-light flex-shrink-1">
           <h4 class="mb-4">
             <a href="/" class="text-dark">Jahuty <small class="text-muted">docs</small></a>
           </h4>
-          {% for section in site.data.nav.en %}
+          {% for section in site.data.nav %}
             <h6 class="text-muted my-3">
-              <a href="{{ section.path }}">{{ section.name }}</a>
+              <a href="{{ section.children.first.path }}">{{ section.name }}</a>
             </h6>
-            {% if page.url contains section.path %}
+            {% if page.category == section.category %}
               <nav class="nav nav-pills flex-column">
                 {% for item in section.children %}
-                  <a class="nav-link{% if page.url contains item.path %} active{% endif %}" href="{{ item.path }}">{{ item.name }}</a>
+                  {% assign item_url = item.path | append: ".html" %}
+                  <a class="nav-link{% if page.url == item_url %} active{% endif %}" href="{{ item.path }}">{{ item.name }}</a>
                 {% endfor %}
               </nav>
             {% endif %}
           {% endfor %}
+          <h6 class="border-top mt-4 pt-4">
+            <a href="{{ site.data.urls.support }}">Help</a>
+          </h6>
+          <h6 class="mt-4">
+            <small><a href="https://www.jahuty.com">&larr; Back to jahuty.com</a></small>
+          </h6>
         </aside>
-        <main class="col bg-faded py-3 p-5 mx-5">
+        <main class="col bg-faded p-5 flex-grow-15">
           {{ content }}
+          {% include fork.html %}
         </main>
       </div>
     </div>

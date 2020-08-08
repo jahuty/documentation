@@ -246,3 +246,102 @@ controls:
       Anything between {% comment %} and {% endcomment %} tags is turned into a comment.
     output: |
       Anything between  tags is turned into a comment.
+loops:
+  for_array:
+    data:
+      products: [hat, shirt, pants]
+    comment: <!-- if products = ["hat", "shirt", "pants"] -->
+    input: |
+      {% for product in products -%}
+        {{ product }}
+      {% endfor -%}
+    output: |
+      hat
+      shirt
+      pants
+  for_range:
+    input: |
+      {% assign num = 5 -%}
+      {% for i in (3..num) -%}
+        {{ i }}
+      {% endfor -%}
+    output: |
+      3
+      4
+      5
+  else:
+    comment: <!-- if products = [] -->
+    input: |
+      {% for product in products %}
+        {{ product }}
+      {% else %}
+        The collection is empty.
+      {% endfor %}
+    output: |
+      The collection is empty.
+  break:
+    input: |
+      {% for i in (1..5) -%}
+        {% if i == 4 -%}
+          {% break -%}
+        {% else -%}
+          {{ i }}
+        {% endif -%}
+      {% endfor -%}
+    output: |
+      1
+        2
+        3
+  continue:
+    input: |
+      {% for i in (1..5) -%}
+        {% if i == 4 -%}
+          {% continue -%}
+        {% else -%}
+          {{ i }}
+        {% endif -%}
+      {% endfor -%}
+    output: |
+      1
+        2
+        3
+        5
+  limit:
+    data:
+      array: [1,2,3,4,5,6]
+    comment: <!-- if array = [1,2,3,4,5,6] -->
+    input: |
+      {% for item in array limit:2 -%}
+        {{ item }}
+      {% endfor -%}
+    output: |
+      1
+      2
+  offset:
+    data:
+      array: [1,2,3,4,5,6]
+    comment: <!-- if array = [1,2,3,4,5,6] -->
+    input: |
+      {% for item in array offset:2 -%}
+        {{ item }}
+      {% endfor -%}
+    output: |
+      3
+      4
+      5
+      6
+  reversed:
+    data:
+      array: [1,2,3,4,5,6]
+    comment: <!-- if array = [1,2,3,4,5,6] -->
+    input: |
+      {% for item in array reversed -%}
+        {{ item }}
+      {% endfor -%}
+    output: |
+      6
+      5
+      4
+      3
+      2
+      1

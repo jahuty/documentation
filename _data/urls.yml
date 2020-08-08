@@ -1,0 +1,4 @@
+app:
+  sign_in: https://app.jahuty.com/users/sign_in
+  sign_up: https://app.jahuty.com/users/sign_up
+support: https://app.jahuty.com/support

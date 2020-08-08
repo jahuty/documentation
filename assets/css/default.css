@@ -1,0 +1,9 @@
+pre {
+  overflow: auto;
+  margin-bottom: 0;
+}
+
+figure.highlight, pre {
+  margin-bottom: 0;
+  overflow: auto;
+}

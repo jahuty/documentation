@@ -31,6 +31,8 @@ group :development, :test do
   gem "selenium-webdriver"
   # Downloads drivers and directs Selenium to use them.
   gem "webdrivers"
+  # A set of tests to validate your HTML output.
+  gem "html-proofer"
 end
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem

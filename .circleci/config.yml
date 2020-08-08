@@ -1,0 +1,51 @@
+defaults: &defaults
+  working_directory: ~/repo
+version: 2
+jobs:
+  build:
+    <<: *defaults
+    docker:
+      - image: circleci/ruby:2.6.6-node-browsers
+    environment:
+      BUNDLE_PATH: ~/repo/vendor/bundle
+    steps:
+      - checkout
+      - run:
+          name: Update bundler
+          command: gem install bundler
+      - run:
+          name: Which bundler?
+          command: bundle -v
+      - restore_cache:
+          key: jahuty-marketing-bundle-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: Bundle install
+          command: bundle check --path=~/repo/vendor/bundle || bundle install --path=~/repo/vendor/bundle
+      - save_cache:
+          key: jahuty-marketing-bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ~/repo/vendor/bundle
+      - run:
+          name: Jekyll build
+          command: bundle exec jekyll build
+      - run:
+          name: Run rspec in parallel
+          command: |
+            bundle exec rspec --profile 10 \
+              --format RspecJunitFormatter \
+              --out test_results/rspec.xml \
+              --format progress \
+              $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+      - run:
+          name: HTMLProofer tests
+          command: |
+            bundle exec htmlproofer ./_site \
+              --allow-hash-href \
+              --check-favicon  \
+              --check-html \
+              --disable-external \
+              --assume-extension
+      - store_artifacts:
+          path: tmp/screenshots
+      - store_test_results:
+          path: test_results

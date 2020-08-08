@@ -2,12 +2,13 @@
 title       : Passing a parameter
 description : How to pass a parameter
 keywords    : [pass, parameter]
+category    : liquid
 ---
 {% assign examples = site.data.liquid.parameters %}
 
 # Passing a parameter
 
-Parameters assign values to [variables](variables) when you [render a snippet](/snippets/rendering). This allows you to re-use the same snippet with different values.
+Parameters assign values to [variables](variables) when you [render a snippet](/components/snippets#rendering-a-snippet). This allows you to re-use the same snippet with different values.
 
 {% include example.html example=examples.introduction1 %}
 
@@ -28,7 +29,7 @@ Object parameters are also supported.
 Given the various ways you can set variables, it's important to consider the following precedence:
 
 1. The `assign` tag takes precedence over parameters.
-1. Parameters take precedence over the [`default`](filters#default) filter.
+1. Parameters take precedence over the [`default`](filters) filter.
 1. If a variable has no value via `assign`, parameters, or a `default` filter, it's [`nil`](variables#nil).
 1. If extra parameters are passed, they're ignored.
 

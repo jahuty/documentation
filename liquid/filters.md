@@ -2,6 +2,7 @@
 title       : Applying a filter
 description : How to apply a filter
 keywords    : [apply, filter]
+category    : liquid
 ---
 {% assign examples = site.data.liquid.filters %}
 

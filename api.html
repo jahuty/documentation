@@ -1,0 +1,394 @@
+---
+title       : API reference
+description : Complete reference documentation for the Jahuty API. Includes representative code snippets and examples for our JavaScript, PHP, and Ruby client libraries.
+keywords    : [api, reference]
+category    : api
+---
+{% assign key  = "kn2Kj5ijmT2pH6ZKqAQyNexUqKeRM4VG6DDgWN1lIcc" %}
+{% assign lang = "bash" %}
+<section id="introduction">
+  <div class="row">
+    <div class="col">
+      <h1>
+        API Reference
+      </h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <p class="lead">
+        The Jahuty API is organized around <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer" target="_blank">REST</a>. Our API has predictable resource-oriented URLs, returns <a href="http://www.json.org" target="_blank">JSON-encoded responses</a>, and uses standard <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes" target="_blank">HTTP response codes</a>, authentication, and verbs.
+      </p>
+      <p>
+        Currently, we only support a single environment.
+      </p>
+      <p>
+        All requests use the current version of our API. When we make backwards-incompatible changes to the API, which we do our best to avoid, we'll release a new major version and introduce a versioning scheme.
+      </p>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          Base URL
+        </div>
+        <div class="card-body">
+          <span class="text-monospace">https://api.jahuty.com</span>
+        </div>
+      </div>
+      <div class="card my-3">
+        <div class="card-header">
+          SDKs
+        </div>
+        <div class="card-body">
+          <nav class="nav nav-pills nav-justified">
+            <a class="nav-item nav-link active" data-toggle-language="bash">cURL</a>
+            <a class="nav-item nav-link" data-toggle-language="php">PHP</a>
+            <a class="nav-item nav-link" data-toggle-language="ruby">Ruby</a>
+          </nav>
+        </div>
+        <div class="card-footer text-muted">
+          <p class="m-0" data-language-specific="bash">
+            <small>By default, the Jahuty API Docs demonstrate using <code>curl</code> to interact with the API over HTTPS. Select one of our official SDKs to see examples in code.</small>
+          </p>
+          <p class="m-0" data-language-specific="php">
+            <small><code>$ composer require jahuty/jahuty-php</code></small> <a href="https://github.com/jahuty/jahuty-php" target="_blank"><i class="fab fa-github ml-2"></i></a>
+          </p>
+          <p class="m-0" data-language-specific="ruby">
+            <small><code>$ gem install jahuty</code></small> <a href="https://github.com/jahuty/jahuty-ruby" target="_blank"><i class="fab fa-github ml-2"></i></a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="authentication" class="my-5">
+  <div class="row">
+    <div class="col">
+      <h1>
+        Authentication
+      </h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <p class="lead">
+        The Jahuty API uses <a href="https://en.wikipedia.org/wiki/Application_programming_interface_key" target="_blank">API keys</a> to authenticate requests. You can view and manage your organization's API keys from your organization settings.
+      </p>
+      <p>
+        There are two types of API keys: <em>public</em> and <em>secret</em>. Although public keys are not secret and carry limited priviledges, you should not share them in publicly accessible areas such as Github, Bitbucket, client-side code, and so forth.
+      <p>
+        Each SDK provides a method to set your organization's API key using a static method or public static variable. Once it's set, it'll be included in subsequent requests automatically.
+      </p>
+      <p>
+        If you're using the API directly, you can pass your organization's API token via bearer authentication, by setting the <code>Authorization</code> to request header's value to <code>Bearer YOUR_API_KEY</code>.
+      </p>
+      <p>
+        All API requests must be made over <a href="http://en.wikipedia.org/wiki/HTTP_Secure" target="_blank">HTTPS</a>. Calls made over plain HTTP will fail. API requests without authentication will also fail.
+      </p>
+      <p>
+        To learn more about API keys, see <a href="{% link components/api-keys.md %}">API keys</a>.
+      </p>
+    </div>
+    <div class="col-md-6">
+{% capture code %}
+curl https://api.jahuty.com/snippets/1 -H \\
+  "Authorization: Bearer {{ key }}\"; \\
+  echo
+{% endcapture %}
+      {% include code.html header="Authenticated request" language="bash" code=code %}
+      <div class="card my-3">
+        <div class="card-header">
+          Your API key
+        </div>
+        <div class="card-body">
+          <p>
+            A sample test API key is included in all the examples here, so you can test any example right away:
+          </p>
+          <p>
+            <span class="text-monospace">{{ key }}</span>
+          </p>
+          <p>
+            To test requests using your account, replace the sample API key with one of your organization's actual API keys.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="errors" class="my-5">
+  <div class="row">
+    <div class="col">
+      <h1>
+        Errors
+      </h1>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <p class="lead">
+        Jahuty uses conventional <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes" target="_blank">HTTP response codes</a> to indicate the success or failure of an API request.
+      </p>
+      <p>
+        In general: codes in the <code>2xx</code> range indicate success; codes in the <code>4xx</code> range indicate an error that failed given the information provided (e.g., a required parameter was omitted, the resource does not exist, etc.); and, codes in the <code>5xx</code> range indicate an error with Jahuty's servers (these are rare).
+      </p>
+      <p>
+        When an error does occur, the Jahuty API will respond with the <code>application/problem+json</code> content type.
+      </p>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          HTTP status codes
+        </div>
+        <div class="card-body">
+          <dl>
+            <dt class="font-weight-light text-monospace">
+              200 - OK
+            </dt>
+            <dd>
+              Everything worked as expected.
+            </dd>
+            <dt class="font-weight-light text-monospace">
+              401 - Unauthorized
+            </dt>
+            <dd>
+              No valid API key provided.
+            </dd>
+            <dt class="font-weight-light text-monospace">
+              402 - Payment Required
+            </dt>
+            <dd>
+              Your free trial or subscription has expired.
+            </dd>
+            <dt class="font-weight-light text-monospace">
+              403 - Forbidden
+            </dt>
+            <dd>
+              The API key doesn't have permissions to perform the request.
+            </dd>
+            <dt class="font-weight-light text-monospace">
+              404 - Not Found
+            </dt>
+            <dd>
+              The requested resource doesn't exist.
+            </dd>
+            <dt class="font-weight-light text-monospace">
+              500, 502, 503, 504 - Server Errors
+            </dt>
+            <dd>
+              Something went wrong on Jahuty's end. (These are rare.)
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h2>
+        Attributes
+      </h2>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <p class="lead">
+        Jahuty uses the <a href="https://tools.ietf.org/html/rfc7807" target="_blank">application/problem+json</a> resource to describe  errors.
+      </p>
+      <dl>
+        <dt>
+          <code>status</code> <small class="text-muted">integer</small>
+        </dt>
+        <dd>
+          The original HTTP status code.
+        </dd>
+        <dt>
+          <code>title</code> <small class="text-muted">string</small>
+        </dt>
+        <dd>
+          A short, human-readable title for the general error type.
+        </dd>
+        <dt>
+          <code>detail</code> <small class="text-muted">string</small>
+        </dt>
+        <dd>
+          A human-readable description of the specific error.
+        </dd>
+        <dt>
+          <code>type</code> <small class="text-muted">string</small>
+        </dt>
+        <dd>
+          A URL to more information about the reported error.
+        </dd>
+      </dl>
+    </div>
+    <div class="col-md-6">
+{% capture error %}
+{
+  "status": 404,
+  "title": "Not found",
+  "detail": "The requested resource was not found",
+  "type": "https://en.wikipedia.org/wiki/List_of_HTTP_status_codes"
+}
+{% endcapture %}
+{% include code.html header="Error object" language="json" code=error %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h2>
+        Handling errors
+      </h2>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <p class="lead">
+        Our SDKs raise exceptions for errors that need your attention such as invalid parameters or authentication errors.
+      </p>
+      <p>
+        We don't recommend writing code that handles API exceptions. An exception will likely only occur in a situation which requires your attention.
+      </p>
+    </div>
+    <div class="col-md-6">
+{% capture php %}
+use Jahuty\Jahuty\Jahuty;
+use Jahuty\Jahuty\Snippet;
+use Jahuty\Jahuty\Exception\NotOk;
+
+Jahuty::setKey('{{ key }}');
+
+try {
+  // Returns 404 (raising exception) because snippet and key do not match.
+  Snippet::get(999);
+} catch (NotOk $e) {
+  $p = $e->getProblem();
+
+  echo $p->getStatus();
+  echo $p->getType();
+  echo $p->getDetail();
+}
+{% endcapture %}
+{% include code.html language="php" header="Handling exceptions" code=php %}
+{% capture ruby %}
+require "jahuty"
+
+Jahuty.key = "{{ key }}"
+
+begin
+  # Responds 404 (raising exception) because snippet and key do not match.
+  Snippet.get 999
+rescue Jahuty::Exception::NotOk => e
+  p = e.problem
+
+  puts p.status
+  puts p.type
+  puts p.detail
+{% endcapture %}
+{% include code.html language="ruby" header="Handling exceptions" code=ruby %}
+    </div>
+  </div>
+</section>
+
+<section id="snippets" class="my-5">
+  <div class="row">
+    <div class="col">
+      <h1>
+        Snippets
+      </h1>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-6">
+      <p class="lead">
+        A snippet is a small piece of text or HTML you manage through our website; render using our SDKs or API; and, display in your application on-demand. Each snippet is assigned a unique identifier (aka, <code>id</code>) that you'll use to refer to it.
+      </p>
+    </div>
+    <div class="col-md-6">
+      <div class="card bg-light">
+        <div class="card-header">
+          Endpoints
+        </div>
+        <div class="card-body">
+          <span class="text-success">GET</span> <span class="text-monospace">/snippets/:id</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" id="snippets.render">
+    <div class="col">
+      <h2>
+        Render a snippet
+      </h2>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <p class="lead">
+        Renders a snippet's content using the passed parameters. You need only supply the unique identifier that was assigned to the snippet upon creation.
+      </p>
+      <h4>
+        Arguments
+      </h4>
+      <dl>
+        <dt>
+          <code>id</code> <small class="text-muted">integer</small>
+        </dt>
+        <dd>
+          The identifier of the snippet to retrieve.
+        </dd>
+        <dt>
+          <code>params</code> <small class="text-muted">string</small> <small class="badge badge-info">optional</small>
+        </dt>
+        <dd>
+          A <a href="https://en.wikipedia.org/wiki/Percent-encoding" target="_blank">URL-encoded</a>, <a href="https://www.json.org" target="_blank">JSON string</a> of <a href="/liquid/parameters">parameters</a> to use. Passed via the  <code>params</code> query string parameter. Unused variables are ignored.
+        </dd>
+      </dl>
+      <h4>
+        Returns
+      </h4>
+      <p>
+        Returns a rendered snippet. When requesting a snippet that does not exist or you are not authorized to access, a <code>404</code> error will be returned.
+      </p>
+    </div>
+    <div class="col-md-6">
+{% capture bash %}
+curl https://api.jahuty.com/snippets/1/render -H \
+  "Authorization: Bearer {{ key }}";
+  echo
+{% endcapture %}
+{% include code.html language="bash" header="GET snippets/:id/render" code=bash %}
+
+{% capture php %}
+use Jahuty\Jahuty\{Jahuty, Snippet};
+
+Jahuty::setKey('{{ key }}');
+
+echo Snippet::render(1, [
+  "params" => [
+    "foo" => "bar"
+  ]
+]);
+{% endcapture %}
+{% include code.html language="php" header="GET snippets/:id/render" code=php %}
+
+{% capture ruby %}
+require "Jahuty"
+
+Jahuty.key = "{{ key }}"
+
+puts Jahuty::Snippet.render 1, params: { "foo": "bar" }
+{% endcapture %}
+{% include code.html language="ruby" header="GET snippets/:id/render" code=ruby %}
+
+{% capture response %}
+{
+  "content": "This is my first snippet!"
+}
+{% endcapture %}
+{% include code.html language="json" header="Response" code=response %}
+    </div>
+  </div>
+</section>

@@ -2,6 +2,7 @@
 title       : Assigning a variable
 description : How to assign a variable.
 keywords    : [assign, variable]
+category    : liquid
 ---
 {% assign examples = site.data.liquid.variables %}
 
@@ -53,7 +54,7 @@ Booleans are either `true` or `false`. No quotations are necessary when declarin
 
 `nil` is a special empty value that is returned when we have no results. It is not a string with the characters “nil”.
 
-`nil` is treated as `false` in the conditions of [`if`](control#if) blocks and other tags that check the truthfulness of a statement.
+`nil` is treated as `false` in the conditions of [`if`](controls#if) blocks and other tags that check the truthfulness of a statement.
 
 Tags or outputs that return `nil` will not print anything to the page.
 
@@ -65,7 +66,7 @@ Arrays hold lists of variables of any type. You can use square bracket `[ ]` not
 
 {% include example.html example=examples.arrays %}
 
-You cannot initialize arrays. You can, however, use the [`split`](filters#split) filter to break a string into an array of substrings.
+You cannot initialize arrays. You can, however, use the [`split`](filters) filter to break a string into an array of substrings.
 
 ## Truthy and falsey
 

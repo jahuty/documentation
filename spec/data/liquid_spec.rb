@@ -1,5 +1,7 @@
 require "spec_helper"
 
+# This is super repetitive. Can we assume the current example from the describe
+# block's name?
 RSpec.describe "liquid examples" do
   describe "controls" do
     let(:examples) { liquid_examples["controls"] }
@@ -180,6 +182,58 @@ RSpec.describe "liquid examples" do
 
     describe "arrays" do
       subject { examples["arrays"] }
+
+      it_behaves_like "a liquid example"
+    end
+  end
+
+  describe "loops" do
+    let(:examples) { liquid_examples["loops"] }
+
+    describe "for_array" do
+      subject { examples["for_array"] }
+
+      it_behaves_like "a liquid example"
+    end
+
+    describe "for_range" do
+      subject { examples["for_range"] }
+
+      it_behaves_like "a liquid example"
+    end
+
+    describe "else" do
+      subject { examples["else"] }
+
+      it_behaves_like "a liquid example"
+    end
+
+    describe "break" do
+      subject { examples["break"] }
+
+      it_behaves_like "a liquid example"
+    end
+
+    describe "continue" do
+      subject { examples["continue"] }
+
+      it_behaves_like "a liquid example"
+    end
+
+    describe "limit" do
+      subject { examples["limit"] }
+
+      it_behaves_like "a liquid example"
+    end
+
+    describe "offset" do
+      subject { examples["offset"] }
+
+      it_behaves_like "a liquid example"
+    end
+
+    describe "reversed" do
+      subject { examples["reversed"] }
 
       it_behaves_like "a liquid example"
     end
