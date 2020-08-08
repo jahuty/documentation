@@ -21,18 +21,22 @@ end
 group :development, :test do
   # Acceptance test framework for web applications.
   gem "capybara"
+  # A set of tests to validate your HTML output.
+  gem "html-proofer"
   # Safe templating language.
   gem "liquid"
+  # Use Puma as the app server
+  gem "puma"
   # Transforms Jekyll app into Rack application.
   gem "rack-jekyll"
   # Behavior driven test syntax.
   gem "rspec"
+  # Format test output.
+  gem "rspec_junit_formatter", "~>0.4"
   # A browser automation framework and ecosystem.
   gem "selenium-webdriver"
   # Downloads drivers and directs Selenium to use them.
   gem "webdrivers"
-  # A set of tests to validate your HTML output.
-  gem "html-proofer"
 end
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
