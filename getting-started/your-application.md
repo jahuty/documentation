@@ -7,14 +7,10 @@ category    : getting-started
 
 # Getting started with your application
 
-{% include todo.html %}
+Jahuty is designed to be application agnostic, and it should work equally well in an MVC, SPA, or legacy application.
 
-{% comment %}
-  Your application can be an MVC, and SPA, a legacy application, whatever.
+When a snippet is created, it's assigned an `id`, a unique, permanent, integer identifier. This is the identifier you'll use to retrieve a snippet for display in your application.
 
-  SDKs - installing, links to more, why to use, etc.
+A number of [software development kits (SDKs)](/sdks) are available to make interacting with our API easier. We maintain these open-source packages in a number of languages, and you can choose the one that fits your stack.
 
-  API - quick overview and links.
-
-  Next: Learn more, choosing an SDK, or API.
-{% endcomment %}
+If an SDK is not available in your language of choice, you can access [our API](/api) directly.

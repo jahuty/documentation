@@ -7,16 +7,10 @@ category    : getting-started
 
 # Getting started with your organization
 
-{% include todo.html %}
+You've [created your account](your-account). Now, you need to associate it with an _organization_.
 
-{% comment %}
-  An organization is a group of people that work together on Jahuty.
+An organization is one or more people that work together. Nearly everything in Jahuty is associated with an organization, including you. The organizations you belong to determine what you can do in Jahuty.
 
-  You can create a new organization or join an existing one.
+There are two options for associating your account with an organization: you can [create a new organization](/components/organizations#creating-an-organization) and send [invitations](/components/invitations) to colleagues, or you can [join an existing one](/components/organizations#joining-an-organization) by accepting an invitation from a colleague.
 
-  Maybe an introduction to roles.
-
-  Links to more information.
-
-  Next: Your snippet
-{% endcomment %}
+Next up, [your snippet](your-snippet).
