@@ -7,12 +7,10 @@ category    : getting-started
 
 # Getting started with your first snippet
 
-{% include todo.html %}
+A _snippet_ is a chunk of content you’d like to extract, outsource, and share.
 
-{% comment %}
-  What is a snippet?
+You can create a snippet using our editor, which functions a lot like Google Docs. You can format text and insert images as well as add comments and suggestions.
 
-  Collaborating (images, comments, track changes).
+You can also use the [Liquid templating language](/liquid/introduction) to add variables, filters, controls, and more. By using variables and [parameters](/liquid/parameters) together, you can create powerful templates that produce different output from the same snippet.
 
-  Next: your application
-{% endcomment %}
+Finally, [your application](your-application).
