@@ -10,8 +10,8 @@ RSpec.shared_examples "a liquid example" do
     render   = template.render(subject.fetch("data", {}))
     output   = subject["output"]
 
-    # Use `#strip` to removing superficial whitespace differences.
-    expect(render.strip).to eq(output.strip)
+    # Use `#gsub` to removing superficial whitespace differences.
+    expect(render.gsub(/\s/, "")).to eq(output.gsub(/\s/, ""))
   end
 end
 

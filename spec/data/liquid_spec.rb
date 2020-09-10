@@ -237,6 +237,48 @@ RSpec.describe "liquid examples" do
 
       it_behaves_like "a liquid example"
     end
+
+    describe "foorloop first" do
+      subject { examples["forloop_first"] }
+
+      it_behaves_like "a liquid example"
+    end
+
+    describe "foorloop index" do
+      subject { examples["forloop_index"] }
+
+      it_behaves_like "a liquid example"
+    end
+
+    describe "foorloop index0" do
+      subject { examples["forloop_index0"] }
+
+      it_behaves_like "a liquid example"
+    end
+
+    describe "foorloop last" do
+      subject { examples["forloop_last"] }
+
+      it_behaves_like "a liquid example"
+    end
+
+    describe "foorloop length" do
+      subject { examples["forloop_length"] }
+
+      it_behaves_like "a liquid example"
+    end
+
+    describe "foorloop rindex" do
+      subject { examples["forloop_rindex"] }
+
+      it_behaves_like "a liquid example"
+    end
+
+    describe "foorloop rindex0" do
+      subject { examples["forloop_rindex0"] }
+
+      it_behaves_like "a liquid example"
+    end
   end
 
   private
