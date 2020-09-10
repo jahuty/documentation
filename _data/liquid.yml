@@ -345,3 +345,87 @@ loops:
       3
       2
       1
+  forloop_first:
+    data:
+      products: ["hat", "shirt", "pants"]
+    comment: <!-- if products = ["hat", "shirt", "pants"] -->
+    input: |
+      {% for product in products %}
+        {% if forloop.first == true %}
+          First time through!
+        {% else %}
+          Not the first time.
+        {% endif %}
+      {% endfor %}
+    output: |
+      First time through!
+      Not the first time.
+      Not the first time.
+  forloop_index:
+    data:
+      products: ["hat", "shirt", "pants"]
+    comment: <!-- if products = ["hat", "shirt", "pants"] -->
+    input: |
+      {% for product in products %}
+        {{ forloop.index }}
+      {% endfor %}
+    output: 1 2 3
+  forloop_index0:
+    data:
+      products: ["hat", "shirt", "pants"]
+    comment: <!-- if products = ["hat", "shirt", "pants"] -->
+    input: |
+      {% for product in products %}
+        {{ forloop.index0 }}
+      {% endfor %}
+    output: 0 1 2
+  forloop_last:
+    data:
+      products: ["hat", "shirt", "pants"]
+    comment: <!-- if products = ["hat", "shirt", "pants"] -->
+    input: |
+      {% for product in products %}
+        {% if forloop.last == true %}
+          This is the last iteration!
+        {% else %}
+          Keep going...
+        {% endif %}
+      {% endfor %}
+    output: |
+      Keep going...
+      Keep going...
+      This is the last iteration!
+  forloop_length:
+    data:
+      products: ["hat", "shirt", "pants"]
+    comment: <!-- if products = ["hat", "shirt", "pants"] -->
+    input: |
+      {% for product in products %}
+        {% if forloop.first %}
+          This collection has {{ forloop.length }} products:
+        {% endif %}
+        {{ product }}
+      {% endfor %}
+    output: |
+      This collection has 3 products:
+      hat
+      shirt
+      pants
+  forloop_rindex:
+    data:
+      products: ["hat", "shirt", "pants"]
+    comment: <!-- if products = ["hat", "shirt", "pants"] -->
+    input: |
+      {% for product in products %}
+        {{ forloop.rindex }}
+      {% endfor %}
+    output: 3 2 1
+  forloop_rindex0:
+    data:
+      products: ["hat", "shirt", "pants"]
+    comment: <!-- if products = ["hat", "shirt", "pants"] -->
+    input: |
+      {% for product in products %}
+        {{ forloop.rindex0 }}
+      {% endfor %}
+    output: 2 1 0

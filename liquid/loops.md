@@ -67,175 +67,44 @@ Reverses the order of the loop (note, this parameter’s spelling is different f
 
 Within a `for` loop, the `forloop` object provides information about the loop.
 
-{% include todo.html %}
+### `forloop.first`
 
-{% comment %}
-  <h3 id="attributes">
-    Attributes
-  </h3>
-  <p>
+Returns `true` if it's the first iteration of the for loop. Returns `false` otherwise.
 
-  </p>
-  <h4 id="forloop-first">
-    <code>forloop.first</code>
-  </h4>
-  <p>
-    Returns <code>true</code> if it's the first iteration of the for loop. Returns <code>false</code> if it is not the first iteration.
-  </p>
-  <%-
-    input = <<~CODE
-      <!-- if products = ["hat", "shirt", "pants"] -->
-      {% for product in products %}
-        {% if forloop.first == true %}
-          First time through!
-        {% else %}
-          Not the first time.
-        {% endif %}
-      {% endfor %}
-    CODE
+{% include example.html example=examples.forloop_first %}
 
-    output = <<~CODE
-      First time through!
-      Not the first time.
-      Not the first time.
-    CODE
+### `forloop.index`
 
-  %>
-  <%= render "application/input_and_output", { input: input, output: output } %>
-  <h4 id="forloop-index">
-    <code>forloop.index</code>
-  </h4>
-  <p>
-    Returns the current index of the <code>for</code> loop, starting at 1.
-  </p>
-  <%-
-    input = <<~CODE
-      <!-- if products = ["hat", "shirt", "pants"] -->
-      {% for product in products %}
-        {{ forloop.index }}
-      {% endfor %}
-    CODE
-  %>
-  <%= render "application/input_and_output", { input: input, output: "1 2 3" } %>
-  <h4  id="forloop-index0">
-    <code>forloop.index0</code>
-  </h4>
-  <p>
-    Returns the current index of the <code>for</code> loop, starting at 0.
-  </p>
-  <%-
-    example = <<~CODE
-      <!-- if products = ["hat", "shirt", "pants"] -->
-      {% for product in products %}
-        {{ forloop.index0 }}
-      {% endfor %}
-    CODE
-  %>
-  <%= render "application/input_and_output", { input: input, output: "0 1 2" } %>
-  <h4  id="forloop-last">
-    <code>forloop.last</code>
-  </h4>
-  <p>
-    Returns <code>true</code> if it's the last iteration of the <code>for</code> loop. Returns <code>false</code> if it is not the last iteration.
-  </p>
-  <%-
-    input = <<~CODE
-      <!-- if products = ["hat", "shirt", "pants"] -->
-      {% for product in products %}
-        {% if forloop.last == true %}
-          This is the last iteration!
-        {% else %}
-          Keep going...
-        {% endif %}
-      {% endfor %}
-    CODE
+Returns the current index of the `for` loop, starting at 1.
 
-    output = <<~CODE
-      Keep going...
-      Keep going...
-      This is the last iteration!
-    CODE
-  %>
-  <%= render "application/input_and_output", { input: input, output: output } %>
-  <h4 id="forloop-length">
-    <code>forloop.length</code>
-  </h4>
-  <p>
-    Returns the number of iterations of the loop.
-  </p>
-  <%-
-    input = <<~CODE
-      <!-- if products = ["hat", "shirt", "pants"] -->
-      {% for product in products %}
-        {% if forloop.first %}
-          <p>This collection has {{ forloop.length }} products:</p>
-        {% endif %}
-        <p>{{ product }}</p>
-      {% endfor %}
-    CODE
+{% include example.html example=examples.forloop_index %}
 
-    output = <<~CODE
-      This collection has 3 products:
-      Hat
-      Shirt
-      Pants
-    CODE
-  %>
-  <%= render "application/input_and_output", { input: input, output: output } %>
-  <h4 id="forloop-rindex">
-    <code>forloop.rindex</code>
-  </h4>
-  <p>
-    Returns <a href="#forloop-index"><code>forloop.index</code></a> in reverse order.
-  </p>
-  <%-
-    input = <<~CODE
-      <!-- if products = ["hat", "shirt", "pants"]
-      {% for product in products %}
-        {{ forloop.rindex }}
-      {% endfor %}
-    CODE
-  %>
-  <%= render "application/input_and_output", { input: input, output: "3 2 1" } %>
-  <h4 id="forloop-rindex0">
-    <code>forloop.rindex0</code>
-  </h4>
-  <p>
-    Returns <a href="#forloop-index0"><code>forloop.index0</code></a> in reverse order.
-  </p>
-  <%-
-    input = <<~CODE
-      <!-- if products = ["hat", "shirt", "pants"]
-      {% for product in products %}
-        {{ forloop.rindex0 }}
-      {% endfor %}
-    CODE
-  %>
-  <%= render "application/input_and_output", { input: input, output: "2 1 0" } %>
-  <h2>
-    <code>cycle</code>
-  </h2>
-  <p>
-    Loops through a group of strings in a <code>for</code> loop and prints them in the order that they were passed as arguments. Each time <code>cycle</code> is called, the next string argument is printed.
-  </p>
-  <%-
-    input = <<~CODE
-      {% for i in (1..3) %}
-        {% cycle "one", "two", "three" %}
-      {% endfor %}
-    CODE
+### `forloop.index0`
 
-    output = <<~CODE
-      one
-      two
-      three
-    CODE
-  %>
-  <%= render "application/input_and_output", { input: input, output: output } %>
+Returns the current index of the `for` loop, starting at 0.
 
-  <%= render "application/next_doc", {
-    lead: "That's it for snippets, unless you're ready to remove one.",
-    text: "Removing a snippet",
-    path: docs_removing_a_snippet_path
-  } %>
-{% endcomment %}
+{% include example.html example=examples.forloop_index0 %}
+
+### `forloop.last`
+
+Returns `true` if it's the last iteration of the `for` loop. Returns `false` otherwise.
+
+{% include example.html example=examples.forloop_last %}
+
+### `forloop.length`
+
+Returns the number of iterations of the loop.
+
+{% include example.html example=examples.forloop_length %}
+
+### `forloop.rindex`
+
+Returns [`forloop.index`](#forloopindex) in reverse order.
+
+{% include example.html example=examples.forloop_rindex %}
+
+### `forloop.rindex0`
+
+Returns [`forloop.index0`](#forloopindex0) in reverse order.
+
+{% include example.html example=examples.forloop_rindex0 %}
