@@ -1,73 +1,102 @@
 /**
- * I'll toggle elements that are programming language specific.
+ * Toggles properties of language-specific elements.
  *
- *   1. Add a data-language-specific="true" to any Prism-compliant pre > code
- *      pair or a data-language-specific="LANGUAGE" to any element.
- *   2. Add a data-toggle-language="LANGUAGE" to any nav element or select
- *      element.
+ * This script uses two data-* attributes to toggle the visibility, activity, or
+ * value of language-specific code blocks, links, etc:
  *
- * @see  views/application/code_snippet
- * @see  views/application/code_snippets
- * @see  views/application/language_select
+ *   data-toggle-language  (string)  the element's language (possible values
+ *     include "php", "ruby", "bash", and "javascript"; "true" is also a
+ *     possible value but it's used to indicate participation within limits)
+ *
+ *   data-toggle-type  (string)  the element's type of toggling (possible values
+ *     include "activity" [e.g., nav link], "visibility" [e.g., a code block],
+ *     and "value" [e.g., a select element])
  */
- (function () {
-   function getCurrentLanguage()
-   {
-     return localStorage.getItem('jahuty:current-language');
-   }
+(function () {
+  function getLanguage() {
+    return localStorage.getItem('jahuty:language') || 'bash';
+  }
 
-   function setCurrentLanguage(language)
-   {
-     localStorage.setItem('jahuty:current-language', language);
-   }
+  function setLanguage(language) {
+    localStorage.setItem('jahuty:language', language);
+  }
 
-   function toggleLanguage(language)
-   {
-     setCurrentLanguage(language);
-     dispatchToggleLanguage(language);
-   }
+  function toggleLanguage(language) {
+    toggleActivity(language);
+    toggleVisibility(language);
+    toggleValue(language);
+  }
 
-   function dispatchToggleLanguage(language)
-   {
-     document.dispatchEvent(
-       new CustomEvent('jahuty:toggle-language', { detail: language })
-     );
-   }
+  function toggleActivity(language) {
+    document
+      .querySelectorAll('[data-toggle-type="activity"]')
+      .forEach((element) => {
+        element.classList.remove('active');
+      });
 
-   document.addEventListener('jahuty:toggle-language', (e) => {
-     let lang = e.detail;
+    const selector =
+      '[data-toggle-type="activity"]' +
+      '[data-toggle-language="' + language + '"]';
+    document
+      .querySelectorAll(selector)
+      .forEach((element) => {
+        element.classList.add('active');
+      });
+  }
 
-     // Hide any language-specific elements and deactivate any active elements.
-     $('[data-language-specific]').hide();
-     $('[data-toggle-language].active').removeClass('active');
+  function toggleVisibility(language) {
+    document
+      .querySelectorAll('[data-toggle-type="visibility"]')
+      .forEach((element) => {
+        element.style.display = 'none';
+      });
 
-     // Show the elements specific to the current language (with a data-
-     //     attribute or with a Prism.js-compliant classnam) and activate
-     //     any toggle elements.
-     $('[data-language-specific="' + lang + '"], [data-language-specific="true"].language-'+ lang).show();
-     $('[data-toggle-language="' + lang + '"]').addClass('active');
+    const selector =
+      '[data-toggle-type="visibility"]' +
+      '[data-toggle-language="' + language + '"]';
+    document
+      .querySelectorAll(selector).forEach((element) => {
+        element.style.display = 'block';
+      });
+  }
 
-     // Finally, set the value of any language select elements.
-     $('select[data-toggle-language]').val(lang);
-   });
+  function toggleValue(language) {
+    document
+      .querySelectorAll('[data-toggle-type="value"]')
+      .forEach((element) => {
+        element.value = language;
+      });
+ }
 
-   // on load, default to bash language
-   document.addEventListener('DOMContentLoaded', () => {
-     toggleLanguage(getCurrentLanguage() || 'bash');
-   });
+  // initialize on load
+  document.addEventListener('DOMContentLoaded', () => {
+    let language = getLanguage();
 
-   // listen for clicks on data-lang-nav elements
-   document.addEventListener('click', (e) => {
-     if (e.target.hasAttribute('data-toggle-language')) {
-       toggleLanguage(e.target.getAttribute('data-toggle-language'));
-       e.preventDefault();
-     }
-   });
+    toggleLanguage(language);
+    setLanguage(language);
+  });
 
-   // listen for changes on data-lang-select elements
-   document.addEventListener('change', (e) => {
-     if (e.target.hasAttribute('data-toggle-language')) {
-       toggleLanguage(e.target.value);
-     }
-   });
- }());
+  // toggle on element click
+  document.addEventListener('click', (e) => {
+    if (e.target.hasAttribute('data-toggle-language')) {
+      const language = e.target.getAttribute('data-toggle-language');
+
+      if (language !== 'true') {
+        toggleLanguage(language);
+        setLanguage(language);
+
+        e.preventDefault();
+      }
+    }
+  });
+
+  // toggle on select element change
+  document.addEventListener('change', (e) => {
+    if (e.target.hasAttribute('data-toggle-language')) {
+      const language = e.target.value;
+
+      toggleLanguage(language);
+      setLanguage(language);
+    }
+  });
+}());
