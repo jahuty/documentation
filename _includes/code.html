@@ -10,6 +10,8 @@
   @param  language  string   the snippet's language (e.g., "html")
   @param  code      string   the code to output
   @param  comment   string   a comment to include above the code (optional)
+  @param  toggle    bool     false to disable language toggling (optional)
+  @param  select    bool     false to disable language select (optional)
 {% endcomment %}
 
 {% capture code -%}
@@ -17,18 +19,34 @@
 {{ include.code }}
 {% endcapture %}
 
-<div class="card mb-3">
+<div class="card mb-3"{% unless include.toggle == false %} data-toggle-type="visibility" data-toggle-language="{{ include.language }}"{% endunless %}>
   {% if include.header %}
     <div class="card-header">
-      {{ include.header }}
+      <div class="row h-100">
+        <div class="col-8 my-auto">
+          {{ include.header }}
+        </div>
+        {% unless include.select == false %}
+          <div class="col-4">
+            <select class="form-control form-control-sm custom-select" data-toggle-type="value" data-toggle-language="true">
+              <option value="bash">cURL</option>
+              <!-- <option value="node">Node.js</option> -->
+              <option value="php">PHP</option>
+              <option value="ruby">Ruby</option>
+            </select>
+          </div>
+        {% endunless %}
+      </div>
     </div>
   {% endif %}
   <div class="card-body bg-light">
     {% case include.language %}
+      {% when "bash" %}
+        {% highlight bash %}{{ code }}{% endhighlight %}
       {% when "javascript" %}
         {% highlight javascript %}{{ code }}{% endhighlight %}
-        {% when "json" %}
-          {% highlight json %}{{ code }}{% endhighlight %}
+      {% when "json" %}
+        {% highlight json %}{{ code }}{% endhighlight %}
       {% when "liquid" %}
         {% highlight liquid %}{{ code }}{% endhighlight %}
       {% when "php" %}

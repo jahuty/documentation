@@ -7,7 +7,7 @@ category    : getting-started
 
 # Getting started with your account
 
-An _account_ allows personalized access to our application. When you sign in using your password, you identify yourself, and we use that information to personalize what you can see and do.  
+An _account_ allows personalized access to our application. When you sign in using your password, you identify yourself to us, and we use that information to personalize what you can see and do.  
 
 To create an account:
 

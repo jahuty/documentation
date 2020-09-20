@@ -17,11 +17,11 @@ It only takes a few minutes to get started:
 
 That's it!
 
-We've divided our documentation into the following sections. Where would you like to start?
+We've divided our documentation into the following sections, if you'd like to learn more.
 
 * [Getting started](/getting-started/your-account) with Jahuty.
 * [Learning more](/components/overview) about important components.
-* [Creating templates](/liquid/introduction) with our powerful templating language.
+* [Creating templates](/liquid/introduction) with our templating language.
 * [Choosing an SDK](/sdks) to interact with our API.
 * [Using our API](/api) directly.
 
