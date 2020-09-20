@@ -3,6 +3,8 @@ title       : API reference
 description : Complete reference documentation for the Jahuty API. Includes representative code snippets and examples for our JavaScript, PHP, and Ruby client libraries.
 keywords    : [api, reference]
 category    : api
+javascripts :
+  - src: assets/js/toggle.js
 ---
 {% assign key  = "kn2Kj5ijmT2pH6ZKqAQyNexUqKeRM4VG6DDgWN1lIcc" %}
 {% assign lang = "bash" %}
@@ -40,20 +42,20 @@ category    : api
           SDKs
         </div>
         <div class="card-body">
-          <nav class="nav nav-pills nav-justified">
-            <a class="nav-item nav-link active" data-toggle-language="bash">cURL</a>
-            <a class="nav-item nav-link" data-toggle-language="php">PHP</a>
-            <a class="nav-item nav-link" data-toggle-language="ruby">Ruby</a>
+          <nav class="nav nav-pills nav-fill">
+            <a class="nav-item nav-link active" data-toggle-type="activity" data-toggle-language="bash">cURL</a>
+            <a class="nav-item nav-link" data-toggle-type="activity" data-toggle-language="php">PHP</a>
+            <a class="nav-item nav-link" data-toggle-type="activity" data-toggle-language="ruby">Ruby</a>
           </nav>
         </div>
         <div class="card-footer text-muted">
-          <p class="m-0" data-language-specific="bash">
+          <p class="m-0" data-toggle-type="visibility" data-toggle-language="bash">
             <small>By default, the Jahuty API Docs demonstrate using <code>curl</code> to interact with the API over HTTPS. Select one of our official SDKs to see examples in code.</small>
           </p>
-          <p class="m-0" data-language-specific="php">
+          <p class="m-0" data-toggle-type="visibility" data-toggle-language="php">
             <small><code>$ composer require jahuty/jahuty-php</code></small> <a href="https://github.com/jahuty/jahuty-php" target="_blank"><i class="fab fa-github ml-2"></i></a>
           </p>
-          <p class="m-0" data-language-specific="ruby">
+          <p class="m-0" data-toggle-type="visibility" data-toggle-language="ruby">
             <small><code>$ gem install jahuty</code></small> <a href="https://github.com/jahuty/jahuty-ruby" target="_blank"><i class="fab fa-github ml-2"></i></a>
           </p>
         </div>
@@ -92,11 +94,12 @@ category    : api
     </div>
     <div class="col-md-6">
 {% capture code %}
-curl https://api.jahuty.com/snippets/1 -H \\
-  "Authorization: Bearer {{ key }}\"; \\
+curl \
+  https://api.jahuty.com/snippets/1/render \
+  -H "Authorization: Bearer {{ key }}"; \
   echo
 {% endcapture %}
-      {% include code.html header="Authenticated request" language="bash" code=code %}
+      {% include code.html header="Authenticated request" language="bash" code=code toggle=false select=false %}
       <div class="card my-3">
         <div class="card-header">
           Your API key
@@ -233,7 +236,7 @@ curl https://api.jahuty.com/snippets/1 -H \\
   "type": "https://en.wikipedia.org/wiki/List_of_HTTP_status_codes"
 }
 {% endcapture %}
-{% include code.html header="Error object" language="json" code=error %}
+{% include code.html header="Error object" language="json" code=error toggle=false select=false %}
     </div>
   </div>
   <div class="row">
@@ -355,8 +358,9 @@ rescue Jahuty::Exception::NotOk => e
     </div>
     <div class="col-md-6">
 {% capture bash %}
-curl https://api.jahuty.com/snippets/1/render -H \
-  "Authorization: Bearer {{ key }}";
+curl
+  https://api.jahuty.com/snippets/1/render \
+  -H "Authorization: Bearer {{ key }}"; \
   echo
 {% endcapture %}
 {% include code.html language="bash" header="GET snippets/:id/render" code=bash %}
