@@ -19,7 +19,7 @@
 {{ include.code }}
 {% endcapture %}
 
-<div class="card mb-3"{% unless include.toggle == false %}data-toggle-type="visibility" data-toggle-language="{{ include.language }}"{% endunless %}>
+<div class="card mb-3"{% unless include.toggle == false %} data-toggle-type="visibility" data-toggle-language="{{ include.language }}"{% endunless %}>
   {% if include.header %}
     <div class="card-header">
       <div class="row h-100">
