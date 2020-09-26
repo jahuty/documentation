@@ -9,7 +9,11 @@ category    : components
 
 # Snippets
 
-A snippet is a small [HTML5](https://en.wikipedia.org/wiki/HTML5) template. It can be any valid HTML chunk you'd like to extract, outsource, or share like plain-text, an `p` element, a page of content, or whatever else you'd like. Snippets are assigned a unique `id` number; shared by an [organization](/components/organizations); and, pulled into your websites and applications via an [SDK](/sdks) or [API](/api).
+A snippet is a document that's created in our text editor and output wherever you need it.
+
+* Snippets are shared by an [organization](organizations). Anyone in your organization can edit your snippets.
+* Snippets are assigned an `id`, a unique identifier, which you can use to refer to a snippet.
+* Snippets are pulled into your websites and applications using our [SDKs](/sdks) or [API](/api).
 
 ## Creating a snippet
 
@@ -17,31 +21,40 @@ To create a snippet:
 
 1. [Sign in]({{ site.data.urls.app.sign_in }}) to your account.
 1. Click the "New snippet" button.
-1. Enter a name for your snippet to help tell them apart.
-1. Create your snippet's content using the [text editor](#text-editor) and [template language](#template-language).
+1. Create your snippet's content using the [text editor](#using-the-text-editor) and [template language](#using-the-template-language).
 
-That's it! Your changes will be automatically saved and published.
+That's it! As you write, your changes will be automatically saved and available everywhere your snippet is used.
 
-## Text editor
+## Using the text editor
 
-{% include todo.html %}
+Our rich text editor emulates familiar document software like Google Docs or Microsoft Word. You can write text and format it, of course. You can drag-and-drop, upload, or copy-paste images, then align, resize, and caption them. You can highlight any text or images to add comments and start a conversation with colleagues. You can also suggest insertions and deletions for your colleagues to accept or reject.
 
-## Template language
+## Using the template language
 
-Snippets don't have to be static content. Using the Liquid template language, the _same snippet_ can produce _different output_ using the [Liquid](/liquid/introduction) template language and [dynamic parameters](/liquid/parameters).
+Snippets don't have to be just text. Using our template language, the _same snippet_ can produce _different output_ using  [Liquid](/liquid/introduction) syntax and [dynamic parameters](/liquid/parameters). This allows you to create powerful, reusable [templates](/liquid/introduction).
 
 {% include example.html example=site.data.liquid.parameters.introduction1 %}
 
-The Liquid language is too powerful to cover in detail sufficiently here. Instead, we've dedicated a whole section to learning more about [Liquid](/liquid/introduction).
-
 ## Rendering a snippet
 
-{% include todo.html %}
+When you retrieve a snippet, we'll combine the snippet's source code and the parameters you've passed to generate a render. This render is the HTML we'll send to you.
+
+The first time you render a snippet, it may take a bit longer, because we have a lot to do. After that, however, we'll return a cached version of the snippet much more quickly.
+
+Whenever you change your snippet's content, the cache will be invalidated, and a new render will be generated.
 
 ## Removing a snippet
 
-{% include todo.html %}
+Once your content stabilizes, you can replace a snippet with its source code to improve your page's performance (no matter how fast we make our service, loading static content locally will always be faster).
+
+To remove a snippet:
+
+1. Open your snippet.
+1. Get its identifier.
+1. Retrieve the snippet using the identifier and its final parameters.
+1. Find occurrences of the snippet in your application.
+1. Replace the occurrences of the snippet with the snippet's source code.
 
 ## Deleting a snippet
 
-{% include todo.html %}
+Currently, you can't delete a snippet from our application, but we're working on it!
