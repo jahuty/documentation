@@ -21,7 +21,7 @@ To create a snippet:
 
 1. [Sign in]({{ site.data.urls.app.sign_in }}) to your account.
 1. Click the "New snippet" button.
-1. Create your snippet's content using the [text editor](#text-editor) and [template language](#template-language).
+1. Create your snippet's content using the [text editor](#using-the-text-editor) and [template language](#using-the-template-language).
 
 That's it! As you write, your changes will be automatically saved and available everywhere your snippet is used.
 
