@@ -5,10 +5,47 @@ keywords   : [components, concepts]
 category   : components
 ---
 
-{% include heading.html title="Learning more" lead="Jahuty is comprised of a number of components that work together." %}
+{% include heading.html title="Learning more" lead="Jahuty includes a number of components." %}
 
-* [API Keys](/components/api-keys), tokens to identify your organization's API requests.
-* [Invitations](/components/invitations), a request to join an organization.
-* [Memberships](/components/memberships), your membership in an organization.
-* [Organizations](/components/organizations), groups of people who work together on snippets.
-* [Snippets](/components/snippets), an HTML template.
+<div class="row">
+  <div class="col-md-5">
+    <h3>
+      <a href="{% link components/api-keys.md %}"><i class="fas fa-key mr-2"></i> API Keys</a>
+    </h3>
+    <p>
+      Impossible-to-guess strings that identify your organization's API requests.
+    </p>
+  </div>
+  <div class="col-md-5 offset-md-1">
+    <h3>
+      <a href="{% link components/invitations.md %}"><i class="fas fa-envelope mr-2"></i> Invitations</a>
+    </h3>
+    <p>
+      Requests to colleagues and coworkers to join your organization.
+    </p>
+  </div>
+  <div class="col-md-5">
+    <h3>
+      <a href="{% link components/memberships.md %}"><i class="fas fa-id-badge mr-2"></i> Memberships</a>
+    </h3>
+    <p>
+      The organizations you belong to and the roles you are assigned within them.
+    </p>
+  </div>
+  <div class="col-md-5 offset-md-1">
+    <h3>
+      <a href="{% link components/organizations.md %}"><i class="fas fa-users mr-2"></i> Organizations</a>
+    </h3>
+    <p>
+      A group of people who work together, sharing snippets, a subscription, and more.
+    </p>
+  </div>
+  <div class="col-md-5">
+    <h3>
+      <a href="{% link components/snippets.md %}"><i class="fas fa-file mr-2"></i> Snippets</a>
+    </h3>
+    <p>
+      A chunk of managed content you can output in any technology stack.
+    </p>
+  </div>
+</div>
