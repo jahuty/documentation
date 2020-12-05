@@ -48,7 +48,7 @@
   category: api
   children:
     - name: Introduction
-      path: /api#introduction
+      path: /api
     - name: Authentication
       path: /api#authentication
     - name: Errors
