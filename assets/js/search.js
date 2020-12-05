@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   search.addWidgets([
     instantsearch.widgets.searchBox({
       container: '#searchbox',
+      autofocus: true,
       cssClasses: 'form-control'
     }),
 
@@ -16,9 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
       container: '#hits',
       templates: {
         item: `
-          <h2>
+          <h5>
             <a href="{{ url }}">{{ title }}</a>
-          </h2>
+          </h5>
           <p>
             {{ excerpt_text }}
           </p>
