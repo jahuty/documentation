@@ -11,6 +11,8 @@ category    : components
 
 ## Types of API keys
 
+{% include todo.html %}
+
 There are two types of API keys: _public_ and _secret_.
 
 * **Public** API keys are meant solely to identify your organization's account with Jahuty and have limited permissions. They aren’t secret. In other words, they can safely be published in places like your JavaScript SDK, or in an Android or iPhone app.
