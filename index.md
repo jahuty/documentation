@@ -4,25 +4,46 @@ description : Jahuty's comprehensive documentation.
 keywords    : [documentation, docs]
 ---
 
-# Jahuty Documentation
+{% include heading.html title="Jahuty Documentation" lead="Learn how to use Jahuty to create, manage, and display content in any application." %}
 
-Welcome to Jahuty! We're excited to partner with you as you use snippets to stop deploying content changes.
+<h2 class="mt-5">
+  <a href="{% link getting-started.md %}"><i class="fas fa-map-signs mr-2"></i> Getting started</a>
+</h2>
+<p class="mb-5">
+  Learn about Jahuty, work through a basic implementation, plan a full implementation, and learn more about templates, SDKs, and other features.
+</p>
 
-It only takes a few minutes to get started:
-
-1. Create [your account](/getting-started/your-account).
-2. Create (or join) [your organization](/getting-started/your-organization) in Jahuty.
-3. Create [your snippet](/getting-started/your-snippet).
-4. Retrieve your snippet from [your application](/getting-started/your-application).
-
-That's it!
-
-We've divided our documentation into the following sections, if you'd like to learn more.
-
-* [Getting started](/getting-started/your-account) with Jahuty.
-* [Learning more](/components/overview) about important components.
-* [Creating templates](/liquid/introduction) with our templating language.
-* [Choosing an SDK](/sdks) to interact with our API.
-* [Using our API](/api) directly.
-
-We strive to provide great documentation. If you spot an issue, let us know or fork the repo and suggest an edit!
+<div class="row mb-5">
+  <div class="col-md-5">
+    <h3>
+      <a href="{% link components/overview.md %}"><i class="fas fa-graduation-cap mr-2"></i> Learning more</a>
+    </h3>
+    <p>
+      Learn more about important components and advanced features.
+    </p>
+  </div>
+  <div class="col-md-5 offset-md-1">
+    <h3>
+      <a href="{% link liquid/introduction.md %}"><i class="fas fa-copy mr-2"></i> Creating templates</a>
+    </h3>
+    <p>
+      An introduction and step-by-step instructions to using our template language.
+    </p>
+  </div>
+  <div class="col-md-5">
+    <h3>
+      <a href="{% link sdks.md %}"><i class="fas fa-code mr-2"></i> Choosing an SDK</a>
+    </h3>
+    <p>
+      Overviews and reference guides for our Software Development Kits.
+    </p>
+  </div>
+  <div class="col-md-5 offset-md-1">
+    <h3>
+      <a href="{% link api.html %}"><i class="fas fa-globe-americas mr-2"></i> Using our API</a>
+    </h3>
+    <p>
+      Complete reference documentation for the Jahuty API with examples.
+    </p>
+  </div>
+</div>
