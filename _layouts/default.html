@@ -59,7 +59,29 @@
             <small><a href="https://www.jahuty.com">&larr; Back to jahuty.com</a></small>
           </h6>
         </aside>
-        <main class="col bg-faded p-5 flex-grow-15">
+        <main class="col bg-faded pt-4 px-5 pb-5 flex-grow-15">
+          <div class="row pb-4">
+            <div class="col-md-6">
+              <!-- <form>
+                <div class="input-group">
+                  <input class="form-control border-0 bg-light" type="text" name="q" value="">
+                  <div class="input-group-append">
+                    <button type="submit" class="btn btn-light text-muted"><i class="fas fa-search" aria-hidden="true"></i></button>
+                  </div>
+                </div>
+              </form> -->
+            </div>
+            <div class="col-md-6">
+              <ul class="nav justify-content-end">
+                <li class="nav-item">
+                  <a class="btn btn-text" href="{{ site.data.urls.app.sign_in }}">Sign in</a>
+                </li>
+                <li class="nav-item">
+                  <a class="btn btn-primary mr-2" href="{{ site.data.urls.app.sign_up }}">Sign up</a>
+                </li>
+              </ul>
+            </div>
+          </div>
           {{ content }}
           {% include fork.html %}
         </main>

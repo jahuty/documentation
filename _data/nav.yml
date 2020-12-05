@@ -1,14 +1,14 @@
 - name: Getting started
   category: getting-started
   children:
-    - name: 1. Your account
-      path: /getting-started/your-account
-    - name: 2. Your organization
-      path: /getting-started/your-organization
-    - name: 3. Your snippet
-      path: /getting-started/your-snippet
-    - name: 4. Your application
-      path: /getting-started/your-application
+    - name: Create your account
+      path: /getting-started
+    - name: Open your snippet
+      path: /getting-started#open-your-first-snippet
+    - name: Install your SDK
+      path: /getting-started#install-your-first-sdk
+    - name: Render your snippet
+      path: /getting-started#render-your-first-snippet
 - name: Learning more
   category: components
   children:
@@ -48,7 +48,7 @@
   category: api
   children:
     - name: Introduction
-      path: /api#introduction
+      path: /api
     - name: Authentication
       path: /api#authentication
     - name: Errors

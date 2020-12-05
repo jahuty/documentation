@@ -6,7 +6,7 @@ category    : liquid
 ---
 {% assign examples = site.data.liquid.controls %}
 
-# Controlling the flow
+{% include heading.html title="Controlling the flow" lead="Use logic to follow different code paths in your templates." %}
 
 Operators and control flow tags use logic to follow different code paths in your templates. They are denoted by curly braces and percent signs: {% raw %}`{%` and `%}`{% endraw %}.
 

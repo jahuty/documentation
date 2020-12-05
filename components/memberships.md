@@ -5,7 +5,7 @@ keywords    : [memberships]
 category    : components
 ---
 
-# Memberships
+{% include heading.html title="Memberships" lead="Organizations you belong to." %}
 
 {% include todo.html %}
 

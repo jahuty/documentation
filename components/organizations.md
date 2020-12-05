@@ -9,7 +9,7 @@ category    : components
   creating | joining > administering > deleting
 {% endcomment %}
 
-# Organizations
+{% include heading.html title="Organizations" lead="A group of people that work together in Jahuty." %}
 
 An organization is a group of people that work together in Jahuty. Everyone must belong to an organization, even if they're the only member. You can belong to many, but you must belong to at least one.
 

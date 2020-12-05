@@ -6,7 +6,7 @@ category    : liquid
 ---
 {% assign examples = site.data.liquid.variables %}
 
-# Assigning a variable
+{% include heading.html title="Assigning a variable" lead="Variables are placeholders for values that change." %}
 
 Variables output values in your snippets. Variable names are denoted by double curly braces: {% raw %}`{{`{% endraw %} and {% raw %}`}}`{% endraw %}. To render the content of a variable called `title` with the value `hello world`:
 

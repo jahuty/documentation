@@ -5,73 +5,21 @@ keywords    : [choose, sdk]
 category    : sdks
 ---
 
-# Software Development Kits (SDKs)
+{% include heading.html title="Choosing an SDK" lead="Use our API without handling low-level request/response details." %}
 
-A [Software Development Kit](https://en.wikipedia.org/wiki/Software_development_kit) (SDK) is an open-source software package that we maintain to make interacting with our API easier. Once installed and configured, an SDK provides objects and methods that abstract away low-level concerns like setting `Authorization` headers, encoding query string parameters, and parsing `json` responses.
+A [Software Development Kit](https://en.wikipedia.org/wiki/Software_development_kit) (SDK) is an open-source software package we maintain to make interacting with our API easier. Once installed and configured, an SDK provides objects and methods that abstract away low-level concerns like setting `Authorization` headers, encoding query string parameters, and parsing `json` responses.
 
 All our SDKs have the following properties, unless otherwise noted:
 
-* They are [open source](https://en.wikipedia.org/wiki/Open_source). You can open issues or submit pull requests through our [Github repositories](https://github.com/jahuty).
-* They are [multi-platform](https://en.wikipedia.org/wiki/Cross-platform_software). You can use them equally well on Windows, Linux, and OSX.
-* They are [semantically versioned](https://semver.org). You can assess compatibility between versions by their version number.
-* They are [transparently changed](https://keepachangelog.com/en/1.0.0/). You can read what changes have been made in the repository's `CHANGELOG`.
-* They are [easily installed](https://en.wikipedia.org/wiki/Package_manager). You can install from public repositories using your project's package manager.
-
-## Language support
-
-We offer SDKs for a growing number of languages and technologies. Some, but not all, languages have client- and server-side versions available.
-
-Explore the following SDK reference guides for specific details about how to use Jahuty with your tech stack:
-
-<table class="table table-bordered" cellspacing="0" cellpadding="0" border="0">
-  <thead>
-    <th>Language</th>
-    <th>Server-side?</th>
-    <th>Client-side?</th>
-    <th>Repository</th>
-    <th>Example</th>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        Ruby
-      </td>
-      <td>
-        <span class="text-success">&check;</span>
-      </td>
-      <td>
-        <span class="text-danger">&cross;</span>
-      </td>
-      <td>
-        <a href="https://github.com/jahuty/jahuty-ruby">jahuty/jahuty-ruby</a>
-      </td>
-      <td>
-        <a href="https://github.com/jahuty/jahuty-ruby-example">jahuty-ruby-example</a> (Rails)
-      </td>
-    </tr>
-    <tr>
-      <td>
-        PHP
-      </td>
-      <td>
-        <span class="text-success">&check;</span>
-      </td>
-      <td>
-        <span class="text-danger">&cross;</span>
-      </td>
-      <td>
-        <a href="https://github.com/jahuty/jahuty-php">jahuty/jahuty-php</a>
-      </td>
-      <td>
-        <a href="https://github.com/jahuty/jahuty-php-example">jahuty-php-example</a> (Laravel)
-      </td>
-    </tr>
-  </tbody>
-</table>
+* They are [open source](https://en.wikipedia.org/wiki/Open_source). Inspect code or contribute via our [Github repositories](https://github.com/jahuty).
+* They are [multi-platform](https://en.wikipedia.org/wiki/Cross-platform_software). They work equally well on Windows, Linux, and OSX.
+* They are [semantically versioned](https://semver.org). Version numbers indicate compatibility between versions.
+* They are [transparently changed](https://keepachangelog.com/en/1.0.0/). Notable changes are curated in a `CHANGELOG`.
+* They are [easily installed](https://en.wikipedia.org/wiki/Package_manager). Install from public repositories using your project's package manager.
 
 ## Choosing an SDK
 
-We offer two types of SDKs: client-side and server-side.
+We offer two types of SDKs: _client-side_ and _server-side_.
 
 <table class="table table-bordered" cellspacing="0" cellpadding="0" border="0">
   <thead>
@@ -149,3 +97,87 @@ The biggest difference between client- and server-side SDKs is security. Because
 Client-side SDKs typically run on customers' own devices. They can be compromised by users who unpack a mobile app to examine the SDK bytecode or use their browser's developer tools to inspect internal site data. As a result, you should never use a [secret API key](/components/api-keys) in a client-side or mobile application.
 
 Server-side SDKs, on the other hand, operate within server-architected applications running on your own infrastructure or trusted cloud-based infrastructure. Neither of these locations is directly accessible by end users. Because of the limited access to server-based applications, our secret API keys can safely retrieve snippets without needing to obscure or filter out sensitive data.
+
+## Language support
+
+We offer SDKs in a growing number of languages and technologies. Explore the following SDK reference guides for specific details about how to use Jahuty with your tech stack.
+
+<table class="table table-bordered" cellspacing="0" cellpadding="0" border="0">
+  <thead>
+    <th>Language</th>
+    <th>Server-side?</th>
+    <th>Client-side?</th>
+    <th>Repository</th>
+    <th>Example</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        JavaScript
+      </td>
+      <td>
+        <span class="text-danger">&cross;</span>
+      </td>
+      <td>
+        <span class="text-success">&check;</span>
+      </td>
+      <td>
+        <a href="https://unpkg.com/@jahuty/jahuty/dist/jahuty.js">unpkg.com</a>
+      </td>
+      <td>
+        <a href="https://github.com/jahuty/jahuty-web-example">jahuty-web-example</a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Node.js
+      </td>
+      <td>
+        <span class="text-success">&check;</span>
+      </td>
+      <td>
+        <span class="text-danger">&cross;</span>
+      </td>
+      <td>
+        <a href="https://github.com/jahuty/jahuty-node">jahuty/jahuty-node</a>
+      </td>
+      <td>
+        <a href="https://github.com/jahuty/jahuty-node-example">jahuty-node-example</a> (Express)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Ruby
+      </td>
+      <td>
+        <span class="text-success">&check;</span>
+      </td>
+      <td>
+        <span class="text-danger">&cross;</span>
+      </td>
+      <td>
+        <a href="https://github.com/jahuty/jahuty-ruby">jahuty/jahuty-ruby</a>
+      </td>
+      <td>
+        <a href="https://github.com/jahuty/jahuty-ruby-example">jahuty-ruby-example</a> (Rails)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PHP
+      </td>
+      <td>
+        <span class="text-success">&check;</span>
+      </td>
+      <td>
+        <span class="text-danger">&cross;</span>
+      </td>
+      <td>
+        <a href="https://github.com/jahuty/jahuty-php">jahuty/jahuty-php</a>
+      </td>
+      <td>
+        <a href="https://github.com/jahuty/jahuty-php-example">jahuty-php-example</a> (Laravel)
+      </td>
+    </tr>
+  </tbody>
+</table>
