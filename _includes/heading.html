@@ -7,6 +7,8 @@
 <h1 class="display-4">
   {{ include.title }}
 </h1>
-<p class="lead mb-4">
-  {{ include.lead }}
-</p>
+{% if include.lead %}
+  <p class="lead mb-4">
+    {{ include.lead }}
+  </p>
+{% endif %}

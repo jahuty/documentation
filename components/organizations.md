@@ -2,6 +2,7 @@
 title       : Organizations
 description : Learning more about organizations.
 keywords    : [organizations]
+permalink   : /components/:basename
 category    : components
 ---
 

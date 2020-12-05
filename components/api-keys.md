@@ -2,6 +2,7 @@
 title       : API keys
 description : Learning more about API keys.
 keywords    : [manage, api, key]
+permalink   : /components/:basename
 category    : components
 ---
 {% include heading.html title="API Keys" lead="Long, impossible-to-guess strings that identify your organization's API requests." %}
@@ -9,6 +10,8 @@ category    : components
 [API keys](https://en.wikipedia.org/wiki/Application_programming_interface_key) are long, impossible-to-guess strings of letters and numbers that Jahuty uses to identify your organization's API requests. If you do not include a key when making an [API request](/api#authentication), you include one incorrectly, or use one that is incorrect or outdated, Jahuty will return an error.
 
 ## Types of API keys
+
+{% include todo.html %}
 
 There are two types of API keys: _public_ and _secret_.
 

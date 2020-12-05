@@ -2,6 +2,7 @@
 title       : Iterating a loop
 description : How to iterate loops.
 keywords    : [iterate, loop]
+permalink   : /liquid/:basename
 category    : liquid
 ---
 

@@ -1,0 +1,26 @@
+---
+title       : Search
+description : Search Jahuty's documentation.
+keywords    : [search]
+permalink   : /:basename
+stylesheets :
+  - href: https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/algolia-min.css
+    integrity: sha256-HB49n/BZjuqiCtQQf49OdZn63XuKFaxcIHWf0HNKte8=
+    crossorigin: anonymous
+javascripts :
+  - src: https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js
+    integrity: sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=
+    crossorigin: anonymous
+  - src: https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js
+    integrity: sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=
+    crossorigin: anonymous
+  - src: /assets/js/search.js
+---
+
+{% include heading.html title="Search" %}
+  Search
+</h1>
+
+<div id="searchbox" class="mb-4"></div>
+<div id="hits"></div>
+<div id="pagination"></div>
