@@ -6,7 +6,7 @@ category    : liquid
 ---
 {% assign examples = site.data.liquid.parameters %}
 
-# Passing a parameter
+{% include heading.html title="Passing a parameter" lead="Assign values to variables at render time." %}
 
 Parameters assign values to [variables](variables) when you [render a snippet](/components/snippets#rendering-a-snippet). This allows you to re-use the same snippet with different values.
 

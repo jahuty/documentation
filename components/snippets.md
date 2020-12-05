@@ -7,7 +7,7 @@ category    : components
   Creating > Retrieving > Rendering > Removing > Deleting
 {% endcomment %}
 
-# Snippets
+{% include heading.html title="Snippets" lead="A chunk of managed content you can render anywhere." %}
 
 A snippet is a document that's created in our text editor and output wherever you need it.
 

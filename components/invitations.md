@@ -5,7 +5,7 @@ keywords    : [invitations]
 category    : components
 ---
 
-# Invitations
+{% include heading.html title="Invitations" lead="Requests to join your organization." %}
 
 {% include todo.html %}
 

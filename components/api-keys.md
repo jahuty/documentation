@@ -4,9 +4,9 @@ description : Learning more about API keys.
 keywords    : [manage, api, key]
 category    : components
 ---
-# API Keys
+{% include heading.html title="API Keys" lead="Long, impossible-to-guess strings that identify your organization." %}
 
-Jahuty uses [API keys](https://en.wikipedia.org/wiki/Application_programming_interface_key) to identify your organization's API requests. If you do not include a key when making an [API request](/api#authentication), you include one incorrectly, or use one that is incorrect or outdated, Jahuty's API will return an error.
+[API keys](https://en.wikipedia.org/wiki/Application_programming_interface_key) are long, impossible-to-guess strings of letters and numbers that Jahuty uses to identify your organization's API requests. If you do not include a key when making an [API request](/api#authentication), you include one incorrectly, or use one that is incorrect or outdated, Jahuty will return an error.
 
 ## Types of API keys
 
@@ -19,9 +19,9 @@ Every organization is provided with a public "Default API Key" on account creati
 
 ## Obtaining your API keys
 
-Your organization's API keys are available in [its dashboard](https://app.jahuty.com/api-keys) or:
+Your organization's API keys are available in its dashboard:
 
-1. [Sign in](https://www.jahuty.com/users/sign-in) to your account.
+1. [Sign in]({{ site.data.urls.app.sign_in }}) to your account.
 1. Click the dropdown in the top-right of the navigation.
 1. Click the "Settings" link in the "Organization" section of the the dropdown menu.
 1. Click the "API keys" link in the left navigation.
@@ -44,7 +44,7 @@ To help keep your API keys secure, follow these best practices:
 
 To create an API key:
 
-1. Sign in to your account.
+1. [Sign in]({{ site.data.urls.app.sign_in }}) to your account.
 1. Click the dropdown in the top-right of the navigation.
 1. Click the "Settings" link in the "Organization" section of the the dropdown menu.
 1. Click the "API keys" link in the left navigation.

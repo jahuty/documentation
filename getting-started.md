@@ -6,13 +6,7 @@ category    : getting-started
 javascripts :
   - src: /assets/js/toggle.js
 ---
-
-<h1 class="display-4">
-  Getting started
-</h1>
-<p class="lead">
-  Welcome to Jahuty! We're excited to partner with you and help your team save tons of time. We know how difficult managing content in an application can be.
-</p>
+{% include heading.html title="Getting started" lead="Welcome to Jahuty! We're excited to partner with you and help your team save tons of time. We know how difficult managing content in an application can be." %}
 
 Here's what you need to do:
 

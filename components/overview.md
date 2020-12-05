@@ -5,9 +5,7 @@ keywords   : [components, concepts]
 category   : components
 ---
 
-# Learning more
-
-Jahuty is comprised of a number of components that work together:
+{% include heading.html title="Learning more" lead="Jahuty is comprised of a number of components that work together." %}
 
 * [API Keys](/components/api-keys), tokens to identify your organization's API requests.
 * [Invitations](/components/invitations), a request to join an organization.
