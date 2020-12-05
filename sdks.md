@@ -2,6 +2,7 @@
 title       : SDKs
 description : All about SDKs.
 keywords    : [choose, sdk]
+permalink   : /:basename
 category    : sdks
 ---
 

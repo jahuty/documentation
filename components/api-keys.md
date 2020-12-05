@@ -2,6 +2,7 @@
 title       : API keys
 description : Learning more about API keys.
 keywords    : [manage, api, key]
+permalink   : /components/:basename
 category    : components
 ---
 {% include heading.html title="API Keys" lead="Long, impossible-to-guess strings that identify your organization's API requests." %}

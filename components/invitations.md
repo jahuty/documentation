@@ -2,6 +2,7 @@
 title       : Invitations
 description : Learning more about invitations.
 keywords    : [invitations]
+permalink   : /components/:basename
 category    : components
 ---
 

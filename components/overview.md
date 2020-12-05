@@ -2,6 +2,7 @@
 title      : Learn more
 description: Learning more about Jahuty's ecosystem.
 keywords   : [components, concepts]
+permalink  : /components/:basename
 category   : components
 ---
 

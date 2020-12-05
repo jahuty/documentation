@@ -2,6 +2,7 @@
 title       : Assigning a variable
 description : How to assign a variable.
 keywords    : [assign, variable]
+permalink   : /liquid/:basename
 category    : liquid
 ---
 {% assign examples = site.data.liquid.variables %}

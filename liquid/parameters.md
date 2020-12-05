@@ -2,6 +2,7 @@
 title       : Passing a parameter
 description : How to pass a parameter
 keywords    : [pass, parameter]
+permalink   : /liquid/:basename
 category    : liquid
 ---
 {% assign examples = site.data.liquid.parameters %}

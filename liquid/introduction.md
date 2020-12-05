@@ -2,6 +2,7 @@
 title       : Creating templates
 description : Creating templates in Jahuty.
 keywords    : [creating, templates, liquid]
+permalink   : /liquid/:basename
 category    : liquid
 ---
 

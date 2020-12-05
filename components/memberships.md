@@ -2,6 +2,7 @@
 title       : Memberships
 description : Learning more about memberships.
 keywords    : [memberships]
+permalink   : /components/:basename
 category    : components
 ---
 

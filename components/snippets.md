@@ -1,6 +1,8 @@
 ---
 title       : Snippets
 description : All about snippets.
+keywords    : [snippets]
+permalink   : /components/:basename
 category    : components
 ---
 {% comment %}

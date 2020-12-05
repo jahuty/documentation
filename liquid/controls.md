@@ -2,6 +2,7 @@
 title       : Controlling the flow
 description : How to control the flow
 keywords    : [liquid, control, flow]
+permalink   : /liquid/:basename
 category    : liquid
 ---
 {% assign examples = site.data.liquid.controls %}

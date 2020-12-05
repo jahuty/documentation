@@ -49,7 +49,7 @@
             {% if page.category == section.category %}
               <nav class="nav nav-pills flex-column">
                 {% for item in section.children %}
-                  {% assign item_url = item.path | append: ".html" %}
+                  {% assign item_url = item.path %}
                   <a class="nav-link{% if page.url == item_url %} active{% endif %}" href="{{ item.path }}">{{ item.name }}</a>
                 {% endfor %}
               </nav>
