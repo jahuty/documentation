@@ -60,3 +60,7 @@ defaults:
 #   - vendor/gems/
 #   - vendor/ruby/
 exclude: [README.md]
+
+algolia:
+  application_id: FBGAMPVM3R
+  index_name:     docs_prod
