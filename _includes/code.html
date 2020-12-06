@@ -43,6 +43,8 @@
     {% case include.language %}
       {% when "bash" %}
         {% highlight bash %}{{ code }}{% endhighlight %}
+      {% when "erb" %}
+        {% highlight erb %}{{ code }}{% endhighlight %}
       {% when "javascript" %}
         {% highlight javascript %}{{ code }}{% endhighlight %}
       {% when "json" %}
