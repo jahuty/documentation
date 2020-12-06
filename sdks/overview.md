@@ -128,7 +128,7 @@ We offer SDKs in a growing number of languages and technologies. Explore the fol
   <tbody>
     <tr>
       <td>
-        Node.js
+        <a href="{% link sdks/node.md %}">Node.js</a>
       </td>
       <td>
         <span class="text-success">&check;</span>
@@ -142,7 +142,7 @@ We offer SDKs in a growing number of languages and technologies. Explore the fol
     </tr>
     <tr>
       <td>
-        Ruby
+        <a href="{% link sdks/ruby.md %}">Ruby</a>
       </td>
       <td>
         <span class="text-success">&check;</span>
@@ -156,7 +156,7 @@ We offer SDKs in a growing number of languages and technologies. Explore the fol
     </tr>
     <tr>
       <td>
-        PHP
+        <a href="{% link sdks/php.md %}">PHP</a>
       </td>
       <td>
         <span class="text-success">&check;</span>
