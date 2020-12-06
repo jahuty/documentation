@@ -31,7 +31,7 @@ Snippets are more than just text. You can use the [Liquid templating language](/
 
 ## Install your first SDK
 
-A [Software Development Kit (SDK)](/sdks) is an open source package we maintain to make interacting with [our API](/api) easier. SDKs provide objects and methods that abstract away our API's lower-level request/response details. SDKs are available in a number of languages, and you can choose the one that fits your stack.
+A [Software Development Kit (SDK)]({% link sdks/overview.md %}) is an open source package we maintain to make interacting with [our API](/api) easier. SDKs provide objects and methods that abstract away our API's lower-level request/response details. SDKs are available in a number of languages, and you can choose the one that fits your stack.
 
 <div class="card mb-4">
   <div class="card-header">
@@ -111,4 +111,4 @@ puts Jahuty::Snippet.render {{ example_id }}
 
 ## That's it!
 
-We hope you've enjoyed getting started with Jahuty! If you have any questions, [let us know]({{ site.data.urls.contact }}). Otherwise, feel free to learn more about Jahuty's [components]({% link components/overview.md %}), [using templates]({% link liquid/introduction.md %}), [choosing an SDK]({% link sdks.md %}), or [using our API]({% link api.html %}).
+We hope you've enjoyed getting started with Jahuty! If you have any questions, [let us know]({{ site.data.urls.contact }}). Otherwise, feel free to learn more about Jahuty's [components]({% link components/overview.md %}), [using templates]({% link liquid/introduction.md %}), [choosing an SDK]({% link sdks/overview.md %}), or [using our API]({% link api.html %}).
