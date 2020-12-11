@@ -1,7 +1,7 @@
 ---
-title       : JavaScript SDK
+title       : Web SDK
 description : Reference documentation for Jahuty's Web SDK.
-keywords    : [javascript, reference]
+keywords    : [web, javascript, reference]
 permalink   : /sdks/:basename
 category    : sdks
 ---
