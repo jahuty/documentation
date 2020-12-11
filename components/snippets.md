@@ -15,7 +15,7 @@ A snippet is a document that's created in our text editor and output wherever yo
 
 * Snippets are shared by an [organization](organizations). Anyone in your organization can edit your snippets.
 * Snippets are assigned an `id`, a unique identifier, which you can use to refer to a snippet.
-* Snippets are pulled into your websites and applications using our [SDKs](/sdks) or [API](/api).
+* Snippets are pulled into your websites and applications using our [SDKs]({% link sdks/overview.md %}) or [API](/api).
 
 ## Creating a snippet
 
