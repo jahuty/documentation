@@ -2,11 +2,26 @@
 title       : SDKs
 description : All about SDKs.
 keywords    : [choose, sdk]
-permalink   : /:basename
+permalink   : /sdks/:basename
 category    : sdks
 ---
 
-{% include heading.html title="Choosing an SDK" lead="Use our API without handling low-level request/response details." %}
+{% include heading.html title="Choosing an SDK" lead="Interact with our API in the language of your choice." %}
+
+<div class="row my-4">
+  <div class="col-md-3">
+    <a class="btn btn-outline-primary btn-block" href="{% link sdks/node.md %}">Node.js</a>
+  </div>
+  <div class="col-md-3">
+    <a class="btn btn-outline-primary btn-block" href="{% link sdks/php.md %}">PHP</a>
+  </div>
+  <div class="col-md-3">
+    <a class="btn btn-outline-primary btn-block" href="{% link sdks/ruby.md %}">Ruby</a>
+  </div>
+  <div class="col-md-3">
+    <a class="btn btn-outline-primary btn-block" href="{% link sdks/web.md %}">Web</a>
+  </div>
+</div>
 
 A [Software Development Kit](https://en.wikipedia.org/wiki/Software_development_kit) (SDK) is an open-source software package we maintain to make interacting with our API easier. Once installed and configured, an SDK provides objects and methods that abstract away low-level concerns like setting `Authorization` headers, encoding query string parameters, and parsing `json` responses.
 
@@ -109,29 +124,25 @@ We offer SDKs in a growing number of languages and technologies. Explore the fol
     <th>Server-side?</th>
     <th>Client-side?</th>
     <th>Repository</th>
-    <th>Example</th>
   </thead>
   <tbody>
     <tr>
       <td>
-        JavaScript
-      </td>
-      <td>
-        <span class="text-danger">&cross;</span>
+        <a href="{% link sdks/node.md %}">Node.js</a>
       </td>
       <td>
         <span class="text-success">&check;</span>
       </td>
       <td>
-        <a href="https://unpkg.com/@jahuty/jahuty/dist/jahuty.js">unpkg.com</a>
+        <span class="text-danger">&cross;</span>
       </td>
       <td>
-        <a href="https://github.com/jahuty/jahuty-web-example">jahuty-web-example</a>
+        <a href="{{ site.data.urls.sdks.node }}">jahuty/jahuty-node</a>
       </td>
     </tr>
     <tr>
       <td>
-        Node.js
+        <a href="{% link sdks/ruby.md %}">Ruby</a>
       </td>
       <td>
         <span class="text-success">&check;</span>
@@ -140,15 +151,12 @@ We offer SDKs in a growing number of languages and technologies. Explore the fol
         <span class="text-danger">&cross;</span>
       </td>
       <td>
-        <a href="https://github.com/jahuty/jahuty-node">jahuty/jahuty-node</a>
-      </td>
-      <td>
-        <a href="https://github.com/jahuty/jahuty-node-example">jahuty-node-example</a> (Express)
+        <a href="{{ site.data.urls.sdks.ruby }}">jahuty/jahuty-ruby</a>
       </td>
     </tr>
     <tr>
       <td>
-        Ruby
+        <a href="{% link sdks/php.md %}">PHP</a>
       </td>
       <td>
         <span class="text-success">&check;</span>
@@ -157,27 +165,21 @@ We offer SDKs in a growing number of languages and technologies. Explore the fol
         <span class="text-danger">&cross;</span>
       </td>
       <td>
-        <a href="https://github.com/jahuty/jahuty-ruby">jahuty/jahuty-ruby</a>
-      </td>
-      <td>
-        <a href="https://github.com/jahuty/jahuty-ruby-example">jahuty-ruby-example</a> (Rails)
+        <a href="{{ site.data.urls.sdks.php }}">jahuty/jahuty-php</a>
       </td>
     </tr>
     <tr>
       <td>
-        PHP
-      </td>
-      <td>
-        <span class="text-success">&check;</span>
+        <a href="{% link sdks/web.md %}">Web</a>
       </td>
       <td>
         <span class="text-danger">&cross;</span>
       </td>
       <td>
-        <a href="https://github.com/jahuty/jahuty-php">jahuty/jahuty-php</a>
+        <span class="text-success">&check;</span>
       </td>
       <td>
-        <a href="https://github.com/jahuty/jahuty-php-example">jahuty-php-example</a> (Laravel)
+        <a href="{{ site.data.urls.sdks.web }}">unpkg.com</a>
       </td>
     </tr>
   </tbody>

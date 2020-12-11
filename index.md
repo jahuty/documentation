@@ -35,7 +35,7 @@ keywords    : [documentation, docs]
   </div>
   <div class="col-md-6 px-4 pb-4">
     <h3>
-      <a class="stretched-link" href="{% link sdks.md %}"><i class="fas fa-code mr-2"></i> Choosing an SDK</a>
+      <a class="stretched-link" href="{% link sdks/overview.md %}"><i class="fas fa-code mr-2"></i> Choosing an SDK</a>
     </h3>
     <p>
       Overviews and reference guides for our Software Development Kits.

@@ -5,3 +5,13 @@ support: https://app.jahuty.com/support
 contact: https://www.jahuty.com/contact
 legal:
   privacy_policy: https://legal.jahuty.com/privacy
+sdks:
+  node: https://github.com/jahuty/jahuty-node
+  php: https://github.com/jahuty/jahuty-php
+  ruby: https://github.com/jahuty/jahuty-ruby
+  web: https://unpkg.com/@jahuty/jahuty/dist/jahuty.js
+examples:
+  node: https://github.com/jahuty/jahuty-node-example
+  php: https://github.com/jahuty/jahuty-php-example
+  ruby: https://github.com/jahuty/jahuty-ruby-example
+  web: https://github.com/jahuty/jahuty-web-example
