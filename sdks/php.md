@@ -30,7 +30,7 @@ category    : sdks
       <small>Tests</small>
     </div>
     <div class="card-body p-2 px-3">
-      <a class="stretched-link" href="https://circleci.com/gh/jahuty/jahuty-php"><img src="https://circleci.com/gh/jahuty/jahuty-php.svg?style=svg" /></a>
+      <a class="stretched-link" href="https://circleci.com/gh/jahuty/jahuty-php"><img src="https://circleci.com/gh/jahuty/jahuty-php.svg?style=svg" alt="Status badge" /></a>
     </div>
   </div>
 </div>
