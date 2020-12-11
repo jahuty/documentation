@@ -43,7 +43,15 @@
   category: sdks
   children:
     - name: Overview
-      path: /sdks
+      path: /sdks/overview
+    - name: Node.js
+      path: /sdks/node
+    - name: PHP
+      path: /sdks/php
+    - name: Ruby
+      path: /sdks/ruby
+    - name: Web
+      path: /sdks/web
 - name: Using our API
   category: api
   children:
