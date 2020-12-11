@@ -6,7 +6,7 @@ permalink   : /sdks/:basename
 category    : sdks
 ---
 
-{% include heading.html title="Choosing an SDK" lead="Interact with our API using the language of your choice." %}
+{% include heading.html title="Choosing an SDK" lead="Interact with our API in the language of your choice." %}
 
 <div class="row my-4">
   <div class="col-md-3">
