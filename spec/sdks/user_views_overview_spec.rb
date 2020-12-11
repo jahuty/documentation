@@ -1,7 +1,7 @@
 require "spec_helper"
 
 RSpec.describe "user views sdks" do
-  before { visit "/sdks.html" }
+  before { visit "/sdks/overview.html" }
 
   scenario "with content" do
     expect(page).to have_content(/sdk/i)
