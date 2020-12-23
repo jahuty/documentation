@@ -30,7 +30,7 @@ category    : sdks
       <small>Tests</small>
     </div>
     <div class="card-body p-2 px-3">
-      <a class="stretched-link" href="https://circleci.com/gh/jahuty/jahuty-php"><img src="https://circleci.com/gh/jahuty/jahuty-php.svg?style=svg" alt="Status badge" /></a>
+      <a href="https://circleci.com/gh/jahuty/jahuty-php"><img src="https://circleci.com/gh/jahuty/jahuty-php.svg?style=svg" alt="Status badge" /></a> <a href="https://codecov.io/gh/jahuty/jahuty-php"><img src="https://codecov.io/gh/jahuty/jahuty-php/branch/master/graph/badge.svg?token=XELPI4FWMI" alt="Coverage badge"/></a>
     </div>
   </div>
 </div>
@@ -52,22 +52,14 @@ It should be installed via [Composer](https://getcomposer.org). To do so, add th
 
 ## Usage
 
-The library needs to be configured with your [API key]({% link api.html %}#authentication) before use, ideally once during startup:
+Instantiate the client with your [API key]({% link api.html %}#authentication), and use the `snippets->render()` method to output your snippet:
 
-{% capture set_api_key %}
-use Jahuty\Jahuty\Jahuty;
+{% capture rendering %}
 
-Jahuty::setKey('YOUR_API_KEY');
-{% endcapture %}
-{% include code.html language="php" code=set_api_key header=false toggle=false select=false %}
+$jahuty = new \Jahuty\Client('YOUR_API_KEY');
 
-With the API key set, you can use the `Snippet::render()` method to render a snippet:
-
-{% capture render_snippet %}
-use Jahuty\Jahuty\Snippet;
-
-// render the snippet...
-$render = Snippet::render(YOUR_SNIPPET_ID);
+// render your snippet...
+$render = $jahuty->snippets->render(YOUR_SNIPPET_ID);
 
 // .. and, cast it to a string...
 (string)$render;
@@ -75,15 +67,13 @@ $render = Snippet::render(YOUR_SNIPPET_ID);
 // ...or, access its content
 $render->getContent();
 {% endcapture %}
-{% include code.html language="php" code=render_snippet header=false toggle=false select=false %}
+{% include code.html language="php" code=rendering header=false toggle=false select=false %}
 
 In an HTML view:
 
-{% capture render_snippet_html %}
+{% capture rendering_in_view %}
 <?php
-use Jahuty\Jahuty\{Jahuty, Snippet};
-
-Jahuty::setKey('YOUR_API_KEY');
+  $jahuty = new \Jahuty\Client('YOUR_API_KEY');
 ?>
 <!doctype html>
 <html>
@@ -91,21 +81,25 @@ Jahuty::setKey('YOUR_API_KEY');
     <title>Awesome example</title>
 </head>
 <body>
-    <?php echo Snippet::render(YOUR_SNIPPET_ID); ?>
+    <?php echo $jahuty->snippets->render(YOUR_SNIPPET_ID); ?>
 </body>
 {% endcapture %}
-{% include code.html language="php" code=render_snippet_html header=false toggle=false select=false %}
+{% include code.html language="php" code=rendering_in_view header=false toggle=false select=false %}
 
 ## Parameters
 
 You can [pass parameters]({% link liquid/parameters.md %}) into your snippet using the options hash and the `params` key:
 
-{% capture render_with_params %}
-use Jahuty\Jahuty\Snippet;
+{% capture rendering_with_params %}
+$jahuty = new \Jahuty\Client('YOUR_API_KEY');
 
-$render = Snippet::render(YOUR_SNIPPET_ID, ['params' => ['foo' => 'bar']]);
+$render = $jahuty->snippets->render(YOUR_SNIPPET_ID, [
+  'params' => [
+    'foo' => 'bar'
+  ]
+]);
 {% endcapture %}
-{% include code.html language="php" code=render_with_params %}
+{% include code.html language="php" code=rendering_with_params %}
 
 The parameters above would be equivalent to [assigning the variable]({% link liquid/variables.md %}) below in your snippet:
 
@@ -116,18 +110,13 @@ The parameters above would be equivalent to [assigning the variable]({% link liq
 
 ## Errors
 
-If you don't set your API key before calling `Snippet::render()`, a `BadMethodCallException` will be thrown, and if [Jahuty's API]({% link api.html %}#errors) returns any status code other than `2xx`, a `NotOk` exception will be thrown:
+If [Jahuty's API]({% link api.html %}#errors) returns any status code other than `2xx`, a `Jahuty\Exception\Error` exception will be thrown:
 
 {% capture errors %}
-use Jahuty\Jahuty\Snippet;
-use Jahuty\Jahuty\Exception\NotOk;
-
 try {
-  $render = Snippet::render(YOUR_SNIPPET_ID);
-} catch (BadMethodCallException $e) {
-  // did you call Jahuty::setKey() first?
-} catch (NotOk $e) {
-  // the API returned something besides 2xx status code
+  $jahuty = new \Jahuty\Client('YOUR_API_KEY');
+  $render = $jahuty->snippets->render(YOUR_SNIPPET_ID);
+} catch (\Jahuty\Exception\Error $e) {
   $problem = $e->getProblem();
 
   echo $problem->getStatus();  // returns status code
@@ -143,4 +132,4 @@ If you'd like to see the SDK in action, see [jahuty/jahuty-php-example]({{ site.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on [GitHub]({{ site.data.urls.sdks.php }}).
+Contributions or bug reports are welcome via [GitHub]({{ site.data.urls.sdks.php }})!
