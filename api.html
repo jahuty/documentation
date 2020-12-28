@@ -45,19 +45,27 @@ javascripts :
         <div class="card-body">
           <nav class="nav nav-pills nav-fill">
             <a class="nav-item nav-link active" data-toggle-type="activity" data-toggle-language="bash">cURL</a>
+            <a class="nav-item nav-link" data-toggle-type="activity" data-toggle-language="javascript">Node</a>
             <a class="nav-item nav-link" data-toggle-type="activity" data-toggle-language="php">PHP</a>
             <a class="nav-item nav-link" data-toggle-type="activity" data-toggle-language="ruby">Ruby</a>
+            <a class="nav-item nav-link" data-toggle-type="activity" data-toggle-language="html">Web</a>
           </nav>
         </div>
         <div class="card-footer text-muted">
           <p class="m-0" data-toggle-type="visibility" data-toggle-language="bash">
             <small>By default, the Jahuty API Docs demonstrate using <code>curl</code> to interact with the API over HTTPS. Select one of our official SDKs to see examples in code.</small>
           </p>
+          <p class="m-0" data-toggle-type="visibility" data-toggle-language="javascript">
+            <small><code>$ npm install jahuty --save</code></small> <a href="https://github.com/jahuty/jahuty-node" target="_blank"><i class="fab fa-github ml-2"></i></a>
+          </p>
           <p class="m-0" data-toggle-type="visibility" data-toggle-language="php">
             <small><code>$ composer require jahuty/jahuty-php</code></small> <a href="https://github.com/jahuty/jahuty-php" target="_blank"><i class="fab fa-github ml-2"></i></a>
           </p>
           <p class="m-0" data-toggle-type="visibility" data-toggle-language="ruby">
             <small><code>$ gem install jahuty</code></small> <a href="https://github.com/jahuty/jahuty-ruby" target="_blank"><i class="fab fa-github ml-2"></i></a>
+          </p>
+          <p class="m-0" data-toggle-type="visibility" data-toggle-language="html">
+            <small><code>&lt;script src="https://unpkg.com/@jahuty/jahuty"&gt;&lt;/script&gt;</code></small> <a href="https://github.com/jahuty/jahuty-node" target="_blank"><i class="fab fa-github ml-2"></i></a>
           </p>
         </div>
       </div>
@@ -95,10 +103,8 @@ javascripts :
     </div>
     <div class="col-md-6">
 {% capture code %}
-curl \
-  https://api.jahuty.com/snippets/1/render \
-  -H "Authorization: Bearer {{ key }}"; \
-  echo
+curl https://api.jahuty.com/snippets/1/render \
+  -H "Authorization: Bearer {{ key }}"; echo
 {% endcapture %}
       {% include code.html header="Authenticated request" language="bash" code=code toggle=false select=false %}
       <div class="card my-3">
@@ -258,16 +264,12 @@ curl \
     </div>
     <div class="col-md-6">
 {% capture php %}
-use Jahuty\Jahuty\Jahuty;
-use Jahuty\Jahuty\Snippet;
-use Jahuty\Jahuty\Exception\NotOk;
-
-Jahuty::setKey('{{ key }}');
+$jahuty = new \Jahuty\Client('{{ key }}');
 
 try {
   // Returns 404 (raising exception) because snippet and key do not match.
-  Snippet::get(999);
-} catch (NotOk $e) {
+  echo $jahuty->snippets->render(999);
+} catch (\Jahuty\Exception\Error $e) {
   $p = $e->getProblem();
 
   echo $p->getStatus();
@@ -290,6 +292,7 @@ rescue Jahuty::Exception::NotOk => e
   puts p.status
   puts p.type
   puts p.detail
+end
 {% endcapture %}
 {% include code.html language="ruby" header="Handling exceptions" code=ruby %}
     </div>
@@ -366,12 +369,19 @@ curl
 {% endcapture %}
 {% include code.html language="bash" header="GET snippets/:id/render" code=bash %}
 
+{% capture javascript %}
+var { Jahuty, Snippet }  = require('@jahuty/jahuty');
+
+Jahuty.setKey('YOUR_API_KEY');
+
+Snippet.render(YOUR_SNIPPET_ID).then(render => console.log(render.content));
+{% endcapture %}
+{% include code.html language="javascript" header="GET snippets/:id/render" code=javascript %}
+
 {% capture php %}
-use Jahuty\Jahuty\{Jahuty, Snippet};
+$jahuty = new \Jahuty\Client('{{ key }}');
 
-Jahuty::setKey('{{ key }}');
-
-echo Snippet::render(1, [
+echo $jahuty->snippets->render(1, [
   "params" => [
     "foo" => "bar"
   ]
@@ -388,12 +398,35 @@ puts Jahuty::Snippet.render 1, params: { "foo": "bar" }
 {% endcapture %}
 {% include code.html language="ruby" header="GET snippets/:id/render" code=ruby %}
 
+{% capture html %}
+<!doctype html>
+<html>
+  <head>
+    <script src="https://unpkg.com/@jahuty/jahuty"></script>
+    <script>
+      window.addEventListener('load', function () {
+        jahuty.Jahuty.setKey('kn2Kj5ijmT2pH6ZKqAQyNexUqKeRM4VG6DDgWN1lIcc');
+        jahuty.Jahuty.initialize();
+      });
+    </script>
+  </head>
+  <body>
+    <div data-snippet-id="1">
+      <p>
+        Hello, world!
+      </p>
+    </div>
+  </body>
+</html>
+{% endcapture %}
+{% include code.html language="html" header="GET snippets/:id/render" code=html %}
+
 {% capture response %}
 {
   "content": "This is my first snippet!"
 }
 {% endcapture %}
-{% include code.html language="json" header="Response" code=response %}
+{% include code.html language="json" header="Response" code=response select=false toggle=false %}
     </div>
   </div>
 </section>
