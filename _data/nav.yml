@@ -1,14 +1,8 @@
 - name: Getting started
   category: getting-started
   children:
-    - name: Create your account
+    - name: Introduction
       path: /getting-started
-    - name: Open your snippet
-      path: /getting-started#open-your-first-snippet
-    - name: Install your SDK
-      path: /getting-started#install-your-first-sdk
-    - name: Render your snippet
-      path: /getting-started#render-your-first-snippet
 - name: Learning more
   category: components
   children:
