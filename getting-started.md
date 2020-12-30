@@ -88,11 +88,11 @@ echo $jahuty->snippets->render({{ example_id }});
 {% endcapture %}
 
 {% capture ruby %}
-require "Jahuty"
+jahuty = Jahuty::Client.new(
+  api_key: '{{ example_api_key }}'
+)
 
-Jahuty.key = "{{ example_api_key }}"
-
-puts Jahuty::Snippet.render {{ example_id }}
+puts jahuty.snippets.render {{ example_id }}
 {% endcapture %}
 
 {% capture javascript %}
