@@ -279,14 +279,15 @@ try {
 {% endcapture %}
 {% include code.html language="php" header="Handling exceptions" code=php %}
 {% capture ruby %}
-require "jahuty"
-
-Jahuty.key = "{{ key }}"
+jahuty = Jahuty::Client.new(
+  api_key: '{{ key }}'
+)
 
 begin
-  # Responds 404 (raising exception) because snippet and key do not match.
-  Snippet.get 999
-rescue Jahuty::Exception::NotOk => e
+  jahuty.snippets.render 999
+rescue Jahuty::Exception::Error => e
+  # The API responds 404, raising an error, because the snippet and api key do
+  # not match.
   p = e.problem
 
   puts p.status
@@ -390,11 +391,11 @@ echo $jahuty->snippets->render(1, [
 {% include code.html language="php" header="GET snippets/:id/render" code=php %}
 
 {% capture ruby %}
-require "Jahuty"
+jahuty = Jahuty::Client.new(
+  api_key: '{{ key }}'
+)
 
-Jahuty.key = "{{ key }}"
-
-puts Jahuty::Snippet.render 1, params: { "foo": "bar" }
+puts jahuty.snippets.render 1, params: { "foo": "bar" }
 {% endcapture %}
 {% include code.html language="ruby" header="GET snippets/:id/render" code=ruby %}
 
