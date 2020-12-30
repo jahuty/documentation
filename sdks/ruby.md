@@ -29,56 +29,53 @@ category    : sdks
       <small>Tests</small>
     </div>
     <div class="card-body p-2 px-3">
-      <a class="stretched-link" href="https://circleci.com/gh/jahuty/jahuty-ruby"><img src="https://circleci.com/gh/jahuty/jahuty-ruby.svg?style=svg" alt="Status badge" /></a>
+      <a href="https://circleci.com/gh/jahuty/jahuty-ruby"><img src="https://circleci.com/gh/jahuty/jahuty-ruby.svg?style=svg" alt="Status badge" /></a> <a href="https://codecov.io/gh/jahuty/jahuty-ruby)"><img src="https://codecov.io/gh/jahuty/jahuty-ruby/branch/master/graph/badge.svg?token=NLDCGGYB8S" alt="Codecov badge" /></a>
     </div>
   </div>
 </div>
 
 ## Installation
 
-This library requires [Ruby 2.3+](https://www.ruby-lang.org/en/downloads/releases/).
+This library requires [Ruby 2.6+](https://www.ruby-lang.org/en/downloads/releases/).
 
 Add this line to your application's `Gemfile` and then run `bundle install`:
 
 {% capture installing %}
-gem "jahuty", "~> 2.0"
+gem 'jahuty', '~> 3.0'
 {% endcapture %}
 {% include code.html language="ruby" code=installing header=false select=false toggle=false %}
 
 ## Usage
 
-The library needs to be configured with your [API key]({% link api.html %}#authentication) before use, ideally once during startup:
+Instantiate a client with your [API key]({% link api.html %}#authentication) and call `snippets.render`:
 
-{% capture setting_api_key %}
-require "jahuty"
+{% capture rendering1 %}
+jahuty = Jahuty::Client.new(api_key: 'YOUR_API_KEY')
 
-Jahuty.key = "YOUR_API_KEY"
+puts jahuty.snippets.render(YOUR_SNIPPET_ID)
 {% endcapture %}
-{% include code.html language="ruby" code=setting_api_key header=false select=false toggle=false %}
+{% include code.html language="ruby" code=rendering1 header=false select=false toggle=false %}
 
-With the API key set, you can use the `Snippet.render` method to render a snippet:
+You can also access the render's content with `to_s` or `content`:
 
-{% capture rendering_snippet %}
-require "jahuty"
+{% capture rendering2 %}
+jahuty = Jahuty::Client.new(api_key: 'YOUR_API_KEY')
 
-# retrieve the snippet
-render = Snippet.render YOUR_SNIPPET_ID
+render = jahuty.snippets.render(YOUR_SNIPPET_ID)
 
-# convert it to a string
-render.to_s
+a = render.to_s
 
-# or, access its attributes
-render.content
+b = render.content
+
+a == b  # returns true
 {% endcapture %}
-{% include code.html language="ruby" code=rendering_snippet header=false select=false toggle=false %}
+{% include code.html language="ruby" code=rendering2 header=false select=false toggle=false %}
 
 In an HTML view:
 
 {% capture rendering_view %}
 <%
-require "jahuty"  
-
-Jahuty.key = "YOUR_API_KEY"
+  jahuty = Jahuty::Client.new(api_key: 'YOUR_API_KEY')
 %>
 <!doctype html>
 <html>
@@ -86,19 +83,19 @@ Jahuty.key = "YOUR_API_KEY"
     <title>Awesome example</title>
 </head>
 <body>
-    <%= Snippet.render YOUR_SNIPPET_ID %>
+    <%= jahuty.snippets.render YOUR_SNIPPET_ID %>
 </body>
 {% endcapture %}
 {% include code.html language="erb" code=rendering_view header=false select=false toggle=false %}
 
 ## Parameters
 
-You can [pass parameters]({% link liquid/parameters.md %}) into your snippet using the `params` key of the options hash:
+You can [pass parameters]({% link liquid/parameters.md %}) into your snippet using the `params` option:
 
 {% capture rendering_with_params %}
-require "jahuty"
+jahuty = Jahuty::Client.new(api_key: 'YOUR_API_KEY')
 
-Snippet.render(YOUR_SNIPPET_ID, params: { foo: "bar" });
+jahuty.snippets.render(YOUR_SNIPPET_ID, params: { foo: "bar" })
 {% endcapture %}
 {% include code.html language="ruby" code=rendering_with_params header=false select=false toggle=false %}
 
@@ -111,17 +108,14 @@ The parameters above would be equivalent to [assigning the variable]({% link liq
 
 ## Errors
 
-If you don't set your API key before calling `Snippet.render`, a `StandardError` will be raised. If an error occurs with [Jahuty's API]({% link api.html %}), a `NotOk` exception will be raised:
+If an error occurs with [Jahuty's API]({% link api.html %})#errors, a `Jahuty::Exception::Error` exception will be raised:
 
 {% capture rendering_with_errors %}
-require "jahuty"
-
 begin
-  Snippet.render YOUR_SNIPPET_ID
-rescue StandardError => e
-  # hmm, did you set the API key first?
-rescue Jahuty::Exception::NotOk => e
-  # hmm, the API returned something besides 2xx status code
+  jahuty = Jahuty::Client.new(api_key: 'YOUR_API_KEY')
+  jahuty.snippets.render YOUR_SNIPPET_ID
+rescue Jahuty::Exception::Error => e
+  # The API returned an error. See e.problem for details.
   puts e.problem.type    # a URL to more information
   puts e.problem.status  # the status code
   puts e.problem.detail  # a description of the error
