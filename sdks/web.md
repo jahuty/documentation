@@ -30,7 +30,7 @@ category    : sdks
       <small>Tests</small>
     </div>
     <div class="card-body p-2 px-3">
-      <a class="stretched-link" href="https://circleci.com/gh/jahuty/jahuty-node"><img src="https://circleci.com/gh/jahuty/jahuty-node.svg?style=svg" alt="Status badge" /></a>
+      <a class="stretched-link" href="https://circleci.com/gh/jahuty/jahuty-node"><img src="https://circleci.com/gh/jahuty/jahuty-node.svg?style=svg" alt="Status badge" /></a> <a href="https://codecov.io/gh/jahuty/jahuty-web"><img src="https://codecov.io/gh/jahuty/jahuty-web/branch/master/graph/badge.svg?token=XELPI4FWMI" alt="Coverage badge"/></a>
     </div>
   </div>
 </div>
@@ -39,47 +39,41 @@ category    : sdks
 
 This library requires a modern web browser.
 
-It's built from the same code as our [Node SDK]({% link sdks/node.md %}), and it's available from the [unpkg.com](https://unpkg.com) CDN. To use this SDK, add the following `script` tag to your document (where `x.y.z` is the latest version):
+Add the following `script` tags to your document:
 
 {% capture installing %}
-<script src="https://unpkg.com/@jahuty/jahuty@x.y.z/dist/jahuty.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/@jahuty/web@0.1.0/dist/web.js"></script>
 {% endcapture %}
 {% include code.html language="html" code=installing header=false toggle=false select=false %}
 
 ## Usage
 
-Once configured and initialized, this script will query the DOM for snippet containers to be filled with content.
+Once loaded and executed, this script will query the DOM for snippet containers to be filled with content.
 
 Add a container for your snippets to the DOM using the HTML5 [data-* attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*) `data-snippet-id`:
 
 {% capture adding_a_container %}
-<div data-snippet-id="1">
-  <p>
-    Hello, world!
-  </p>
-</div>
+<div data-snippet-id="YOUR_SNIPPET_ID"></div>
 {% endcapture %}
 {% include code.html language="html" code=adding_a_container header=false toggle=false select=false %}
 
-Set your [API key]({% link api.html %}#authentication) and call `initialize()`, after the resource and the DOM have finished loading, to render your snippets:
+Execute the script with your [API key]({% link api.html %}#authentication), after the resource and the DOM have finished loading, to render your snippets:
 
 {% capture rendering %}
 <script>
   window.addEventListener('load', function () {
-    jahuty.Jahuty.setKey('kn2Kj5ijmT2pH6ZKqAQyNexUqKeRM4VG6DDgWN1lIcc');
-    jahuty.Jahuty.initialize();
+    jahuty('YOUR_API_KEY');
   });
 </script>
 {% endcapture %}
 {% include code.html language="html" code=rendering header=false select=false toggle=false %}
 
-This will cause the `innerHTML` of any element with the data-* attribute `data-snippet-id` to be replaced with its content:
+This will cause the `innerHTML` of any element with the `data-snippet-id` attribute to be replaced with its content:
 
 {% capture rendered %}
-<div data-snippet-id="1">
-  <p>
-    This is my first snippet!
-  </p>
+<div data-snippet-id="YOUR_SNIPPET_ID">
+  YOUR_SNIPPET_SOURCE_CODE
 </div>
 {% endcapture %}
 {% include code.html language="html" code=rendered header=false toggle=false select=false %}
