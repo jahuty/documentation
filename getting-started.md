@@ -58,7 +58,7 @@ Installing a [Software Development Kit (SDK)]({% link sdks/overview.md %}) lets 
       <code>$ gem install jahuty</code> <a href="https://github.com/jahuty/jahuty-ruby" target="_blank"><i class="fab fa-github ml-2"></i></a>
     </p>
     <p class="m-0" data-toggle-type="visibility" data-toggle-language="html">
-      <code>&lt;script src="https://unpkg.com/@jahuty/jahuty"&gt;&lt;/script&gt;</code> <a href="https://github.com/jahuty/jahuty-node" target="_blank"><i class="fab fa-github ml-2"></i></a>
+      <code>&lt;script src="https://unpkg.com/@jahuty/web@0.1.0/dist/web.js"&gt;&lt;/script&gt;</code> <a href="https://github.com/jahuty/jahuty-web" target="_blank"><i class="fab fa-github ml-2"></i></a>
     </p>
   </div>
 </div>
@@ -82,7 +82,7 @@ curl https://api.jahuty.com/snippets/{{ example_id }}/render \
 {% endcapture %}
 
 {% capture php %}
-$jahuty = new \Jahuty\Client('{{ example_api_key }}');
+$jahuty = new Jahuty\Client('{{ example_api_key }}');
 
 echo $jahuty->snippets->render({{ example_id }});
 {% endcapture %}
@@ -96,31 +96,29 @@ puts jahuty.snippets.render {{ example_id }}
 {% endcapture %}
 
 {% capture javascript %}
-var { Jahuty, Snippet }  = require('@jahuty/jahuty');
+import Client from '@jahuty/jahuty';
 
-Jahuty.setKey('YOUR_API_KEY');
+const jahuty = new Client({ apiKey: '{{ example_api_key }}' });
 
-Snippet.render(YOUR_SNIPPET_ID).then(render => console.log(render.content));
+const render = await jahuty.snippets.render({{ example_id }});
+
+console.log(render.content);
 {% endcapture %}
 
 {% capture html %}
 <!doctype html>
 <html>
   <head>
-    <script src="https://unpkg.com/@jahuty/jahuty"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/@jahuty/web@0.1.0/dist/web.js"></script>
     <script>
       window.addEventListener('load', function () {
-        jahuty.Jahuty.setKey('kn2Kj5ijmT2pH6ZKqAQyNexUqKeRM4VG6DDgWN1lIcc');
-        jahuty.Jahuty.initialize();
+        jahuty('{{ example_api_key }}');
       });
     </script>
   </head>
   <body>
-    <div data-snippet-id="1">
-      <p>
-        Hello, world!
-      </p>
-    </div>
+    <div data-snippet-id="{{ example_id }}"></div>
   </body>
 </html>
 {% endcapture %}

@@ -30,14 +30,14 @@ category    : sdks
       <small>Tests</small>
     </div>
     <div class="card-body p-2 px-3">
-      <a class="stretched-link" href="https://circleci.com/gh/jahuty/jahuty-node"><img src="https://circleci.com/gh/jahuty/jahuty-node.svg?style=svg" alt="Status badge"/></a>
+      <a href="https://circleci.com/gh/jahuty/jahuty-node"><img src="https://circleci.com/gh/jahuty/jahuty-node.svg?style=svg" alt="Status badge"/></a> <a href="https://codecov.io/gh/jahuty/jahuty-node"><img src="https://codecov.io/gh/jahuty/jahuty-node/branch/master/graph/badge.svg?token=XELPI4FWMI" alt="Coverage badge"/></a>
     </div>
   </div>
 </div>
 
 ## Installation
 
-This library requires Node 14.
+This library requires Node 10+.
 
 Install the package with:
 
@@ -50,23 +50,31 @@ yarn add jahuty
 
 ## Usage
 
-The package needs to be configured with your [API key]({% link api.html %}#authentication) before use, ideally once during startup. Then, you can use the `Snippet.render()` method, which returns a `Promise`, to render a snippet:
+Instantiate the `Client` with your [API key]({% link api.html %}#authentication) and use the `snippets.render` method:
 
 {% capture rendering %}
-var { Jahuty, Snippet }  = require('@jahuty/jahuty');
+import Client from '@jahuty/jahuty';
 
-Jahuty.setKey('YOUR_API_KEY');
+const jahuty = new Client({ apiKey: 'YOUR_API_KEY' });
 
-Snippet.render(YOUR_SNIPPET_ID).then(render => console.log(render.content));
+const render = await jahuty.snippets.render(YOUR_SNIPPET_ID);
+
+console.log(render.content);
 {% endcapture %}
 {% include code.html language="javascript" code=rendering header=false select=false toggle=false %}
 
 You can [pass parameters]({% link liquid/parameters.md %}) into your snippet using the options hash and the `params` key:
 
 {% capture rendering_with_params %}
-Snippet.render(YOUR_SNIPPET_ID, { params: { foo: "bar" }}).then(
-  render => console.log(render.content)
-);
+import Client from '@jahuty/jahuty';
+
+const jahuty = new Client({ apiKey: 'YOUR_API_KEY' });
+
+const render = jahuty.snippets.render(YOUR_SNIPPET_ID, {
+  params: { foo: "bar" }
+});
+
+console.log(render.content);
 {% endcapture %}
 {% include code.html language="javascript" code=rendering_with_params header=false select=false toggle=false %}
 
@@ -79,23 +87,25 @@ The parameters above would be equivalent to [assigning the variable]({% link liq
 
 ## Errors
 
-If you don't set your API key before calling `Snippet.render()`, an `Error` will be thrown. If [Jahuty's API]({% link api.html %}#errors) returns any status code other than `2xx`, a `NotOk` exception will be thrown:
+If [Jahuty's API]({% link api.html %}#errors) returns any status code other than `2xx`, a `BadResponse` exception will be thrown:
 
 {% capture rendering_with_errors %}
-var { Jahuty, Snippet }  = require('@jahuty/jahuty');
+import Client from '@jahuty/jahuty';
 
-Snippet.render(YOUR_SNIPPET_ID, { params: { foo: "bar" }})
-  .then(render => console.log(render.content))
-  .catch(error => {
-    if (error instanceof NotOk) {
-      // The API returned something besides 2xx status code. The error contains
-      // a problem property with more information.
-      console.error(error.problem);
-    } else if (error instanceof Error) {
-      // Something else went wrong. Perhaps the key is not set?
-      console.error(error.message);
-    }
-  });
+const jahuty = new Client({ apiKey: 'YOUR_API_KEY' });
+
+try {
+  const render = jahuty.snippets.render(YOUR_SNIPPET_ID);
+} catch (error) {
+  if ('problem' in error) {
+    // The API returned something besides 2xx status code. The error contains
+    // a problem property with more information.
+    console.error(error.problem);
+  } else if (error instanceof Error) {
+    // Something else went wrong.
+    console.error(error);
+  }
+}
 {% endcapture %}
 {% include code.html language="javascript" code=rendering_with_errors header=false select=false toggle=false %}
 

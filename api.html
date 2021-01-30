@@ -65,7 +65,7 @@ javascripts :
             <small><code>$ gem install jahuty</code></small> <a href="https://github.com/jahuty/jahuty-ruby" target="_blank"><i class="fab fa-github ml-2"></i></a>
           </p>
           <p class="m-0" data-toggle-type="visibility" data-toggle-language="html">
-            <small><code>&lt;script src="https://unpkg.com/@jahuty/jahuty"&gt;&lt;/script&gt;</code></small> <a href="https://github.com/jahuty/jahuty-node" target="_blank"><i class="fab fa-github ml-2"></i></a>
+            <small><code>&lt;script src="https://unpkg.com/@jahuty/web@0.1.0/dist/web.js"&gt;&lt;/script&gt;</code></small> <a href="https://github.com/jahuty/jahuty-node" target="_blank"><i class="fab fa-github ml-2"></i></a>
           </p>
         </div>
       </div>
@@ -371,22 +371,20 @@ curl
 {% include code.html language="bash" header="GET snippets/:id/render" code=bash %}
 
 {% capture javascript %}
-var { Jahuty, Snippet }  = require('@jahuty/jahuty');
+import Client from '@jahuty/jahuty';
 
-Jahuty.setKey('YOUR_API_KEY');
+const jahuty = new Client({ apiKey: '{{ key }}' });
 
-Snippet.render(YOUR_SNIPPET_ID).then(render => console.log(render.content));
+const render = jahuty.snippets.render(1);
+
+console.log(render.content);
 {% endcapture %}
 {% include code.html language="javascript" header="GET snippets/:id/render" code=javascript %}
 
 {% capture php %}
-$jahuty = new \Jahuty\Client('{{ key }}');
+$jahuty = new Jahuty\Client('{{ key }}');
 
-echo $jahuty->snippets->render(1, [
-  "params" => [
-    "foo" => "bar"
-  ]
-]);
+echo $jahuty->snippets->render(1);
 {% endcapture %}
 {% include code.html language="php" header="GET snippets/:id/render" code=php %}
 
@@ -403,20 +401,16 @@ puts jahuty.snippets.render 1, params: { "foo": "bar" }
 <!doctype html>
 <html>
   <head>
-    <script src="https://unpkg.com/@jahuty/jahuty"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/@jahuty/web@0.1.0/dist/web.js"></script>
     <script>
       window.addEventListener('load', function () {
-        jahuty.Jahuty.setKey('kn2Kj5ijmT2pH6ZKqAQyNexUqKeRM4VG6DDgWN1lIcc');
-        jahuty.Jahuty.initialize();
+        jahuty('{{ key }}');
       });
     </script>
   </head>
   <body>
-    <div data-snippet-id="1">
-      <p>
-        Hello, world!
-      </p>
-    </div>
+    <div data-snippet-id="1"></div>
   </body>
 </html>
 {% endcapture %}
