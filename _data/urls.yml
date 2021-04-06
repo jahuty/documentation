@@ -1,7 +1,6 @@
 app:
-  sign_in: https://app.jahuty.com/users/sign_in
-  sign_up: https://app.jahuty.com/users/sign_up
-support: https://app.jahuty.com/support
+  sign_in: https://app.jahuty.com/sign-in
+  sign_up: https://app.jahuty.com/sign-up
 contact: https://www.jahuty.com/contact
 legal:
   privacy_policy: https://legal.jahuty.com/privacy
