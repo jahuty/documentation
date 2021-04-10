@@ -39,12 +39,12 @@ category    : sdks
 
 This library requires [PHP 7.3+](https://secure.php.net).
 
-It should be installed via [Composer](https://getcomposer.org). To do so, add the following line to the `require` section of your `composer.json` file (where `x` is the latest major version), and run `composer update`:
+It should be installed via [Composer](https://getcomposer.org). To do so, add the following line to the `require` section of your `composer.json` file, and run `composer install`:
 
 {% capture installation %}
 {
    "require": {
-       "jahuty/jahuty-php": "^x"
+       "jahuty/jahuty-php": "^5.2"
    }
 }
 {% endcapture %}
@@ -55,7 +55,7 @@ It should be installed via [Composer](https://getcomposer.org). To do so, add th
 Instantiate the client with your [API key]({% link api.html %}#authentication) and use the `snippets->render()` method to render your snippet:
 
 {% capture rendering %}
-$jahuty = new \Jahuty\Client('YOUR_API_KEY');
+$jahuty = new Jahuty\Client('YOUR_API_KEY');
 
 $render = $jahuty->snippets->render(YOUR_SNIPPET_ID);
 {% endcapture %}
@@ -64,7 +64,7 @@ $render = $jahuty->snippets->render(YOUR_SNIPPET_ID);
 Then, output the render's content by casting it to a `string` or using its `getContent()` method:
 
 {% capture outputting %}
-$jahuty = new \Jahuty\Client('YOUR_API_KEY');
+$jahuty = new Jahuty\Client('YOUR_API_KEY');
 
 $render = $jahuty->snippets->render(YOUR_SNIPPET_ID);
 
@@ -78,7 +78,7 @@ In an HTML view:
 
 {% capture rendering_in_view %}
 <?php
-  $jahuty = new \Jahuty\Client('YOUR_API_KEY');
+  $jahuty = new Jahuty\Client('YOUR_API_KEY');
 ?>
 <!doctype html>
 <html>
@@ -91,12 +91,26 @@ In an HTML view:
 {% endcapture %}
 {% include code.html language="php" code=rendering_in_view header=false toggle=false select=false %}
 
+You can also use [tags]({% link components/tags.md %}) and the `snippets->allRenders()` method to render a collection of snippets:
+
+{% capture rendering_a_collection %}
+$jahuty = new Jahuty\Client('YOUR_API_KEY');
+
+$renders = $jahuty->snippets->allRenders('YOUR_TAG');
+
+foreach ($renders as $render) {
+  echo $render;
+}
+{% endcapture %}
+
+{% include code.html language="php" code=rendering_a_collection header=false toggle=false select=false %}
+
 ## Parameters
 
 You can [pass parameters]({% link liquid/parameters.md %}) into your snippet using the options hash and the `params` key:
 
 {% capture rendering_with_params %}
-$jahuty = new \Jahuty\Client('YOUR_API_KEY');
+$jahuty = new Jahuty\Client('YOUR_API_KEY');
 
 $render = $jahuty->snippets->render(YOUR_SNIPPET_ID, [
   'params' => [
@@ -113,6 +127,46 @@ The parameters above would be equivalent to [assigning the variable]({% link liq
 {% endcapture %}
 {% include code.html language="liquid" code=render_with_vars %}
 
+If you're rendering a collection of snippets, the `params` syntax is a little different.
+
+The first dimension of the params array for a collection determines the parameters' scope. You can use the asterisk key (<kbd>*</kbd>) to pass the same parameters to all snippets, or you can use the snippet id as key to pass parameters to a specific snippet.
+
+Both lists will be merged recursively. In the example below, the variable `foo` will be defined as the string `'bar'` for all snippets in the collection, and snippet _1_ will have the additional variable `baz` defined as the string `'qux'`.
+
+{% capture rendering_collection_with_params %}
+$jahuty = new Jahuty\Client('YOUR_API_KEY');
+
+$renders = $jahuty->snippets->allRenders('YOUR_TAG', [
+  'params' => [
+    '*' => [
+      'foo' => 'bar'
+    ],
+    1 => [
+      'baz' => 'qux'
+    ]
+  ]
+]);
+{% endcapture %}
+{% include code.html language="php" code=rendering_collection_with_params %}
+
+When the same attribute is defined in both sets of parameters, the snippet's parameters will take precedence. In the example below, the variable `foo` will be assigned the value `"bar"` for all snippets, except for snippet _1_, where it will be assigned the value `"qux"`:
+
+{% capture rendering_collection_with_params_and_precedence %}
+$jahuty = new Jahuty\Client('YOUR_API_KEY');
+
+$renders = $jahuty->snippets->allRenders('YOUR_TAG', [
+  'params' => [
+    '*' => [
+      'foo' => 'bar'
+    ],
+    1 => [
+      'foo' => 'qux'
+    ]
+  ]
+]);
+{% endcapture %}
+{% include code.html language="php" code=rendering_collection_with_params_and_precedence %}
+
 ## Caching
 
 Caching controls how frequently this library requests content from Jahuty's API.
@@ -122,13 +176,12 @@ Caching controls how frequently this library requests content from Jahuty's API.
 
 ### Caching in memory (default)
 
-By default, Jahuty uses an in-memory cache to avoid requesting the same render more than once during the same request lifecycle. For example:
+By default, Jahuty uses an in-memory cache to avoid requesting the same render more than once during the same request. For example:
 
 {% capture caching_default %}
-$jahuty = new \Jahuty\Client('YOUR_API_KEY');
+$jahuty = new Jahuty\Client('YOUR_API_KEY');
 
-// This call sends a synchronous API request; caches the result in memory; and,
-// returns the result to the caller.
+// This call sends a synchronous API request; caches the result in memory; and, returns the result to the caller.
 $render1 = $jahuty->snippets->render(YOUR_SNIPPET_ID);
 
 // This call skips sending an API request and uses the cached value instead.
@@ -136,7 +189,7 @@ $render2 = $jahuty->snippets->render(YOUR_SNIPPET_ID);
 {% endcapture %}
 {% include code.html language="php" code=caching_default %}
 
-The in-memory cache only persists for the duration of the original request, however. At the end of the request's lifecycle, the cache will be discarded. To store renders across requests, you need a persistent cache.
+The in-memory cache only persists for the duration of the original request, however. At the end of the request's lifecycle, the cache will be discarded. To store renders across requests, you need a <em>persistent cache</em>.
 
 ### Caching persistently
 
@@ -145,7 +198,7 @@ A persistent cache allows renders to be cached across multiple requests. This re
 To configure Jahuty to use a persistent cache, pass a [PSR-16 `CacheInterface`](https://www.php-fig.org/psr/psr-16/) implementation to the client via the `cache` configuration option:
 
 {% capture caching_persistent %}
-$jahuty = new \Jahuty\Client('YOUR_API_KEY', ['cache' => $cache]);
+$jahuty = new Jahuty\Client('YOUR_API_KEY', ['cache' => $cache]);
 {% endcapture %}
 {% include code.html language="php" code=caching_persistent %}
 
@@ -168,7 +221,7 @@ You can usually configure your caching implementation with a default TTL. If no 
 You can configure a default TTL for all of this library's renders by passing an integer number of seconds or a `DateInterval` instance via the client's `ttl` configuration option:
 
 {% capture ttl_for_library %}
-$jahuty = new \Jahuty\Client('YOUR_API_KEY', [
+$jahuty = new Jahuty\Client('YOUR_API_KEY', [
   'cache' => $cache,
   'ttl'   => 60  // <- caches all renders for sixty seconds
 ]);
@@ -183,7 +236,7 @@ You can configure one render's TTL by passing an integer number of seconds or a 
 
 {% capture ttl_for_render %}
 // default to the caching implementation's TTL for all renders
-$jahuty = new \Jahuty\Client('YOUR_API_KEY', ['cache' => $cache]);
+$jahuty = new Jahuty\Client('YOUR_API_KEY', ['cache' => $cache]);
 
 $render = $jahuty->snippets->render(1, [
   'ttl' => 60  // <- except this render
@@ -191,16 +244,37 @@ $render = $jahuty->snippets->render(1, [
 {% endcapture %}
 {% include code.html language="php" code=ttl_for_render %}
 
+### Caching collections
+
+By default, this library will cache each render returned by `allRenders()`:
+
+{% capture caching_collection %}
+$jahuty = new Jahuty\Client('YOUR_API_KEY');
+
+// sends a network request, caches each render, and returns the collection
+$jahuty->snippets->allRenders('YOUR_TAG');
+
+// ... later in your application
+
+// if this snippet exists in the collection, the cached value will be used
+$render = $jahuty->snippets->render(YOUR_SNIPPET_ID);
+{% endcapture %}
+{% include code.html language="php" code=caching_collection %}
+
+This is a powerful feature! Using tags and the `allRenders()` method, you can render and cache the content of an entire application with a single network request. Then, any call to `render()` a snippet in the collection will load its content from the cache instead of Jahuty's API.
+
+When `allRenders()` can be called outside your request cycle periodically (e.g., a background job), you can turn your cache into your content storage mechanism. You can render and cache your dynamic content as frequently as your like without any hit to your application's response time.
+
 ### Disabling caching
 
 You can disable caching, even the default in-memory caching, by passing a `ttl` of zero (`0`) or a negative integer (e.g., `-1`) via any of the methods described above. For example:
 
 {% capture ttl_for_disable %}
 // disable all caching
-$jahuty1 = new \Jahuty\Client('YOUR_API_KEY', ['ttl' => 0]);
+$jahuty1 = new Jahuty\Client('YOUR_API_KEY', ['ttl' => 0]);
 
 // disable caching for one render
-$jahuty2 = new \Jahuty\Client('YOUR_API_KEY');
+$jahuty2 = new Jahuty\Client('YOUR_API_KEY');
 $jahuty2->snippets->render(1, ['ttl' => 0]);
 {% endcapture %}
 {% include code.html language="php" code=ttl_for_disable %}
@@ -211,9 +285,9 @@ If Jahuty's API returns any [status code]({% link api.html %}#errors) other than
 
 {% capture errors %}
 try {
-  $jahuty = new \Jahuty\Client('YOUR_API_KEY');
+  $jahuty = new Jahuty\Client('YOUR_API_KEY');
   $render = $jahuty->snippets->render(YOUR_SNIPPET_ID);
-} catch (\Jahuty\Exception\Error $e) {
+} catch (Jahuty\Exception\Error $e) {
   $problem = $e->getProblem();
 
   echo $problem->getStatus();  // returns status code
