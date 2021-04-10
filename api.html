@@ -36,7 +36,7 @@ javascripts :
           Base URL
         </div>
         <div class="card-body small">
-          <span class="text-monospace">https://api.jahuty.com</span>
+          <span class="font-monospace">https://api.jahuty.com</span>
         </div>
       </div>
       <div class="card my-3">
@@ -57,16 +57,16 @@ javascripts :
             <small>By default, the Jahuty API Docs demonstrate using <code>curl</code> to interact with the API over HTTPS. Select one of our official SDKs to see examples in code.</small>
           </p>
           <p class="m-0" data-toggle-type="visibility" data-toggle-language="javascript">
-            <small><code>$ npm install jahuty --save</code></small> <a href="https://github.com/jahuty/jahuty-node" target="_blank"><i class="fab fa-github ml-2"></i></a>
+            <small><code>$ npm install jahuty --save</code></small> <a href="https://github.com/jahuty/jahuty-node" target="_blank"><i class="fab fa-github ms-2"></i></a>
           </p>
           <p class="m-0" data-toggle-type="visibility" data-toggle-language="php">
-            <small><code>$ composer require jahuty/jahuty-php</code></small> <a href="https://github.com/jahuty/jahuty-php" target="_blank"><i class="fab fa-github ml-2"></i></a>
+            <small><code>$ composer require jahuty/jahuty-php</code></small> <a href="https://github.com/jahuty/jahuty-php" target="_blank"><i class="fab fa-github ms-2"></i></a>
           </p>
           <p class="m-0" data-toggle-type="visibility" data-toggle-language="ruby">
-            <small><code>$ gem install jahuty</code></small> <a href="https://github.com/jahuty/jahuty-ruby" target="_blank"><i class="fab fa-github ml-2"></i></a>
+            <small><code>$ gem install jahuty</code></small> <a href="https://github.com/jahuty/jahuty-ruby" target="_blank"><i class="fab fa-github ms-2"></i></a>
           </p>
           <p class="m-0" data-toggle-type="visibility" data-toggle-language="html">
-            <small><code>&lt;script src="https://unpkg.com/@jahuty/web@0.1.0/dist/web.js"&gt;&lt;/script&gt;</code></small> <a href="https://github.com/jahuty/jahuty-node" target="_blank"><i class="fab fa-github ml-2"></i></a>
+            <small><code>&lt;script src="https://unpkg.com/@jahuty/web@0.1.0/dist/web.js"&gt;&lt;/script&gt;</code></small> <a href="https://github.com/jahuty/jahuty-node" target="_blank"><i class="fab fa-github ms-2"></i></a>
           </p>
         </div>
       </div>
@@ -117,7 +117,7 @@ curl https://api.jahuty.com/snippets/1/render \
             A sample test API key is included in all the examples here, so you can test any example right away:
           </p>
           <p>
-            <span class="text-monospace">{{ key }}</span>
+            <span class="font-monospace">{{ key }}</span>
           </p>
           <p>
             To test requests using your account, replace the sample API key with one of your organization's actual API keys.
@@ -155,37 +155,37 @@ curl https://api.jahuty.com/snippets/1/render \
         </div>
         <div class="card-body small">
           <dl>
-            <dt class="font-weight-light text-monospace">
+            <dt class="font-monospace">
               200 - OK
             </dt>
             <dd>
               Everything worked as expected.
             </dd>
-            <dt class="font-weight-light text-monospace">
+            <dt class="font-monospace">
               401 - Unauthorized
             </dt>
             <dd>
               No valid API key provided.
             </dd>
-            <dt class="font-weight-light text-monospace">
+            <dt class="font-monospace">
               402 - Payment Required
             </dt>
             <dd>
               Your free trial or subscription has expired.
             </dd>
-            <dt class="font-weight-light text-monospace">
+            <dt class="font-monospace">
               403 - Forbidden
             </dt>
             <dd>
               The API key doesn't have permissions to perform the request.
             </dd>
-            <dt class="font-weight-light text-monospace">
+            <dt class="font-monospace">
               404 - Not Found
             </dt>
             <dd>
               The requested resource doesn't exist.
             </dd>
-            <dt class="font-weight-light text-monospace">
+            <dt class="font-monospace">
               500, 502, 503, 504 - Server Errors
             </dt>
             <dd>
@@ -322,10 +322,10 @@ end
         <div class="card-body small">
           <ul class="list-unstyled mb-0">
             <li>
-              <span class="text-success">GET</span> <span class="text-monospace">/snippets/:id/render</span>
+              <span class="text-success">GET</span> <span class="font-monospace">/snippets/:id/render</span>
             </li>
             <li>
-              <span class="text-success">GET</span> <span class="text-monospace">/snippets/render</span>
+              <span class="text-success">GET</span> <span class="font-monospace">/snippets/render</span>
             </li>
           </ul>
         </div>
@@ -355,7 +355,7 @@ end
           The identifier of the snippet to retrieve.
         </dd>
         <dt>
-          <code>params</code> <small class="text-muted">string</small> <small class="badge badge-info">optional</small>
+          <code>params</code> <small class="text-muted">string</small> <small class="badge bg-info">optional</small>
         </dt>
         <dd>
           A <a href="https://en.wikipedia.org/wiki/Percent-encoding" target="_blank">URL-encoded</a>, <a href="https://www.json.org" target="_blank">JSON object</a> of <a href="/liquid/parameters">parameters</a> to use. Passed via the  <code>params</code> query string parameter. Unused variables are ignored.
@@ -455,7 +455,7 @@ puts jahuty.snippets.render 1, params: { "foo": "bar" }
           The text of the tag to filter by.
         </dd>
         <dt>
-          <code>params</code> <small class="text-muted">string</small> <small class="badge badge-info">optional</small>
+          <code>params</code> <small class="text-muted">string</small> <small class="badge bg-info">optional</small>
         </dt>
         <dd>
           A <a href="https://en.wikipedia.org/wiki/Percent-encoding" target="_blank">URL-encoded</a>, <a href="https://www.json.org" target="_blank">JSON object</a> of <a href="/liquid/parameters">parameters</a> in the following format:
