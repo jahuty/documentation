@@ -6,24 +6,11 @@ permalink   : /sdks/:basename
 category    : sdks
 ---
 
-{% include heading.html title="Choosing an SDK" lead="Interact with our API in the language of your choice." %}
+{% include heading.html title="Choosing an SDK" lead="Packages we maintain to make interacting with our API easier." %}
 
-<div class="row my-4">
-  <div class="col-md-3">
-    <a class="btn btn-outline-primary btn-block" href="{% link sdks/node.md %}">Node.js</a>
-  </div>
-  <div class="col-md-3">
-    <a class="btn btn-outline-primary btn-block" href="{% link sdks/php.md %}">PHP</a>
-  </div>
-  <div class="col-md-3">
-    <a class="btn btn-outline-primary btn-block" href="{% link sdks/ruby.md %}">Ruby</a>
-  </div>
-  <div class="col-md-3">
-    <a class="btn btn-outline-primary btn-block" href="{% link sdks/web.md %}">Web</a>
-  </div>
-</div>
+A [Software Development Kit](https://en.wikipedia.org/wiki/Software_development_kit) (SDK) is an open-source software package we maintain that makes interacting with our API easier. Once installed and configured, an SDK provides objects and methods that abstract away low-level concerns like setting `Authorization` headers, encoding query string parameters, and parsing `json` responses.
 
-A [Software Development Kit](https://en.wikipedia.org/wiki/Software_development_kit) (SDK) is an open-source software package we maintain to make interacting with our API easier. Once installed and configured, an SDK provides objects and methods that abstract away low-level concerns like setting `Authorization` headers, encoding query string parameters, and parsing `json` responses.
+SDKs are available in the language of your choice including: [Node.js]({% link sdks/node.md %}), [PHP]({% link sdks/php.md %}), [Ruby]({% link sdks/ruby.md %}), and the [web]({% link sdks/web.md %}).
 
 All our SDKs have the following properties, unless otherwise noted:
 
