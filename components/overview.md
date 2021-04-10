@@ -6,7 +6,7 @@ permalink  : /components/:basename
 category   : components
 ---
 
-{% include heading.html title="Learning more" lead="Jahuty includes a number of components that work together." %}
+{% include heading.html title="Learning more" lead="These articles provide a deep dive into the various top-level concepts and components that make up Jahuty." %}
 
 <div class="row">
   <div class="col-md-6 px-4 pb-4">
@@ -47,6 +47,14 @@ category   : components
     </h3>
     <p>
       A chunk of managed content you can output in any technology stack.
+    </p>
+  </div>
+  <div class="col-md-6 px-4 pb-4">
+    <h3>
+      <a class="stretched-link" href="{% link components/tags.md %}"><i class="fas fa-tag mr-2"></i> Tags</a>
+    </h3>
+    <p>
+      Short words or phrases used to label and retrieve a group of snippets.
     </p>
   </div>
 </div>
