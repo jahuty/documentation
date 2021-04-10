@@ -9,6 +9,7 @@ javascripts :
 ---
 {% assign key  = "kn2Kj5ijmT2pH6ZKqAQyNexUqKeRM4VG6DDgWN1lIcc" %}
 {% assign lang = "bash" %}
+{% assign tag  = "test" %}
 <section>
   <div class="row">
     <div class="col">
@@ -34,7 +35,7 @@ javascripts :
         <div class="card-header">
           Base URL
         </div>
-        <div class="card-body">
+        <div class="card-body small">
           <span class="text-monospace">https://api.jahuty.com</span>
         </div>
       </div>
@@ -44,11 +45,11 @@ javascripts :
         </div>
         <div class="card-body">
           <nav class="nav nav-pills nav-fill">
-            <a class="nav-item nav-link active" data-toggle-type="activity" data-toggle-language="bash">cURL</a>
-            <a class="nav-item nav-link" data-toggle-type="activity" data-toggle-language="javascript">Node</a>
-            <a class="nav-item nav-link" data-toggle-type="activity" data-toggle-language="php">PHP</a>
-            <a class="nav-item nav-link" data-toggle-type="activity" data-toggle-language="ruby">Ruby</a>
-            <a class="nav-item nav-link" data-toggle-type="activity" data-toggle-language="html">Web</a>
+            <a class="nav-item nav-link active" data-toggle-type="activity" data-toggle-language="bash" href="#">cURL</a>
+            <a class="nav-item nav-link" data-toggle-type="activity" data-toggle-language="javascript" href="#">Node</a>
+            <a class="nav-item nav-link" data-toggle-type="activity" data-toggle-language="php" href="#">PHP</a>
+            <a class="nav-item nav-link" data-toggle-type="activity" data-toggle-language="ruby" href="#">Ruby</a>
+            <a class="nav-item nav-link" data-toggle-type="activity" data-toggle-language="html" href="#">Web</a>
           </nav>
         </div>
         <div class="card-footer text-muted">
@@ -111,7 +112,7 @@ curl https://api.jahuty.com/snippets/1/render \
         <div class="card-header">
           Your API key
         </div>
-        <div class="card-body">
+        <div class="card-body small">
           <p>
             A sample test API key is included in all the examples here, so you can test any example right away:
           </p>
@@ -152,7 +153,7 @@ curl https://api.jahuty.com/snippets/1/render \
         <div class="card-header">
           HTTP status codes
         </div>
-        <div class="card-body">
+        <div class="card-body small">
           <dl>
             <dt class="font-weight-light text-monospace">
               200 - OK
@@ -264,12 +265,12 @@ curl https://api.jahuty.com/snippets/1/render \
     </div>
     <div class="col-md-6">
 {% capture php %}
-$jahuty = new \Jahuty\Client('{{ key }}');
+$jahuty = new Jahuty\Client('{{ key }}');
 
 try {
   // Returns 404 (raising exception) because snippet and key do not match.
   echo $jahuty->snippets->render(999);
-} catch (\Jahuty\Exception\Error $e) {
+} catch (Jahuty\Exception\Error $e) {
   $p = $e->getProblem();
 
   echo $p->getStatus();
@@ -286,8 +287,7 @@ jahuty = Jahuty::Client.new(
 begin
   jahuty.snippets.render 999
 rescue Jahuty::Exception::Error => e
-  # The API responds 404, raising an error, because the snippet and api key do
-  # not match.
+  # The API responds 404, raising an error, because the snippet and api key do not match.
   p = e.problem
 
   puts p.status
@@ -311,7 +311,7 @@ end
   <div class="row mb-3">
     <div class="col-sm-6">
       <p class="lead">
-        A snippet is a small piece of text or HTML you manage through our website; render using our SDKs or API; and, display in your application on-demand. Each snippet is assigned a unique identifier (aka, <code>id</code>) that you'll use to refer to it.
+        A snippet is chunk of content you manage through our website; render using our SDKs or API; and, display in your application on-demand. Each snippet is assigned a unique identifier (aka, <code>id</code>) that you'll use to refer to it.
       </p>
     </div>
     <div class="col-md-6">
@@ -319,8 +319,15 @@ end
         <div class="card-header">
           Endpoints
         </div>
-        <div class="card-body">
-          <span class="text-success">GET</span> <span class="text-monospace">/snippets/:id</span>
+        <div class="card-body small">
+          <ul class="list-unstyled mb-0">
+            <li>
+              <span class="text-success">GET</span> <span class="text-monospace">/snippets/:id/render</span>
+            </li>
+            <li>
+              <span class="text-success">GET</span> <span class="text-monospace">/snippets/render</span>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -351,7 +358,7 @@ end
           <code>params</code> <small class="text-muted">string</small> <small class="badge badge-info">optional</small>
         </dt>
         <dd>
-          A <a href="https://en.wikipedia.org/wiki/Percent-encoding" target="_blank">URL-encoded</a>, <a href="https://www.json.org" target="_blank">JSON string</a> of <a href="/liquid/parameters">parameters</a> to use. Passed via the  <code>params</code> query string parameter. Unused variables are ignored.
+          A <a href="https://en.wikipedia.org/wiki/Percent-encoding" target="_blank">URL-encoded</a>, <a href="https://www.json.org" target="_blank">JSON object</a> of <a href="/liquid/parameters">parameters</a> to use. Passed via the  <code>params</code> query string parameter. Unused variables are ignored.
         </dd>
       </dl>
       <h4>
@@ -368,7 +375,7 @@ curl
   -H "Authorization: Bearer {{ key }}"; \
   echo
 {% endcapture %}
-{% include code.html language="bash" header="GET snippets/:id/render" code=bash %}
+{% include code.html language="bash" method="get" path="snippets/:id/render" code=bash %}
 
 {% capture javascript %}
 import Client from '@jahuty/jahuty';
@@ -379,14 +386,14 @@ const render = jahuty.snippets.render(1);
 
 console.log(render.content);
 {% endcapture %}
-{% include code.html language="javascript" header="GET snippets/:id/render" code=javascript %}
+{% include code.html language="javascript" method="get" path="snippets/:id/render" code=javascript %}
 
 {% capture php %}
 $jahuty = new Jahuty\Client('{{ key }}');
 
 echo $jahuty->snippets->render(1);
 {% endcapture %}
-{% include code.html language="php" header="GET snippets/:id/render" code=php %}
+{% include code.html language="php" method="get" path="snippets/:id/render" code=php %}
 
 {% capture ruby %}
 jahuty = Jahuty::Client.new(
@@ -395,7 +402,7 @@ jahuty = Jahuty::Client.new(
 
 puts jahuty.snippets.render 1, params: { "foo": "bar" }
 {% endcapture %}
-{% include code.html language="ruby" header="GET snippets/:id/render" code=ruby %}
+{% include code.html language="ruby" method="get" path="snippets/:id/render" code=ruby %}
 
 {% capture html %}
 <!doctype html>
@@ -414,14 +421,138 @@ puts jahuty.snippets.render 1, params: { "foo": "bar" }
   </body>
 </html>
 {% endcapture %}
-{% include code.html language="html" header="GET snippets/:id/render" code=html %}
+{% include code.html language="html" method="get" path="snippets/:id/render" code=html %}
 
 {% capture response %}
 {
+  "snippet_id": 1,
   "content": "This is my first snippet!"
 }
 {% endcapture %}
 {% include code.html language="json" header="Response" code=response select=false toggle=false %}
+    </div>
+  </div>
+  <div class="row" id="snippets.render">
+    <div class="col">
+      <h2>
+        Render all snippets
+      </h2>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <p class="lead">
+        Renders a collection of snippets. A tag is required.
+      </p>
+      <h4>
+        Arguments
+      </h4>
+      <dl>
+        <dt>
+          <code>tag</code> <small class="text-muted">string</small>
+        </dt>
+        <dd>
+          The text of the tag to filter by.
+        </dd>
+        <dt>
+          <code>params</code> <small class="text-muted">string</small> <small class="badge badge-info">optional</small>
+        </dt>
+        <dd>
+          A <a href="https://en.wikipedia.org/wiki/Percent-encoding" target="_blank">URL-encoded</a>, <a href="https://www.json.org" target="_blank">JSON object</a> of <a href="/liquid/parameters">parameters</a> in the following format:
+          <ul class="my-3">
+            <li>
+              The object should use the snippets' unique identifiers as top-level attributes. For example, the object, <code>{ "1": { "foo": "bar" } }</code>, will define the variable <code>foo</code> as the string <code>"bar"</code> for snippet <em>1</em>.
+            </li>
+            <li>
+              The asterisk character (<kbd>*</kbd>) is a special top-level attribute that can be used to pass the same parameters to all snippets in the collection. For example, the object, <code>{ "*": { "foo": "bar" } }</code>, will define the variable <code>foo</code> as the string <code>"bar"</code> for all snippets in the collection.
+            </li>
+            <li>
+              Parameters are merged recursively. For example, the object, <code>{ "*": { "foo": "bar" }, "1": { "baz": "qux" } }</code>, will define the variable <code>foo</code> as the string <code>"bar"</code> for all snippets in the collection, including snippet <em>1</em>, which has the additional variable <code>baz</code> defined as the string <code>"qux"</code>.
+            </li>
+            <li>
+              When merging parameters, a snippet's parameters will take precedence. For example, the object, <code>{ "*": { "foo": "bar" }, "1": { "foo": "baz" } }</code>, will define the variable <code>foo</code> as the string <code>"bar"</code> for all snippets in the collection, except snippet <em>1</em>, where <code>foo</code> will be defined as <code>"baz"</code>.
+            </li>
+          </ul>
+          Unused variables are ignored.
+        </dd>
+      </dl>
+      <h4>
+        Returns
+      </h4>
+      <p>
+        Returns an array of rendered snippets. When omitting the tag or requesting one that does not exist or you are not authorized to access, a <code>404</code> error will be returned.
+      </p>
+    </div>
+    <div class="col-md-6">
+{% capture bash %}
+# Note, some shells require escaping the "?" character.
+curl \
+  https://api.jahuty.com/snippets/render\?tag={{ tag }} \
+  -H "Authorization: Bearer {{ key }}"; \
+  echo
+{% endcapture %}
+{% include code.html language="bash" method="get" path="snippets/render" code=bash %}
+
+{% capture javascript %}
+const Client = require('@jahuty/jahuty').default;
+
+const jahuty = new Client({ apiKey: '{{ key }}' });
+
+const render = jahuty.snippets.allRenders('{{ tag }}');
+
+console.log(render.content);
+{% endcapture %}
+{% include code.html language="javascript" method="get" path="snippets/render" code=javascript %}
+
+{% capture php %}
+$jahuty = new Jahuty\Client('{{ key }}');
+
+echo $jahuty->snippets->allRenders('{{ tag }}');
+{% endcapture %}
+{% include code.html language="php" method="get" path="snippets/render" code=php %}
+
+{% capture ruby %}
+jahuty = Jahuty::Client.new(
+  api_key: '{{ key }}'
+)
+
+puts jahuty.snippets.all_renders '{{ tag }}'
+{% endcapture %}
+{% include code.html language="ruby" method="get" path="snippets/render" code=ruby %}
+
+{% capture html %}
+<!doctype html>
+<html>
+  <head>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/@jahuty/web@0.1.0/dist/web.js"></script>
+    <script>
+      window.addEventListener('load', function () {
+        jahuty('{{ key }}');
+      });
+    </script>
+  </head>
+  <body>
+    <div data-snippet-id="1"></div>
+  </body>
+</html>
+{% endcapture %}
+{% include code.html language="html" method="get" path="snippets/render" code=html %}
+
+{% capture response %}
+[
+  {
+    "snippet_id": 1,
+    "content":"<p>This is my first snippet!</p>"
+  },
+  {
+    "snippet_id":62,
+    "content":"<p>This  is .</p>"
+  }
+]
+{% endcapture %}
+{% include code.html language="json" header="Response" code=response select=false toggle=false %}
+      <small class="text-muted">The odd spaces in the content of snippet <em>62</em> are the result of two params, <code>foo</code> and <code>bar</code>, which are expected but not passed.</small>
     </div>
   </div>
 </section>
