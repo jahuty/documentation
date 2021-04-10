@@ -12,6 +12,8 @@
   @param  comment   string   a comment to include above the code (optional)
   @param  toggle    bool     false to disable language toggling (optional)
   @param  select    bool     false to disable language select (optional)
+  @param  method    string   the code's http method (optional)
+  @param  path      string   the code's path (optional)
 {% endcomment %}
 
 {% capture code -%}
@@ -20,11 +22,15 @@
 {% endcapture %}
 
 <div class="card mb-3"{% unless include.toggle == false %} data-toggle-type="visibility" data-toggle-language="{{ include.language }}"{% endunless %}>
-  {% if include.header %}
+  {% if include.method or include.header %}
     <div class="card-header">
       <div class="row h-100">
         <div class="col-8 my-auto">
-          {{ include.header }}
+          {% if include.method %}
+            <span class="text-success text-monospace text-uppercase">{{ include.method }}</span> <span class="text-monospace">{{ include.path }}</span>
+          {% else %}
+            {{ include.header }}
+          {% endif %}
         </div>
         {% unless include.select == false %}
           <div class="col-4">
