@@ -9,7 +9,9 @@ category    : liquid
 
 {% include heading.html title="Passing a parameter" lead="Assign values to variables at render time." %}
 
-Parameters assign values to [variables](variables) when you [render a snippet](/components/snippets#rendering-a-snippet). This allows you to re-use the same snippet with different values.
+The `assign` and `capture` tags are helpful, but they're static. Their values don't change.
+
+Parameters, on the other hand, assign values to [variables]({% link liquid/variables.md %}) when you [render a snippet](/components/snippets#rendering-a-snippet). This allows you to re-use the same snippet with different values.
 
 {% include example.html example=examples.introduction1 %}
 
@@ -27,7 +29,7 @@ Object parameters are also supported.
 
 ## Precedence
 
-Given the various ways you can set variables, it's important to consider the following precedence:
+Given the various ways you can set variables, it's important to consider precedence:
 
 1. The `assign` tag takes precedence over parameters.
 1. Parameters take precedence over the [`default`](filters) filter.
@@ -38,8 +40,8 @@ For example:
 
 {% include example.html example=examples.precedence %}
 
-* the value of `foo` was "hat", because `assign` takes precedence over parameters;
+* the value of `foo` was `"hat"`, because, although `foo` was passed as a parameter, `assign` takes precedence;
 * the value of `bar` was passed by parameters;
-* the value of `baz` was never assigned or passed by parameter, so nothing was printed to the page;
-* the value of `qux` was never assigned or passed by parameter, but the `default` filter printed "shoes" to the page; and,
+* the value of `baz` was neither assigned nor passed by parameter, so it's value was `nil` and nothing was output;
+* the value of `qux` was neither assigned nor passed by parameter, but the `default` filter printed `"shoes"` to the page; and,
 * the parameter `corge` was passed but never used and ignored.

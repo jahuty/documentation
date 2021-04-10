@@ -4,7 +4,7 @@ description : Jahuty's comprehensive documentation.
 keywords    : [documentation, docs]
 ---
 
-{% include heading.html title="Jahuty Documentation" lead="Learn how to use Jahuty to create, manage, and display content in any application." %}
+{% include heading.html title="Jahuty's Documentation" lead="Learn how to use Jahuty to manage content productively and save your team tons of time." %}
 
 <div class="row mb-4">
   <div class="col px-4 pb-4">
@@ -12,7 +12,7 @@ keywords    : [documentation, docs]
       <a class="stretched-link" href="{% link getting-started.md %}"><i class="fas fa-map-signs mr-2"></i> Getting started</a>
     </h2>
     <p class="mb-0">
-      Learn about Jahuty, work through a basic implementation, plan a full implementation, and learn more about templates, SDKs, and other features.
+      Start here to learn the basics about Jahuty, work through a basic implementation, and learn more about our editor, API, and more.
     </p>
   </div>
 </div>
