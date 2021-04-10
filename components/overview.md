@@ -11,7 +11,7 @@ category   : components
 <div class="row">
   <div class="col-md-6 px-4 pb-4">
     <h3>
-      <a class="stretched-link" href="{% link components/api-keys.md %}"><i class="fas fa-key mr-2"></i> API Keys</a>
+      <a class="stretched-link" href="{% link components/api-keys.md %}"><i class="fas fa-key me-2"></i> API Keys</a>
     </h3>
     <p>
       Impossible-to-guess strings that identify your organization's API requests.
@@ -19,7 +19,7 @@ category   : components
   </div>
   <div class="col-md-6 px-4 pb-4">
     <h3>
-      <a class="stretched-link" href="{% link components/invitations.md %}"><i class="fas fa-envelope mr-2"></i> Invitations</a>
+      <a class="stretched-link" href="{% link components/invitations.md %}"><i class="fas fa-envelope me-2"></i> Invitations</a>
     </h3>
     <p>
       Requests to colleagues and coworkers to join your organization.
@@ -27,7 +27,7 @@ category   : components
   </div>
   <div class="col-md-6 px-4 pb-4">
     <h3>
-      <a class="stretched-link" href="{% link components/memberships.md %}"><i class="fas fa-id-badge mr-2"></i> Memberships</a>
+      <a class="stretched-link" href="{% link components/memberships.md %}"><i class="fas fa-id-badge me-2"></i> Memberships</a>
     </h3>
     <p>
       The organizations you belong to and the roles you are assigned within them.
@@ -35,7 +35,7 @@ category   : components
   </div>
   <div class="col-md-6 px-4 pb-4">
     <h3>
-      <a class="stretched-link" href="{% link components/organizations.md %}"><i class="fas fa-users mr-2"></i> Organizations</a>
+      <a class="stretched-link" href="{% link components/organizations.md %}"><i class="fas fa-users me-2"></i> Organizations</a>
     </h3>
     <p>
       A group of people who work together, sharing snippets, a subscription, and more.
@@ -43,7 +43,7 @@ category   : components
   </div>
   <div class="col-md-6 px-4 pb-4">
     <h3>
-      <a class="stretched-link" href="{% link components/snippets.md %}"><i class="fas fa-file mr-2"></i> Snippets</a>
+      <a class="stretched-link" href="{% link components/snippets.md %}"><i class="fas fa-file me-2"></i> Snippets</a>
     </h3>
     <p>
       A chunk of managed content you can output in any technology stack.
@@ -51,7 +51,7 @@ category   : components
   </div>
   <div class="col-md-6 px-4 pb-4">
     <h3>
-      <a class="stretched-link" href="{% link components/tags.md %}"><i class="fas fa-tag mr-2"></i> Tags</a>
+      <a class="stretched-link" href="{% link components/tags.md %}"><i class="fas fa-tag me-2"></i> Tags</a>
     </h3>
     <p>
       Short words or phrases used to label and retrieve a group of snippets.

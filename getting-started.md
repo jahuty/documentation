@@ -49,16 +49,16 @@ Installing a [Software Development Kit (SDK)]({% link sdks/overview.md %}) lets 
       By default, our examples use <code>curl</code> and test sample data to interact with our API over HTTPS. Select one of our official SDKs to see examples in code.
     </p>
     <p class="m-0" data-toggle-type="visibility" data-toggle-language="javascript">
-      <code>$ npm install jahuty --save</code> <a href="https://github.com/jahuty/jahuty-node" target="_blank"><i class="fab fa-github ml-2"></i></a>
+      <code>$ npm install jahuty --save</code> <a href="https://github.com/jahuty/jahuty-node" target="_blank"><i class="fab fa-github ms-2"></i></a>
     </p>
     <p class="m-0" data-toggle-type="visibility" data-toggle-language="php">
-      <code>$ composer require jahuty/jahuty-php</code> <a href="https://github.com/jahuty/jahuty-php" target="_blank"><i class="fab fa-github ml-2"></i></a>
+      <code>$ composer require jahuty/jahuty-php</code> <a href="https://github.com/jahuty/jahuty-php" target="_blank"><i class="fab fa-github ms-2"></i></a>
     </p>
     <p class="m-0" data-toggle-type="visibility" data-toggle-language="ruby">
-      <code>$ gem install jahuty</code> <a href="https://github.com/jahuty/jahuty-ruby" target="_blank"><i class="fab fa-github ml-2"></i></a>
+      <code>$ gem install jahuty</code> <a href="https://github.com/jahuty/jahuty-ruby" target="_blank"><i class="fab fa-github ms-2"></i></a>
     </p>
     <p class="m-0" data-toggle-type="visibility" data-toggle-language="html">
-      <code>&lt;script src="https://unpkg.com/@jahuty/web@0.1.0/dist/web.js"&gt;&lt;/script&gt;</code> <a href="https://github.com/jahuty/jahuty-web" target="_blank"><i class="fab fa-github ml-2"></i></a>
+      <code>&lt;script src="https://unpkg.com/@jahuty/web@0.1.0/dist/web.js"&gt;&lt;/script&gt;</code> <a href="https://github.com/jahuty/jahuty-web" target="_blank"><i class="fab fa-github ms-2"></i></a>
     </p>
   </div>
 </div>
