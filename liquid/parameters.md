@@ -11,7 +11,7 @@ category    : liquid
 
 The `assign` and `capture` tags are helpful, but they're static. Their values don't change.
 
-Parameters, on the other hand, assign values to [variables]({% link liquid/variables.md %}) when you [render a snippet](/components/snippets#rendering-a-snippet). This allows you to re-use the same snippet with different values.
+Parameters, on the other hand, assign values to [variables]({% link liquid/variables.md %}) when you [render a snippet](/components/snippets#rendering-snippets). This allows you to re-use the same snippet with different values.
 
 {% include example.html example=examples.introduction1 %}
 

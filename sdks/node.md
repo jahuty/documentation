@@ -63,7 +63,7 @@ console.log(render.content);
 {% endcapture %}
 {% include code.html language="javascript" code=rendering %}
 
-You can also use [tags]({ link /components/tags.md}) to render a collection of snippets with the `snippets.allRenders()` method:
+You can also use [tags]({% link components/tags.md %}) to render a collection of snippets with the `snippets.allRenders()` method:
 
 {% capture rendering_collection %}
 const Client = require('@jahuty/jahuty').default;
