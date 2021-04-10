@@ -43,6 +43,6 @@ RSpec.describe "user views api" do
   end
 
   def select_language(language)
-    find(:css, "option[value=\"#{language}\"]").click
+    first("option[value=\"#{language}\"]").click
   end
 end
