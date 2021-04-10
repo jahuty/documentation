@@ -18,6 +18,8 @@
       path: /components/organizations
     - name: Snippets
       path: /components/snippets
+    - name: Tags
+      path: /components/tags
 - name: Creating templates
   category: liquid
   children:

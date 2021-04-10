@@ -3,7 +3,7 @@ pre {
   margin-bottom: 0;
 }
 
-figure.highlight, pre {
+figure.highlight {
   margin-bottom: 0;
-  overflow: auto;
+  font-size: .875em;
 }

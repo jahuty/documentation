@@ -9,54 +9,62 @@ category    : components
   Creating > Retrieving > Rendering > Removing > Deleting
 {% endcomment %}
 
-{% include heading.html title="Snippets" lead="A chunk of managed content you can render anywhere." %}
+{% include heading.html title="Snippets" lead="A chunk of dynamic content you can render anywhere." %}
 
-A snippet is a document that's created in our text editor and output wherever you need it.
+A snippet is created in our text editor and output wherever you need it:
 
-* Snippets are shared by an [organization](organizations). Anyone in your organization can edit your snippets.
-* Snippets are assigned an `id`, a unique identifier, which you can use to refer to a snippet.
-* Snippets are pulled into your websites and applications using our [SDKs]({% link sdks/overview.md %}) or [API](/api).
+* Snippets are shared by an [organization](organizations), and anyone in the organization can edit its snippets.
+* Snippets are assigned an `id`, a unique, permanent identifier, which you can use to refer to it.
+* Snippets are output in your application using our [SDKs]({% link sdks/overview.md %}) or [API]({% link api.html %}).
 
-## Creating a snippet
+## Viewing snippets
 
-To create a snippet:
+To view your organization's snippets, [sign in]({{ site.data.urls.app.sign_in }}) to your account, and we'll automatically direct you to your current organization's snippets.
 
-1. [Sign in]({{ site.data.urls.app.sign_in }}) to your account.
-1. Click the "New snippet" button.
-1. Create your snippet's content using the [text editor](#using-the-text-editor) and [template language](#using-the-template-language).
+We'll call this your "Snippets dashboard", and the rest of this article will assume you're starting here.
 
-That's it! As you write, your changes will be automatically saved and available everywhere your snippet is used.
+If you ever get lost, you can return to your snippets dashboard by clicking _Jahuty_ in the top left of the navigation menu.
 
-## Using the text editor
+## Creating snippets
 
-Our rich text editor emulates familiar document software like Google Docs or Microsoft Word. You can write text and format it, of course. You can drag-and-drop, upload, or copy-paste images, then align, resize, and caption them. You can highlight any text or images to add comments and start a conversation with colleagues. You can also suggest insertions and deletions for your colleagues to accept or reject.
+When you create your account, we'll automatically create two snippets for you to get started.
 
-## Using the template language
+To create a new snippet:
 
-Snippets don't have to be just text. Using our template language, the _same snippet_ can produce _different output_ using  [Liquid](/liquid/introduction) syntax and [dynamic parameters](/liquid/parameters). This allows you to create powerful, reusable [templates](/liquid/introduction).
+1. Visit your [snippet dashboard](#viewing-snippets).
+1. Click the _New snippet_ button in the top right.
+
+Our text editor works like Google Docs or Microsoft Word:
+
+* Click anywhere and start typing.
+* Highlight any text, and use the menu that pops up to format your text. You can use the same menu to add comments, track changes, and more.
+* Drag-and-drop, upload, or copy-paste images. You can use the menu that pops up around an image to align, resize, and caption it.
+* Click (or hover) on red-underlined words for spelling suggestions and blue-underlined words for grammar suggestions.
+
+Of course, snippets don't have to be just text. Using our template language, the _same snippet_ can produce _different output_ using  [Liquid](/liquid/introduction) syntax and [dynamic parameters](/liquid/parameters). This allows you to create powerful, reusable [templates](/liquid/introduction).
+
+For example:
 
 {% include example.html example=site.data.liquid.parameters.introduction1 %}
 
-## Rendering a snippet
+## Rendering snippets
 
-When you retrieve a snippet, we'll combine the snippet's source code and the parameters you've passed to generate a render. This render is the HTML we'll send to you.
+When you render a snippet through our [SDKs]({% link sdks/overview.md %}) or [API]({% link api.html %}), we'll combine the snippet's source code with the parameters you've passed to generate a render. Then, we'll send the resulting HTML to you in Unicode-escaped format.
 
 The first time you render a snippet, it may take a bit longer, because we have a lot to do. After that, however, we'll return a cached version of the snippet much more quickly.
 
-Whenever you change your snippet's content, the cache will be invalidated, and a new render will be generated.
+Whenever you change your snippet's content, the cache will be invalidated, and a new render will be generated upon the next request.
 
-## Removing a snippet
+## Removing snippets
 
 Once your content stabilizes, you can replace a snippet with its source code to improve your page's performance (no matter how fast we make our service, loading static content locally will always be faster).
 
 To remove a snippet:
 
-1. Open your snippet.
-1. Get its identifier.
-1. Retrieve the snippet using the identifier and its final parameters.
+1. Copy the snippet's resulting HTML from your application's source code.
 1. Find occurrences of the snippet in your application.
 1. Replace the occurrences of the snippet with the snippet's source code.
 
 ## Deleting a snippet
 
-Currently, you can't delete a snippet from our application, but we're working on it!
+At this time, you cannot delete a snippet through the application. Instead, please [contact us]({{ site.data.urls.contact }}) for assistance.

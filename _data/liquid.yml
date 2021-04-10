@@ -54,7 +54,7 @@ parameters:
   introduction1:
     data:
       color: blue
-    comment: <!-- /snippets/1?params={"color":"blue"} -->
+    comment: <!-- /snippets/1/render?params={"color":"blue"} -->
     input: |
       <p>The sky is {{ color }}.</p>
     output: |
@@ -62,7 +62,7 @@ parameters:
   introduction2:
     data:
       color: green
-    comment: <!-- /snippets/1?params={"color":"green"} -->
+    comment: <!-- /snippets/1/render?params={"color":"green"} -->
     input: |
       <p>The sky is {{ color }}.</p>
     output: |
@@ -73,7 +73,7 @@ parameters:
         - Jack
         - Nancy
         - Harry
-    comment: <!-- /snippets/1?params={"names":["Jack","Nancy","Harry"]} -->
+    comment: <!-- /snippets/1/render?params={"names":["Jack","Nancy","Harry"]} -->
     input: |
       {% for name in names -%}
         Hi {{ name }}!
@@ -88,7 +88,7 @@ parameters:
         name:
           first: Jean-Luc
           last: Picard
-    comment: <!-- /snippets/1?params={"person":{"name":{"first":"Jean-Luc","last":"Picard"}}} -->
+    comment: <!-- /snippets/1/render?params={"person":{"name":{"first":"Jean-Luc","last":"Picard"}}} -->
     input: |
       Hi {{ person.name.first }}!
     output: |
@@ -98,7 +98,7 @@ parameters:
       foo: shirt
       bar: pants
       corge: socks
-    comment: <!-- /snippets/1?params={"foo":"shirt","bar":"pants","corge":"socks"} -->
+    comment: <!-- /snippets/1/render?params={"foo":"shirt","bar":"pants","corge":"socks"} -->
     input: |
       {% assign foo = "hat" -%}
       {{ foo }}

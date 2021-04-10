@@ -15,7 +15,7 @@ Variables output values in your snippets. Variable names are denoted by double c
 
 ## Initializing variables
 
-You can initialize variables with the `assign` or `capture` tags.
+You can initialize variables with the `assign` or `capture` tags. You can also initialize variables with [parameters]({% link liquid/parameters.md %}).
 
 ### `assign`
 
