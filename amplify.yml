@@ -3,6 +3,7 @@ frontend:
   phases:
     preBuild:
       commands:
+        - rvm install 2.7.2 && rvm use 2.7.2
         - gem install bundler
         - bundle install --deployment --without development test
     build:
