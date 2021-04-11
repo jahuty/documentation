@@ -59,7 +59,13 @@ defaults:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
-exclude: [README.md, spec, amplify.yml, LICENSE]
+exclude: [
+  .circleci,
+  README.md,
+  spec,
+  amplify.yml,
+  LICENSE
+]
 
 algolia:
   application_id: FBGAMPVM3R
