@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="jahuty, documentation, docs, {{ page.keywords | join: ', ' }}">
     <meta name="description" content="{{ page.description }}">
 
@@ -31,53 +31,77 @@
     <title>{{ page.title }} &middot; Jahuty</title>
   </head>
   <body>
-    {% comment %}
-      @see https://www.codeply.com/go/Rgq96HykJ2/sidebar-that-changes-to-navbar
-    {% endcomment %}
     <div class="container-fluid">
-      <div class="row min-vh-100 flex-column flex-md-row">
-        <aside class="col-12 col-md-3 p-4 bg-light flex-shrink-1">
-          <h1 class="fs-4 mb-4">
-            <a href="/" class="text-decoration-none">Jahuty <small class="text-muted">docs</small></a>
-          </h1>
-          {% for section in site.data.nav %}
-            <h6 class="text-muted my-3">
-              <a class="text-decoration-none" href="{{ section.children.first.path }}">{{ section.name }}</a>
-            </h6>
-            {% if page.category == section.category %}
-              <nav class="nav nav-pills flex-column">
-                {% for item in section.children %}
-                  <a class="nav-link{% if page.url == item.path %} active{% endif %}" href="{{ item.path }}">{{ item.name }}</a>
-                {% endfor %}
-              </nav>
-            {% endif %}
-          {% endfor %}
-          <h6 class="border-top mt-4 pt-4">
-            <a class="text-decoration-none" href="{{ site.data.urls.contact }}">Help</a>
-          </h6>
-          <h6 class="mt-3">
-            <a class="text-decoration-none" href="{% link search.html %}">Search</a>
-          </h6>
-          <h6 class="mt-4">
-            <small><a class="text-decoration-none" href="https://www.jahuty.com">&larr; Back to jahuty.com</a></small>
-          </h6>
-        </aside>
-        <main class="col bg-faded pt-4 px-5 pb-5 flex-grow-15">
-          <div class="row pb-4">
-            <div class="col-md-6 offset-md-6">
-              <ul class="nav justify-content-end">
-                <li class="nav-item">
-                  <a class="btn btn-text" href="{{ site.data.urls.app.sign_in }}">Sign in</a>
+      <div class="row vh-100">
+        <div class="col-12 col-md-3 p-3 mh-100 d-flex flex-column overflow-scroll">
+          <header class="navbar navbar-light flex-md-nowrap p-0">
+            <a class="navbar-brand me-0 p-1" href="/">Jahuty <small class="text-muted">docs</small></a>
+            <button class="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu" aria-controls="sidebar-menu" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </header>
+          <nav id="sidebar-menu" class="d-md-block collapse">
+            <ul class="list-unstyled pt-3 ps-0">
+              {% for section in site.data.nav %}
+                <li class="mb-1">
+                  {% assign section_id = section.name | downcase | replace: " ", "-"  | append: "-collapse" %}
+                  {% assign is_active_category = false %}
+                  {% if page.category == section.category %}
+                    {% assign is_active_category = true %}
+                  {% endif %}
+                  <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#{{ section_id }}" aria-expanded="{% if is_active_category %}true{% else %}false{% endif %}">
+                    {{ section.name }}
+                  </button>
+                  <div class="collapse {% if is_active_category %}show{% endif %}" id="{{ section_id }}">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                      {% for item in section.children %}
+                        {% assign is_active_article = false %}
+                        {% if page.url == item.path %}
+                          {% assign is_active_article = true %}
+                        {% endif %}
+                        <li>
+                          <a href="{{ item.path }}" class="link-dark rounded{% if is_active_article %} fw-bold{% endif %}">{{ item.name }}</a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
                 </li>
-                <li class="nav-item">
-                  <a class="btn btn-primary me-2" href="{{ site.data.urls.app.sign_up }}">Sign up</a>
-                </li>
-              </ul>
+              {% endfor %}
+            </ul>
+            <hr class="mx-3">
+            <ul class="list-unstyled mt-3 ps-3">
+              <li class="mb-2">
+                <a class="text-decoration-none link-dark" href="{{ site.data.urls.contact }}">Help</a>
+              </li>
+              <li class="mb-2">
+                <a class="text-decoration-none link-dark" href="{% link search.html %}">Search</a>
+              </li>
+              <li class="mb-2">
+                <small><a class="text-decoration-none link-dark text-muted" href="https://www.jahuty.com">&larr; Back to jahuty.com</a></small>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="col-12 col-md-9 p-4 mh-100 d-flex flex-column overflow-scroll">
+          <main>
+            <div class="row pb-4 d-none d-md-block">
+              <div class="col-md-6 offset-md-6">
+                <ul class="nav justify-content-end">
+                  <li class="nav-item">
+                    <a class="btn btn-text" href="{{ site.data.urls.app.sign_in }}">Sign in</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="btn btn-primary me-2" href="{{ site.data.urls.app.sign_up }}">Sign up</a>
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
-          {{ content }}
-          {% include fork.html %}
-        </main>
+            {{ content }}
+          </main>
+          <footer>
+            {% include fork.html %}
+          </foooter>
+        </div>
       </div>
     </div>
   </body>
