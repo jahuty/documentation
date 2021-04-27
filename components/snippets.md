@@ -47,9 +47,17 @@ For example:
 
 {% include example.html example=site.data.liquid.parameters.introduction1 %}
 
+## Publishing snippets
+
+When your content is ready to be released, press the _Publish_ button. This is the content version we'll use by default when rendering your snippet.
+
+You can continue to make changes to your content, of course, and these changes will be staged until the next time you press the _Publish_ button.
+
 ## Rendering snippets
 
-When you render a snippet through our [SDKs]({% link sdks/overview.md %}) or [API]({% link api.html %}), we'll combine the snippet's source code with the parameters you've passed to generate a render. Then, we'll send the resulting HTML to you in Unicode-escaped format.
+When you render a snippet through our [SDKs]({% link sdks/overview.md %}) or [API]({% link api.html %}), we'll combine the snippet's content with the parameters you've passed to generate a render. Then, we'll send the resulting HTML to you in Unicode-escaped format.
+
+By default, we'll render the snippet's _published_ content. However, if you would like to render a snippet's _latest_ content, which can include unpublished changes, you can configure your SDK to do so.
 
 The first time you render a snippet, it may take a bit longer, because we have a lot to do. After that, however, we'll return a cached version of the snippet much more quickly.
 
@@ -65,6 +73,6 @@ To remove a snippet:
 1. Find occurrences of the snippet in your application.
 1. Replace the occurrences of the snippet with the snippet's source code.
 
-## Deleting a snippet
+## Deleting snippets
 
 At this time, you cannot delete a snippet through the application. Instead, please [contact us]({{ site.data.urls.contact }}) for assistance.
