@@ -360,6 +360,12 @@ end
         <dd>
           A <a href="https://en.wikipedia.org/wiki/Percent-encoding" target="_blank">URL-encoded</a>, <a href="https://www.json.org" target="_blank">JSON object</a> of <a href="/liquid/parameters">parameters</a> to use. Passed via the  <code>params</code> query string parameter. Unused variables are ignored.
         </dd>
+        <dt>
+          <code>latest</code> <small class="text-muted">bool</small> <small class="badge bg-info">optional</small>
+        </dt>
+        <dd>
+          A flag indicating whether or not to render the <em>latest</em> content version, instead of the <em>published</em> content version. Any value will be considered <code>true</code>. Omit this parameter to indicate <code>false</code>.
+        </dd>
       </dl>
       <h4>
         Returns
@@ -474,6 +480,12 @@ puts jahuty.snippets.render 1, params: { "foo": "bar" }
             </li>
           </ul>
           Unused variables are ignored.
+        </dd>
+        <dt>
+          <code>latest</code> <small class="text-muted">bool</small> <small class="badge bg-info">optional</small>
+        </dt>
+        <dd>
+          A flag indicating whether or not to render the <em>latest</em> content, instead of the <em>published</em> content version. Any value like will be considered <code>true</code>. Omit this parameter to indicate <code>false</code>.
         </dd>
       </dl>
       <h4>
