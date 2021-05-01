@@ -37,14 +37,14 @@ category    : sdks
 
 ## Installation
 
-This library requires [PHP 7.3+](https://secure.php.net).
+This library requires [PHP 7.4+](https://secure.php.net).
 
 It should be installed via [Composer](https://getcomposer.org). To do so, add the following line to the `require` section of your `composer.json` file, and run `composer install`:
 
 {% capture installation %}
 {
    "require": {
-       "jahuty/jahuty-php": "^5.2"
+       "jahuty/jahuty-php": "^5.3"
    }
 }
 {% endcapture %}
@@ -105,9 +105,44 @@ foreach ($renders as $render) {
 
 {% include code.html language="php" code=rendering_a_collection header=false toggle=false select=false %}
 
-## Parameters
+## Rendering the latest content
 
-You can [pass parameters]({% link liquid/parameters.md %}) into your snippet using the options hash and the `params` key:
+By default, Jahuty will render a snippet's _published_ content, the content that existed the last time someone clicked the "Publish" button, to avoid exposing your creative process to customers.
+
+You can render a snippet's _latest_ content, the content that currently exists in the editor, to your team in _development_ with the `prefer_latest_content` configuration option at the library or render level:
+
+{% capture configuring_client_with_latest %}
+$jahuty = new Jahuty\Client('YOUR_API_KEY', [
+  'prefer_latest_content' => true
+]);
+{% endcapture %}
+{% include code.html language="php" code=configuring_client_with_latest %}
+
+You can also prefer the latest content (or not) for a collection or render:
+
+{% capture rendering_with_latest %}
+// Render the _published_ content for all snippets...
+$jahuty = new Jahuty\Client('YOUR_API_KEY');
+
+// ... except, render the _latest_ content for this one...
+$render = $jahuty->snippets->render(YOUR_SNIPPET_ID, [
+  'prefer_latest_content' => true
+]);
+
+// ... and, this collection.
+$renders = $jahuty->snippets->allRenders('YOUR_TAG', [
+  'prefer_latest_content' => true
+]);
+{% endcapture %}
+{% include code.html language="php" code=rendering_with_latest %}
+
+## Passing dynamic parameters
+
+You can use the _same_ snippet to generate _different_ content by defining [variables]({% link liquid/variables.md %}) in your snippets and setting their values via [parameters]({% link liquid/parameters.md %}).
+
+### Snippet parameters
+
+You can pass parameters into your snippet using the options hash and the `params` key:
 
 {% capture rendering_with_params %}
 $jahuty = new Jahuty\Client('YOUR_API_KEY');
@@ -127,7 +162,10 @@ The parameters above would be equivalent to [assigning the variable]({% link liq
 {% endcapture %}
 {% include code.html language="liquid" code=render_with_vars %}
 
-If you're rendering a collection of snippets, the `params` syntax is a little different.
+
+### Collection parameters
+
+Collection parameters use a slightly different `params` syntax.
 
 The first dimension of the params array for a collection determines the parameters' scope. You can use the asterisk key (<kbd>*</kbd>) to pass the same parameters to all snippets, or you can use the snippet id as key to pass parameters to a specific snippet.
 
@@ -167,7 +205,7 @@ $renders = $jahuty->snippets->allRenders('YOUR_TAG', [
 {% endcapture %}
 {% include code.html language="php" code=rendering_collection_with_params_and_precedence %}
 
-## Caching
+## Caching for performance
 
 Caching controls how frequently this library requests content from Jahuty's API.
 
@@ -279,7 +317,7 @@ $jahuty2->snippets->render(1, ['ttl' => 0]);
 {% endcapture %}
 {% include code.html language="php" code=ttl_for_disable %}
 
-## Errors
+## Handling errors
 
 If Jahuty's API returns any [status code]({% link api.html %}#errors) other than `2xx`, a `Jahuty\Exception\Error` exception will be thrown:
 
@@ -299,7 +337,7 @@ try {
 
 ## Example
 
-If you'd like to see the SDK in action, see [jahuty/jahuty-php-example]({{ site.data.urls.examples.php }}).
+If you'd like to see this library in action, see [jahuty/jahuty-php-example]({{ site.data.urls.examples.php }}).
 
 ## Contributing
 
