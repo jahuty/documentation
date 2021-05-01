@@ -41,7 +41,7 @@ This library requires [Ruby 2.6+](https://www.ruby-lang.org/en/downloads/release
 Add this line to your application's `Gemfile` and then run `bundle install`:
 
 {% capture installing %}
-gem 'jahuty', '~> 3.2'
+gem 'jahuty', '~> 3.3'
 {% endcapture %}
 {% include code.html language="ruby" code=installing header=false select=false toggle=false %}
 
@@ -95,9 +95,38 @@ renders.each { |r| puts r }
 {% endcapture %}
 {% include code.html language="ruby" code=rendering_collection %}
 
-## Parameters
+## Rendering the latest content
 
-You can [pass parameters]({% link liquid/parameters.md %}) into your snippet using the `params` option:
+By default, Jahuty will render a snippet's _published_ content, the content that existed the last time someone clicked the "Publish" button, to avoid exposing your creative process to customers.
+
+You can render a snippet's _latest_ content, the content that currently exists in the editor, to your team in _development_ with the `prefer_latest` configuration option at the library or render level:
+
+{% capture configuring_library_with_latest %}
+jahuty = Jahuty::Client.new api_key: 'YOUR_API_KEY', prefer_latest: true
+{% endcapture %}
+{% include code.html language="ruby" code=configuring_library_with_latest %}
+
+You can also prefer the latest content (or not) for a render or collection:
+
+{% capture rendering_with_latest %}
+# Render the _published_ content for all snippets...
+jahuty = Jahuty::Client.new api_key: 'YOUR_API_KEY'
+
+# ...except, the _latest_ content for this one...
+jahuty.snippets.render YOUR_SNIPPET_ID, prefer_latest: true
+
+# ...and these.
+jahuty.snippets.all_renders 'YOUR_TAG', prefer_latest: true
+{% endcapture %}
+{% include code.html language="ruby" code=rendering_with_latest %}
+
+## Using dynamic parameters
+
+You can use the _same_ snippet to generate _different_ content by defining [variables]({% link liquid/variables.md %}) in your snippets and setting their values via [parameters]({% link liquid/parameters.md %}).
+
+### Snippet parameters
+
+You can pass parameters into your snippet using the `params` option:
 
 {% capture rendering_with_params %}
 jahuty = Jahuty::Client.new api_key: 'YOUR_API_KEY'
@@ -113,7 +142,9 @@ The parameters above would be equivalent to [assigning the variable]({% link liq
 {% endcapture %}
 {% include code.html language="liquid" code=rendering_with_vars header=false select=false toggle=false %}
 
-You can pass parameters into a collection, but the `params` syntax is a little different.
+### Collection parameters
+
+Collection parameters use a slightly different `params` syntax.
 
 If you're rendering a collection, the first dimension of the `params` hash determines the parameters' scope. Use an asterisk key (<kbd>*</kbd>) to pass the same parameters to all snippets, or use a snippet id as key to pass parameters to a specific snippet.
 
@@ -141,7 +172,7 @@ jahuty.snippets.all_renders 'YOUR_TAG', params: {
 {% endcapture %}
 {% include code.html language="ruby" code=collection_params_with_precedence %}
 
-## Caching
+## Caching for performance
 
 You can use caching to control how frequently this library requests the latest content from Jahuty's API.
 
@@ -182,7 +213,7 @@ jahuty = new Jahuty::Client.new(
 
 The persistent cache implementation you choose and configure is up to you. There are many libraries available, and most frameworks provide their own. At this time, we support any object which responds to `get(key)` or  `read(key)` and `set(key, value, expires_in:)` or `write(key, value, expires_in:)` including [ActiveSupport::Cache::Store](https://api.rubyonrails.org/classes/ActiveSupport/Cache/Store.html).
 
-### Expiring
+### Expiring the cache
 
 There are three methods for configuring this library's `:expires_in`, the amount of time between when a render is stored and when it's considered stale. From lowest-to-highest precedence, the methods are:
 
@@ -258,7 +289,7 @@ jahuty2.snippets.render 1, expires_in: 0
 {% endcapture %}
 {% include code.html language="ruby" code=disabling_caching header=false select=false toggle=false %}
 
-## Errors
+## Handling errors
 
 If an error occurs with [Jahuty's API]({% link api.html %}#errors), a `Jahuty::Exception::Error` exception will be raised:
 

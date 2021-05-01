@@ -76,9 +76,43 @@ renders.forEach((render) => console.log(render));
 {% endcapture %}
 {% include code.html language="javascript" code=rendering_collection %}
 
-## Using parameters
+## Rendering the latest content
 
-You can [pass parameters]({% link liquid/parameters.md %}) into your snippet using the options hash and the `params` key:
+By default, Jahuty will render a snippet's _published_ content, the content that existed the last time someone clicked the "Publish" button, to avoid exposing your creative process to customers.
+
+You can render a snippet's _latest_ content, the content that currently exists in the editor, instead with the `preferLatest` configuration option at the library or render level:
+
+{% capture configuring_with_latest %}
+const Client = require('@jahuty/jahuty').default;
+
+const jahuty = new Client({ apiKey: YOUR_API_KEY, preferLatest: true });
+{% endcapture %}
+{% include code.html language="javascript" code=configuring_with_latest %}
+
+You can also prefer the latest content (or not) for a render or collection:
+
+{% capture rendering_with_latest %}
+const Client = require('@jahuty/jahuty').default;
+
+// Render the _published_ content for all snippets...
+const jahuty = new Client({ apiKey: 'YOUR_API_KEY' });
+
+// ...except, render the _latest_ content for this one...
+const render = await jahuty.snippets.render(YOUR_SNIPPET_ID, { preferLatest: true });
+
+// ...and these.
+const renders = await jahuty.snippets.render('YOUR_TAG', { preferLatest: true });
+{% endcapture %}
+{% include code.html language="javascript" code=rendering_with_latest %}
+
+## Using dynamic parameters
+
+You can use the _same_ snippet to generate _different_ content by defining [variables]({% link liquid/variables.md %}) in your snippets and setting their values via [parameters]({% link liquid/parameters.md %}).
+
+### Snippet parameters
+
+
+You can pass parameters into your snippet using the options hash and the `params` key:
 
 {% capture rendering_with_params %}
 import Client from '@jahuty/jahuty';
@@ -100,7 +134,11 @@ The parameters above would be equivalent to [assigning the variable]({% link liq
 {% endcapture %}
 {% include code.html language="liquid" code=render_with_vars %}
 
-When passing parameters to a collection, the syntax is a little different. The first dimension of the `params` key determines the parameters' scope. Use an asterisk key (<kbd>*</kbd>) to pass the same parameters to all snippets, or use a snippet id as key to pass parameters to a specific snippet.
+### Collection parameters
+
+Collection parameters use a slightly different `params` syntax.
+
+The first dimension of the `params` key determines the parameters' scope. Use an asterisk key (<kbd>*</kbd>) to pass the same parameters to all snippets, or use a snippet id as key to pass parameters to a specific snippet.
 
 The two parameter lists will be merged recursively. For example, the code below will assign the variable `foo` the value `'bar'` for all snippets, including snippet _1_, which will also have the variable `baz` be assigned the value `'qux'`:
 
@@ -173,11 +211,10 @@ const Client = require('@jahuty/jahuty').default;
 const jahuty = new Client({ apiKey: YOUR_API_KEY, cache: CACHE_INSTANCE });
 {% endcapture %}
 {% include code.html language="javascript" code=persistent_caching %}
-```
 
 The persistent cache implementation you choose and configure is up to you. There are many libraries available, and most frameworks provide their own. At this time, we support any cache implementation which responds to `get(key)`/`set(key, value, ttl)` such as  [Keyv](https://www.npmjs.com/package/keyv).
 
-### Expiring
+### Expiring the cache
 
 There are three methods for configuring this library's time-to-live (`ttl`), the amount of time between when a render is stored and when it's considered stale. From lowest-to-highest precedence, the methods are:
 
@@ -268,7 +305,7 @@ jahuty2.snippets.render(1, { ttl: 0 });
 {% endcapture %}
 {% include code.html language="javascript" code=disabling_caching %}
 
-## Errors
+## Handling errors
 
 If [Jahuty's API]({% link api.html %}#errors) returns any status code other than `2xx`, a `BadResponse` exception will be thrown:
 
