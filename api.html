@@ -414,11 +414,10 @@ puts jahuty.snippets.render 1, params: { "foo": "bar" }
 <!doctype html>
 <html>
   <head>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://unpkg.com/@jahuty/web@0.1.0/dist/web.js"></script>
+    <script src="https://unpkg.com/@jahuty/web@0.2.0/dist/jahuty.js"></script>
     <script>
-      window.addEventListener('load', function () {
-        jahuty('{{ key }}');
+      window.addEventListener('DOMContentLoaded', function () {
+        jahuty({ apiKey: '{{ key }}' });
       });
     </script>
   </head>
@@ -536,11 +535,10 @@ puts jahuty.snippets.all_renders '{{ tag }}'
 <!doctype html>
 <html>
   <head>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://unpkg.com/@jahuty/web@0.1.0/dist/web.js"></script>
+    <script src="https://unpkg.com/@jahuty/web@0.2.0/dist/jahuty.js"></script>
     <script>
-      window.addEventListener('load', function () {
-        jahuty('{{ key }}');
+      window.addEventListener('DOMContentLoaded', function () {
+        jahuty({ apiKey: '{{ key }}' });
       });
     </script>
   </head>

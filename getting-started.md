@@ -58,7 +58,7 @@ Installing a [Software Development Kit (SDK)]({% link sdks/overview.md %}) lets 
       <code>$ gem install jahuty</code> <a href="https://github.com/jahuty/jahuty-ruby" target="_blank"><i class="fab fa-github ms-2"></i></a>
     </p>
     <p class="m-0" data-toggle-type="visibility" data-toggle-language="html">
-      <code>&lt;script src="https://unpkg.com/@jahuty/web@0.1.0/dist/web.js"&gt;&lt;/script&gt;</code> <a href="https://github.com/jahuty/jahuty-web" target="_blank"><i class="fab fa-github ms-2"></i></a>
+      <code>&lt;script src="https://unpkg.com/@jahuty/web@0.2.0/dist/jahuty.js"&gt;&lt;/script&gt;</code> <a href="https://github.com/jahuty/jahuty-web" target="_blank"><i class="fab fa-github ms-2"></i></a>
     </p>
   </div>
 </div>
@@ -109,11 +109,10 @@ console.log(render.content);
 <!doctype html>
 <html>
   <head>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://unpkg.com/@jahuty/web@0.1.0/dist/web.js"></script>
     <script>
-      window.addEventListener('load', function () {
-        jahuty('{{ example_api_key }}');
+      window.addEventListener('DOMContentLoaded', function () {
+        jahuty({ apiKey: '{{ example_api_key }}' });
       });
     </script>
   </head>

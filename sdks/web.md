@@ -14,7 +14,7 @@ category    : sdks
       <small>Code</small>
     </div>
     <div class="card-body py-2 px-3">
-      <a class="stretched-link" href="{{ site.data.urls.sdks.node }}">jahuty/jahuty-node</a>
+      <a class="stretched-link" href="{{ site.data.urls.sdks.web }}">jahuty/jahuty-web</a>
     </div>
   </div>
   <div class="card">
@@ -35,39 +35,34 @@ category    : sdks
   </div>
 </div>
 
-## Installation
+## Installation and usage
 
-This library requires a modern web browser.
+This library supports the last two versions of modern web browsers like Safari, Chrome, and Firefox.
 
-Add the following `script` tags to your document:
+Add the following deferred `script` tag to your document:
 
 {% capture installing %}
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://unpkg.com/@jahuty/web@0.1.0/dist/web.js"></script>
+<script defer src="https://unpkg.com/@jahuty/web@0.2.0/dist/jahuty.js"></script>
 {% endcapture %}
-{% include code.html language="html" code=installing header=false toggle=false select=false %}
+{% include code.html language="html" code=installing %}
 
-## Usage
+Add a script to execute `jahuty()` after resources and DOM have finished loading:
 
-Once loaded and executed, this script will query the DOM for snippet containers to be filled with content.
+{% capture script %}
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    jahuty({ apiKey: 'YOUR_API_KEY' });
+  });
+</script>
+{% endcapture %}
+{% include code.html language="html" code=script %}
 
-Add a container for your snippets to the DOM using the HTML5 [data-* attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*) `data-snippet-id`:
+Add snippet containers with the `data-snippet-id` HTML5 [data-* attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*):
 
 {% capture adding_a_container %}
 <div data-snippet-id="YOUR_SNIPPET_ID"></div>
 {% endcapture %}
 {% include code.html language="html" code=adding_a_container header=false toggle=false select=false %}
-
-Execute the script with your [API key]({% link api.html %}#authentication), after the resource and the DOM have finished loading, to render your snippets:
-
-{% capture rendering %}
-<script>
-  window.addEventListener('load', function () {
-    jahuty('YOUR_API_KEY');
-  });
-</script>
-{% endcapture %}
-{% include code.html language="html" code=rendering header=false select=false toggle=false %}
 
 This will cause the `innerHTML` of any element with the `data-snippet-id` attribute to be replaced with its content:
 
@@ -76,13 +71,26 @@ This will cause the `innerHTML` of any element with the `data-snippet-id` attrib
   YOUR_SNIPPET_SOURCE_CODE
 </div>
 {% endcapture %}
-{% include code.html language="html" code=rendered header=false toggle=false select=false %}
+{% include code.html language="html" code=rendered %}
 
-## Parameters
+## Passing parameters
 
-At this time, this package doesn't support parameters.
+You can [pass parameters]({% link liquid/parameters.md %}) into your render by passing a valid JSON string as the `data-snippet-params` attribute:
 
-## Errors
+{% capture passing_params %}
+<div data-snippet-id="YOUR_SNIPPET_ID"
+     data-snippet-params='{"foo":"bar"}'></div>
+{% endcapture %}
+{% include code.html language="html" code=passing_params %}
+
+The parameters above would be equivalent to [assigning the variables]({% link liquid/variables.md %}) below in your snippet:
+
+{% capture assigning_variables %}{% raw %}
+{% assign foo = "bar" %}
+{% endraw %}{% endcapture %}
+{% include code.html language="liquid" code=assigning_variables %}
+
+## Handling errors
 
 Any errors will be logged to the browser's console.
 

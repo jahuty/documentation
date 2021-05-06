@@ -8,7 +8,7 @@ sdks:
   node: https://github.com/jahuty/jahuty-node
   php: https://github.com/jahuty/jahuty-php
   ruby: https://github.com/jahuty/jahuty-ruby
-  web: https://unpkg.com/@jahuty/jahuty/dist/jahuty.js
+  web: https://github.com/jahuty/jahuty-web
 examples:
   node: https://github.com/jahuty/jahuty-node-example
   php: https://github.com/jahuty/jahuty-php-example
