@@ -9,7 +9,7 @@ category    : liquid
 
 {% include heading.html title="Assigning a variable" lead="Variables are placeholders for values that change." %}
 
-Variables output values in your snippets. Variable names are denoted by double curly braces: {% raw %}`{{`{% endraw %} and {% raw %}`}}`{% endraw %}. To render the content of a variable called `title` with the value `hello world`:
+Variables output values in your snippets, and they are a powerful feature to create truly dynamic content. Variable names are denoted by double curly braces: {% raw %}`{{`{% endraw %} and {% raw %}`}}`{% endraw %}. To render the content of a variable called `title` with the value `hello world`:
 
 {% include example.html example=examples.introduction %}
 

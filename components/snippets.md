@@ -9,7 +9,7 @@ category    : components
   Creating > Retrieving > Rendering > Removing > Deleting
 {% endcomment %}
 
-{% include heading.html title="Snippets" lead="A chunk of dynamic content you can render anywhere." %}
+{% include heading.html title="Snippets" lead="A snippet is a block of content you can render anywhere." %}
 
 A snippet is created in our text editor and output wherever you need it:
 

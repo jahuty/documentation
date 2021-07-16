@@ -5,7 +5,7 @@ keywords    : [tags, create, update, delete]
 permalink   : /components/:basename
 category    : components
 ---
-{% include heading.html title="Tags" lead="Short words or phrases used to group snippets." %}
+{% include heading.html title="Tags" lead="A tag is a short word or phrase used to group snippets and reduce load times." %}
 
 Tags are short words or phrases that you can use to label and retrieve a group of snippets. You can tag snippets by domain, product, project, or anything else you'd like. To keep tags short and easy to remember, only lowercase letters, numbers, and hyphens are allowed.
 

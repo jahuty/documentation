@@ -10,6 +10,7 @@ javascripts :
 {% assign key  = "kn2Kj5ijmT2pH6ZKqAQyNexUqKeRM4VG6DDgWN1lIcc" %}
 {% assign lang = "bash" %}
 {% assign tag  = "test" %}
+
 <section>
   <div class="row">
     <div class="col">
@@ -355,16 +356,22 @@ end
           The identifier of the snippet to retrieve.
         </dd>
         <dt>
-          <code>params</code> <small class="text-muted">string</small> <small class="badge bg-info">optional</small>
-        </dt>
-        <dd>
-          A <a href="https://en.wikipedia.org/wiki/Percent-encoding" target="_blank">URL-encoded</a>, <a href="https://www.json.org" target="_blank">JSON object</a> of <a href="/liquid/parameters">parameters</a> to use. Passed via the  <code>params</code> query string parameter. Unused variables are ignored.
-        </dd>
-        <dt>
           <code>latest</code> <small class="text-muted">bool</small> <small class="badge bg-info">optional</small>
         </dt>
         <dd>
           A flag indicating whether or not to render the <em>latest</em> content version, instead of the <em>published</em> content version. Any value will be considered <code>true</code>. Omit this parameter to indicate <code>false</code>.
+        </dd>
+        <dt>
+          <code>location</code> <small class="text-muted">url</small> <small class="badge bg-info">optional</small>
+        </dt>
+        <dd>
+          An absolute <code>http</code> or <code>https</code> (recommended) <a href="https://en.wikipedia.org/wiki/URL" title="Uniform Resource Locator" target="_blank">URL</a> indicating where the snippet is being rendered. Query string parameters and fragments are accepted.
+        </dd>
+        <dt>
+          <code>params</code> <small class="text-muted">string</small> <small class="badge bg-info">optional</small>
+        </dt>
+        <dd>
+          A <a href="https://en.wikipedia.org/wiki/Percent-encoding" target="_blank">URL-encoded</a>, <a href="https://www.json.org" target="_blank">JSON object</a> of <a href="/liquid/parameters">parameters</a> to use. Passed via the  <code>params</code> query string parameter. Unused variables are ignored.
         </dd>
       </dl>
       <h4>
@@ -463,22 +470,7 @@ puts jahuty.snippets.render 1, params: { "foo": "bar" }
           <code>params</code> <small class="text-muted">string</small> <small class="badge bg-info">optional</small>
         </dt>
         <dd>
-          A <a href="https://en.wikipedia.org/wiki/Percent-encoding" target="_blank">URL-encoded</a>, <a href="https://www.json.org" target="_blank">JSON object</a> of <a href="/liquid/parameters">parameters</a> in the following format:
-          <ul class="my-3">
-            <li>
-              The object should use the snippets' unique identifiers as top-level attributes. For example, the object, <code>{ "1": { "foo": "bar" } }</code>, will define the variable <code>foo</code> as the string <code>"bar"</code> for snippet <em>1</em>.
-            </li>
-            <li>
-              The asterisk character (<kbd>*</kbd>) is a special top-level attribute that can be used to pass the same parameters to all snippets in the collection. For example, the object, <code>{ "*": { "foo": "bar" } }</code>, will define the variable <code>foo</code> as the string <code>"bar"</code> for all snippets in the collection.
-            </li>
-            <li>
-              Parameters are merged recursively. For example, the object, <code>{ "*": { "foo": "bar" }, "1": { "baz": "qux" } }</code>, will define the variable <code>foo</code> as the string <code>"bar"</code> for all snippets in the collection, including snippet <em>1</em>, which has the additional variable <code>baz</code> defined as the string <code>"qux"</code>.
-            </li>
-            <li>
-              When merging parameters, a snippet's parameters will take precedence. For example, the object, <code>{ "*": { "foo": "bar" }, "1": { "foo": "baz" } }</code>, will define the variable <code>foo</code> as the string <code>"bar"</code> for all snippets in the collection, except snippet <em>1</em>, where <code>foo</code> will be defined as <code>"baz"</code>.
-            </li>
-          </ul>
-          Unused variables are ignored.
+          A <a href="https://en.wikipedia.org/wiki/Percent-encoding" target="_blank">URL-encoded</a>, <a href="https://www.json.org" target="_blank">JSON object</a> of <a href="/liquid/parameters">parameters</a> with the snippets' unique identifiers as top-level attributes (e.g., <code>{ "1": { "foo": "bar" } }</code>. The asterisk character (<kbd>*</kbd>) is a special top-level attribute that can be used to pass the same parameters to all snippets in the collection (e.g., <code>{ "*": { "foo": "bar" } }</code>).
         </dd>
         <dt>
           <code>latest</code> <small class="text-muted">bool</small> <small class="badge bg-info">optional</small>

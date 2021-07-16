@@ -6,19 +6,20 @@ permalink   : /sdks/:basename
 category    : sdks
 ---
 
-{% include heading.html title="Choosing an SDK" lead="Packages we maintain to make interacting with our API easier." %}
+{% include heading.html title="Choosing an SDK" lead="A Software Development Kit (SDK) is a package we maintain to make interacting with our API easier." %}
 
-A [Software Development Kit](https://en.wikipedia.org/wiki/Software_development_kit) (SDK) is an open-source software package we maintain that makes interacting with our API easier. Once installed and configured, an SDK provides objects and methods that abstract away low-level concerns like setting `Authorization` headers, encoding query string parameters, and parsing `json` responses.
+Once installed and configured, an SDK provides objects and methods that abstract away low-level concerns like setting `Authorization` headers, encoding query string parameters, and parsing `json` responses.
 
 SDKs are available in the language of your choice including: [Node.js]({% link sdks/node.md %}), [PHP]({% link sdks/php.md %}), [Ruby]({% link sdks/ruby.md %}), and the [web]({% link sdks/web.md %}).
 
-All our SDKs have the following properties, unless otherwise noted:
+## Design principles
 
-* They are [open source](https://en.wikipedia.org/wiki/Open_source). Inspect code or contribute via our [Github repositories](https://github.com/jahuty).
-* They are [multi-platform](https://en.wikipedia.org/wiki/Cross-platform_software). They work equally well on Windows, Linux, and OSX.
-* They are [semantically versioned](https://semver.org). Version numbers indicate compatibility between versions.
-* They are [transparently changed](https://keepachangelog.com/en/1.0.0/). Notable changes are curated in a `CHANGELOG`.
-* They are [easily installed](https://en.wikipedia.org/wiki/Package_manager). Install from public repositories using your project's package manager.
+Our SDKs adhere to the following design principles, unless otherwise noted:
+
+1. **They are [open source](https://en.wikipedia.org/wiki/Open_source).** You can inspect the code or contribute via our [Github repositories](https://github.com/jahuty).
+1. **They are [multi-platform](https://en.wikipedia.org/wiki/Cross-platform_software).** You can use them equally well on Windows, Linux, and OSX.
+1. **They are [semantically versioned](https://semver.org).** You can infer compatibility using the version number.
+1. **They are [transparently changed](https://keepachangelog.com/en/1.0.0/).** You can read notable changes in a human-friendly `CHANGELOG`.
 
 ## Choosing an SDK
 
