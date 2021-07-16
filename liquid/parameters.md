@@ -7,11 +7,11 @@ category    : liquid
 ---
 {% assign examples = site.data.liquid.parameters %}
 
-{% include heading.html title="Passing a parameter" lead="Assign values to variables at render time." %}
+{% include heading.html title="Passing a parameter" lead="Parameters assign values to variables at render time." %}
 
-The `assign` and `capture` tags are helpful, but they're static. Their values don't change.
+The `assign` and `capture` tags are helpful, but they're static. Their values don't change from render to render.
 
-Parameters, on the other hand, assign values to [variables]({% link liquid/variables.md %}) when you [render a snippet](/components/snippets#rendering-snippets). This allows you to re-use the same snippet with different values.
+Parameters, on the other hand, assign values to [variables]({% link liquid/variables.md %}) each time you [render a snippet](/components/snippets#rendering-snippets). This allows you to use the same snippet to produce different output.
 
 {% include example.html example=examples.introduction1 %}
 

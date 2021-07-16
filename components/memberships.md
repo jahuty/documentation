@@ -6,7 +6,7 @@ permalink   : /components/:basename
 category    : components
 ---
 
-{% include heading.html title="Memberships" lead="The organizations you belong to and roles you are assigned within them." %}
+{% include heading.html title="Memberships" lead="Your memberships, and the roles you are assigned, determine what you can do in Jahuty." %}
 
 Your _memberships_, the organizations you belong to and the roles you are assigned within them, determine what you can do in Jahuty. You can belong to more than one organization, but you must belong to at least one, even if you're the only member.
 

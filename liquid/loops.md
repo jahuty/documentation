@@ -8,7 +8,7 @@ category    : liquid
 
 {% assign examples = site.data.liquid.loops %}
 
-{% include heading.html title="Iterating a loop" lead="Run blocks of code repeatedly." %}
+{% include heading.html title="Iterating a loop" lead="A loop runs a block of code repeatedly." %}
 
 `For` loops allow you to run blocks of code repeatedly. You can change the loop's behavior with [control tags](#control-tags) and [parameters](#parameters), and within a loop, you can access [attributes](#attributes) to control the iteration.
 

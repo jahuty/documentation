@@ -6,9 +6,11 @@ permalink   : /components/:basename
 category    : components
 ---
 
-{% include heading.html title="Invitations" lead="Requests to join an organization." %}
+{% include heading.html title="Invitations" lead="Invitations are unique, time-boxed requests you can send (or receive) to join an organization." %}
 
-_Invitations_ are unique, time-boxed requests you can send (or receive) to join an organization. When someone accepts an invitation, they become a member of your organization. So, it's important to make sure you invite people you know using the correct email address.
+## Securing invitations
+
+When someone accepts an invitation, they become a member of your organization. So, it's important to make sure you invite people you know using the correct email address.
 
 ## Viewing invitations
 

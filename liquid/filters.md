@@ -7,9 +7,9 @@ category    : liquid
 ---
 {% assign examples = site.data.liquid.filters %}
 
-{% include heading.html title="Applying a filter" lead="Global, predefined functions that change the output of a variable." %}
+{% include heading.html title="Applying a filter" lead="Filters are global, predefined functions that change the output of a variable." %}
 
-Filters are global, predefined functions that change the output of a variable. Filters are used within an output and separated by the vertical bar character (`|`).
+Filters are used within an output and separated by the vertical bar character (`|`).
 
 {% include example.html example=examples.introduction %}
 

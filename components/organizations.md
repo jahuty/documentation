@@ -10,9 +10,9 @@ category    : components
   creating | joining > administering > deleting
 {% endcomment %}
 
-{% include heading.html title="Organizations" lead="A group of people that work together in Jahuty." %}
+{% include heading.html title="Organizations" lead="An organization is a group of people that work together in Jahuty." %}
 
-An _organization_ is a group of people that work together in Jahuty. Almost everything in Jahuty belongs to an organization, including your account. The organizations you belong to and the roles you are assigned within them determine what you can do in Jahuty. You can belong to more than one organization, but you must belong to at least one, even if you're the only member.
+ Almost everything in Jahuty belongs to an organization, including your account. The organizations you belong to and the roles you are assigned within them determine what you can do in Jahuty. You can belong to more than one organization, but you must belong to at least one, even if you're the only member.
 
 ## Viewing organizations
 
