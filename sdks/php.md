@@ -44,7 +44,7 @@ It should be installed via [Composer](https://getcomposer.org). To do so, add th
 {% capture installation %}
 {
    "require": {
-       "jahuty/jahuty-php": "^5.3"
+       "jahuty/jahuty-php": "^5.4"
    }
 }
 {% endcapture %}
@@ -109,12 +109,10 @@ foreach ($renders as $render) {
 
 By default, Jahuty will render a snippet's _published_ content, the content that existed the last time someone clicked the "Publish" button, to avoid exposing your creative process to customers.
 
-You can render a snippet's _latest_ content, the content that currently exists in the editor, to your team in _development_ with the `prefer_latest_content` configuration option at the library or render level:
+You can render a snippet's _latest_ content, the content that currently exists in the editor, to your team in _development_ with the `prefer_latest` configuration option at the library or render level:
 
 {% capture configuring_client_with_latest %}
-$jahuty = new Jahuty\Client('YOUR_API_KEY', [
-  'prefer_latest_content' => true
-]);
+$jahuty = new Jahuty\Client('YOUR_API_KEY', ['prefer_latest' => true]);
 {% endcapture %}
 {% include code.html language="php" code=configuring_client_with_latest %}
 
@@ -125,14 +123,10 @@ You can also prefer the latest content (or not) for a collection or render:
 $jahuty = new Jahuty\Client('YOUR_API_KEY');
 
 // ... except, render the _latest_ content for this one...
-$render = $jahuty->snippets->render(YOUR_SNIPPET_ID, [
-  'prefer_latest_content' => true
-]);
+$render = $jahuty->snippets->render(YOUR_SNIPPET_ID, ['prefer_latest' => true]);
 
 // ... and, this collection.
-$renders = $jahuty->snippets->allRenders('YOUR_TAG', [
-  'prefer_latest_content' => true
-]);
+$renders = $jahuty->snippets->allRenders('YOUR_TAG', ['prefer_latest' => true]);
 {% endcapture %}
 {% include code.html language="php" code=rendering_with_latest %}
 
@@ -204,6 +198,23 @@ $renders = $jahuty->snippets->allRenders('YOUR_TAG', [
 ]);
 {% endcapture %}
 {% include code.html language="php" code=rendering_collection_with_params_and_precedence %}
+
+## Reporting render locations
+
+You can use the `render()` method's `location` configuration option to report the absolute URL where a snippet is being rendered. This will help your team preview their changes, and it'll help you find and replace deprecated snippets.
+
+{% capture reporting_locations %}
+$jahuty = new Jahuty\Client('YOUR_API_KEY');
+
+$render = $jahuty->snippets->render(YOUR_SNIPPET_ID, [
+  'location' => 'https://example.com/path/to/render'
+]);
+{% endcapture %}
+{% include code.html language="php" code=reporting_locations %}
+
+Note, locations are only reported when a request is sent to Jahuty's API. As a result, locations will not be reported in some scenarios. For example, if the call to `render()` results in a cache hit, a request will not sent to Jahuty's API, and the location will not be reported.
+
+This configuration option is not supported by the `allRenders()` method.
 
 ## Caching for performance
 
