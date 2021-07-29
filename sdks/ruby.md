@@ -36,12 +36,16 @@ category    : sdks
 
 ## Installation
 
-This library requires [Ruby 2.6+](https://www.ruby-lang.org/en/downloads/releases/).
+This library is tested with the following [Ruby versions](https://www.ruby-lang.org/en/downloads/releases/):
+
+* MRI 2.6.8
+* MRI 2.7.4
+* MRI 3.0.2
 
 Add this line to your application's `Gemfile` and then run `bundle install`:
 
 {% capture installing %}
-gem 'jahuty', '~> 3.3'
+gem 'jahuty', '~> 3.4'
 {% endcapture %}
 {% include code.html language="ruby" code=installing header=false select=false toggle=false %}
 
@@ -171,6 +175,18 @@ jahuty.snippets.all_renders 'YOUR_TAG', params: {
 }
 {% endcapture %}
 {% include code.html language="ruby" code=collection_params_with_precedence %}
+
+## Tracking renders
+
+You can use the `location` configuration option to record the absolute URL where snippets are rendered. This helps your team preview their changes, and it helps you find and replace deprecated snippets.
+
+```ruby
+jahuty = Jahuty::Client.new api_key: 'YOUR_API_KEY'
+
+render = jahuty.snippets.render YOUR_SNIPPET_ID, location: 'https://example.com'
+```
+
+Note, this configuration option is only supported by the `render` method, and locations are only reported when a request is sent to Jahuty's API. As a result of this limitation, locations may not be reported in all scenarios. For example, if a call to `render` results in a cache hit, the location will not be reported.
 
 ## Caching for performance
 
