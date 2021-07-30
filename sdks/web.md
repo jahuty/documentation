@@ -42,7 +42,7 @@ This library supports the last two versions of modern web browsers like Safari, 
 Add the following deferred `script` tag to your document:
 
 {% capture installing %}
-<script defer src="https://unpkg.com/@jahuty/web@0.2.0/dist/jahuty.js"></script>
+<script defer src="https://unpkg.com/@jahuty/web@0.2.1/dist/jahuty.js"></script>
 {% endcapture %}
 {% include code.html language="html" code=installing %}
 
@@ -73,6 +73,28 @@ This will cause the `innerHTML` of any element with the `data-snippet-id` attrib
 {% endcapture %}
 {% include code.html language="html" code=rendered %}
 
+## Rendering content
+
+By default, Jahuty will render a snippet's _published_ content, the content that existed the last time a teammate clicked the "Publish" button, to avoid exposing your creative process to customers.
+
+You can render a snippet's _latest_ content, the content that currently exists in the editor, in the current environment with the `preferLatest` configuration option:
+
+{% capture client_with_latest %}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    jahuty({ apiKey: 'YOUR_API_KEY', preferLatest: true });
+  });
+</script>
+{% endcapture %}
+{% include code.html language="html" code=client_with_latest %}
+
+You can also prefer the latest content (or not) for a single render with the `data-snippet-latest` attribute:
+
+{% capture render_with_latest %}
+<div data-snippet-id="YOUR_SNIPPET_ID" data-snippet-latest="true"></div>
+{% endcapture %}
+{% include code.html language="html" code=render_with_latest %}
+
 ## Passing parameters
 
 You can [pass parameters]({% link liquid/parameters.md %}) into your render by passing a valid JSON string as the `data-snippet-params` attribute:
@@ -89,6 +111,15 @@ The parameters above would be equivalent to [assigning the variables]({% link li
 {% assign foo = "bar" %}
 {% endraw %}{% endcapture %}
 {% include code.html language="liquid" code=assigning_variables %}
+
+## Tracking renders
+
+You can record where snippets are rendered - the value of the `window.location.href` variable - using the `data-snippet-location` attribute:
+
+{% capture with_location %}
+<div data-snippet-id="YOUR_SNIPPET_ID" data-snippet-location="true"></div>
+{% endcapture %}
+{% include code.html language="html" code=with_location %}
 
 ## Handling errors
 
