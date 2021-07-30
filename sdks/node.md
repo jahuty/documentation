@@ -85,7 +85,7 @@ You can render a snippet's _latest_ content, the content that currently exists i
 {% capture configuring_with_latest %}
 const Client = require('@jahuty/jahuty').default;
 
-const jahuty = new Client({ apiKey: YOUR_API_KEY, preferLatest: true });
+const jahuty = new Client({ apiKey: 'YOUR_API_KEY', preferLatest: true });
 {% endcapture %}
 {% include code.html language="javascript" code=configuring_with_latest %}
 
@@ -145,7 +145,7 @@ The two parameter lists will be merged recursively. For example, the code below 
 {% capture rendering_collection_with_params %}
 const Client = require('@jahuty/jahuty').default;
 
-const jahuty = new Client({ apiKey: YOUR_API_KEY });
+const jahuty = new Client({ apiKey: 'YOUR_API_KEY' });
 
 const renders = await jahuty.snippets.allRenders('YOUR_TAG', {
   params: {
@@ -161,7 +161,7 @@ Parameters for a specific snippet will take precedence over parameters for all s
 {% capture rendering_collection_with_precedence %}
 const Client = require('@jahuty/jahuty').default;
 
-const jahuty = new Client({ apiKey: YOUR_API_KEY });
+const jahuty = new Client({ apiKey: 'YOUR_API_KEY' });
 
 const renders = await jahuty.snippets.allRenders('YOUR_TAG', {
   params: {
@@ -171,6 +171,23 @@ const renders = await jahuty.snippets.allRenders('YOUR_TAG', {
 });
 {% endcapture %}
 {% include code.html language="javascript" code=rendering_collection_with_precedence %}
+
+## Tracking renders
+
+You can record where snippets are rendered using the `location` configuration option. This helps your team preview their changes, and it helps you find and replace deprecated snippets.
+
+{% capture rendering_with_location %}
+const Client = require('@jahuty/jahuty').default;
+
+const jahuty = new Client({ apiKey: 'YOUR_API_KEY' });
+
+const render = await jahuty.snippets.render(YOUR_SNIPPET_ID, {
+  location: 'https://example.com'
+});
+{% endcapture %}
+{% include code.html language="javascript" code=rendering_with_location %}
+
+Note, this configuration option is only supported by the `render()` method, and because locations are only reported when a request is sent to Jahuty's API, they may not be reported in all scenarios (e.g., if a call to `render` results in a cache hit).
 
 ## Caching for performance
 
@@ -186,7 +203,7 @@ By default, this library uses an in-memory cache to avoid requesting the same re
 {% capture caching %}
 const Client = require('@jahuty/jahuty').default;
 
-const jahuty = new Client({ apiKey: YOUR_API_KEY });
+const jahuty = new Client({ apiKey: 'YOUR_API_KEY' });
 
 // sends a synchronous API request; caches the result in memory; and,
 // returns it to the caller
@@ -208,7 +225,7 @@ To configure Jahuty to use your persistent cache, pass a cache implementation to
 {% capture persistent_caching %}
 const Client = require('@jahuty/jahuty').default;
 
-const jahuty = new Client({ apiKey: YOUR_API_KEY, cache: CACHE_INSTANCE });
+const jahuty = new Client({ apiKey: 'YOUR_API_KEY', cache: CACHE_INSTANCE });
 {% endcapture %}
 {% include code.html language="javascript" code=persistent_caching %}
 
@@ -234,8 +251,8 @@ You can configure a default `ttl` for all of this library's renders by passing a
 const Client = require('@jahuty/jahuty').default;
 
 const jahuty = new Client({
-  apiKey: YOUR_API_KEY,
-  cache: CACHE_INSTANCE,
+  apiKey: 'YOUR_API_KEY',
+  cache: YOUR_CACHE_INSTANCE,
   ttl: 60  // <- cache renders for 60 seconds
 });
 {% endcapture %}
@@ -252,8 +269,8 @@ const Client = require('@jahuty/jahuty').default;
 
 // cache all renders five minutes
 const jahuty = new Client({
-  apiKey: YOUR_API_KEY,
-  cache: CACHE_INSTANCE,
+  apiKey: 'YOUR_API_KEY',
+  cache: YOUR_CACHE_INSTANCE,
   ttl: 300
 });
 
@@ -274,7 +291,7 @@ By default, this library will cache the individual renders returned by the `allR
 {% capture caching_collections %}
 const Client = require('@jahuty/jahuty').default;
 
-const jahuty = new Client({ apiKey: YOUR_API_KEY, cache: CACHE_INSTANCE });
+const jahuty = new Client({ apiKey: 'YOUR_API_KEY', cache: YOUR_CACHE_INSTANCE });
 
 // sends a network request, caches each render, and returns the collection
 const renders = jahuty.snippets.allRenders('YOUR_TAG');
@@ -297,7 +314,7 @@ You can disable caching, even the default in-memory caching, by passing an `ttl`
 const Client = require('@jahuty/jahuty').default;
 
 // disable all caching
-const jahuty1 = new Client({ apiKey: YOUR_API_KEY, ttl: 0 });
+const jahuty1 = new Client({ apiKey: 'YOUR_API_KEY', ttl: 0 });
 
 // disable caching for a specific render
 const jahuty2 = new Client({ apiKey: 'YOUR_API_KEY' });
